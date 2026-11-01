@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kompleks Analiz — Vize Hazırlık ve İnteraktif Ders Portalı | Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: #f1f5f9;
+      --card: #ffffff;
+      --foreground: #0f172a;
+      --muted-foreground: #475569;
+      --border: #cbd5e1;
+      --accent-bg: #f8fafc;
+    }
+    html.dark {
+      --background: #0b1120;
+      --card: #111827;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+      --border: #1e293b;
+      --accent-bg: #0f172a;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+    }
+    .sub-btn.active {
+      background-color: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+    .test-tab.active {
+      background-color: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+      box-shadow: 0 2px 8px rgba(30, 58, 138, 0.25);
+    }
+    canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 11px;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    section {
+      scroll-margin-top: 86px;
+    }
+    .math-box {
+      font-family: 'Cambria Math', 'Times New Roman', Georgia, serif;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen pb-20">
+
+  <!-- TOP ACADEMIC NAVIGATION BAR -->
+  <header class="sticky top-0 z-50 bg-[var(--card)]/95 backdrop-blur border-b border-[var(--border)] shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="px-3 py-1 rounded bg-blue-900 text-white font-bold text-xs tracking-wider uppercase">
+          KOMPLEKS ANALİZ • VİZE
+        </div>
+        <div class="text-sm font-bold tracking-tight hidden md:block">
+          Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan — Ders Notları & Tahta/Defter Sınav Rehberi
+        </div>
+      </div>
+      <nav class="flex flex-wrap items-center gap-1.5 text-xs">
+        <a href="#sec-tuyolar" class="px-2.5 py-1.5 rounded font-semibold bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-500/40 hover:border-amber-600 transition">★ Vize Tüyoları</a>
+        <a href="#sec-klasik-turev" class="px-2.5 py-1.5 rounded font-semibold bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">I. Klasik Türev & Limit</a>
+        <a href="#sec-geometri" class="px-2.5 py-1.5 rounded font-semibold bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">II. Tahta Geometrik Yorum</a>
+        <a href="#sec-kutupsal" class="px-2.5 py-1.5 rounded font-semibold bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">III. Kutupsal, De Moivre & Kök</a>
+        <a href="#sec-slayt-ozet" class="px-2.5 py-1.5 rounded font-semibold bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">IV. 33 Slayt Tam Özet</a>
+        <a href="#sec-testler" class="px-3 py-1.5 rounded font-bold bg-blue-900 text-white hover:bg-blue-800 transition">V. 5 Deneme (100 Soru)</a>
+        <button onclick="toggleTheme()" class="px-2.5 py-1.5 rounded bg-[var(--accent-bg)] border border-[var(--border)] font-semibold hover:border-blue-800 transition" title="Gece / Gündüz Modu">
+          Görünüm
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 pt-6 space-y-10">
+
+    <!-- FORMAL UNIVERSITY BANNER & NOTEBOOK EXAM INTELLIGENCE -->
+    <div id="sec-tuyolar" class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[var(--border)] pb-4 mb-5">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-widest text-blue-800 dark:text-blue-400 mb-1">
+            Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan • Kompleks Analiz: Temel Kavramlar (Slayt 1–33, Tahta & Defter Notları)
+          </div>
+          <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">
+            Kompleks Analiz — İnteraktif Vize Çalışma ve Sınav Hazırlık Portalı
+          </h1>
+          <p class="text-[var(--muted-foreground)] text-sm mt-1">
+            33 Sayfalık Ders Sunumu, Sınıfta Tahtada Çözülen Geometrik Yorum Örnekleri (a–f) ve Defterdeki Vize Soru Dağılımı Tüyolarına Göre Hazırlanmış Simülasyon + 100 Çözümlü Soru Bankası
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-2 text-xs shrink-0">
+          <div class="px-3.5 py-2 rounded-lg bg-amber-500/10 border border-amber-500/40">
+            <div class="text-amber-800 dark:text-amber-300 font-bold">Defter Notu: Sınav Formatı</div>
+            <div class="font-extrabold text-sm text-[var(--foreground)]">Toplam 8–10 Soru (2 Klasik Zorunlu)</div>
+          </div>
+          <div class="px-3.5 py-2 rounded-lg bg-blue-900/10 border border-blue-800/40">
+            <div class="text-blue-900 dark:text-blue-300 font-bold">Baş Argüman Kuralı (Slayt 13)</div>
+            <div class="font-extrabold text-sm text-[var(--foreground)]">-π &lt; Arg(z) ≤ π  ve  i² = -1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEFTERDEKİ VİZE İPUÇLARI KUTULARI -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+        <div class="p-3.5 rounded-lg bg-red-500/10 border border-red-500/30">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-red-700 text-white">Klasik Soru 1 (Zorunlu)</span>
+            <span class="text-xs font-bold text-red-700 dark:text-red-400">Defter Notu</span>
+          </div>
+          <div class="font-bold text-sm mt-1">Limit Tanımıyla Türev Bulma</div>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            <b>"1. limiti yapmak zorunlu (klasik)"</b>: <span class="math-box font-semibold">f(z) = z²</span> fonksiyonunun <span class="math-box font-semibold">z₀ = 2 - i</span> noktasındaki türevini <span class="math-box">lim<sub>z→z₀</sub> [f(z)-f(z₀)]/(z-z₀)</span> ile bulma (Sonuç: <b>4 - 2i</b>).
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-amber-500/10 border border-amber-500/30">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-amber-700 text-white">Klasik Soru 2</span>
+            <span class="text-xs font-bold text-amber-800 dark:text-amber-300">Defter & Tahta</span>
+          </div>
+          <div class="font-bold text-sm mt-1">Geometrik Yorum (Çember / Yuvar / Halka)</div>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            Defterdeki <span class="math-box font-semibold">1 ≤ |z - (3+2i)| ≤ 5</span> (M(3,2), r₁=1, r₂=5 halka) ve tahtadaki <span class="math-box font-semibold">|2z - i| = 4</span>, <span class="math-box font-semibold">|3z - 15i| = 3</span>, <span class="math-box font-semibold">|z - 2 - 3i| &lt; 4</span> çizimleri.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-700 text-white">Banko Konu 3</span>
+            <span class="text-xs font-bold text-emerald-800 dark:text-emerald-300">Defter & Slayt 4–11</span>
+          </div>
+          <div class="font-bold text-sm mt-1">Karmaşık Sayılarda (+, -, ×, ÷, Eşlenik)</div>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            Sıralı ikili çarpımı, dağılma özelliği doğrulaması (Slayt 7), paydanın eşleniği <span class="math-box">z̄ = x - iy</span> ile bölme işlemi (<span class="math-box">z·z̄ = |z|² = x²+y²</span>) ve <span class="math-box">Im(z) = y</span> (reel sayı!) kuralı.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-blue-500/10 border border-blue-500/30">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-blue-800 text-white">Banko Konu 4</span>
+            <span class="text-xs font-bold text-blue-800 dark:text-blue-300">Defter & Slayt 12–32</span>
+          </div>
+          <div class="font-bold text-sm mt-1">Kök Bulma, De Moivre, Limit & Süreklilik</div>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            <b>"Karmaşık sayının köklerini bulma"</b> (<span class="math-box">w<sub>k</sub></span> formülü, küp kökler), De Moivre (<span class="math-box">(1-i)⁸ = 16</span>), yola bağımlılık (<span class="math-box">z̄/z</span>), bileşen limiti (<span class="math-box">u+iv</span>), düzgün süreklilik & kompaktlık.
+          </p>
+        </div>
+      </div>
+
+      <!-- HIZLI BÖLÜM KARTLARI -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 text-xs">
+        <a href="#sec-klasik-turev" class="p-2.5 rounded-lg bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">
+          <div class="font-bold text-blue-900 dark:text-blue-400">Bölüm I</div>
+          <div class="text-[var(--muted-foreground)]">Klasik Türev & Limit Çözücü</div>
+        </a>
+        <a href="#sec-geometri" class="p-2.5 rounded-lg bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">
+          <div class="font-bold text-blue-900 dark:text-blue-400">Bölüm II</div>
+          <div class="text-[var(--muted-foreground)]">Tahta & Defter Çember/Halka Çizici</div>
+        </a>
+        <a href="#sec-kutupsal" class="p-2.5 rounded-lg bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">
+          <div class="font-bold text-blue-900 dark:text-blue-400">Bölüm III</div>
+          <div class="text-[var(--muted-foreground)]">Kutupsal, De Moivre & Kök Simülatörü</div>
+        </a>
+        <a href="#sec-slayt-ozet" class="p-2.5 rounded-lg bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 transition">
+          <div class="font-bold text-blue-900 dark:text-blue-400">Bölüm IV</div>
+          <div class="text-[var(--muted-foreground)]">33 Slayt Akademik Konu Özeti</div>
+        </a>
+        <a href="#sec-testler" class="p-2.5 rounded-lg bg-blue-900/10 border border-blue-800/40 hover:bg-blue-900/20 transition col-span-2 sm:col-span-1">
+          <div class="font-bold text-blue-900 dark:text-blue-300">Bölüm V</div>
+          <div class="text-[var(--muted-foreground)] font-semibold">5 Test × 20 = 100 Soru</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- BÖLÜM I: DEFTER KLASİK SORU 1 — LİMİT TANIMIYLA TÜREV & LİMİT REHBERİ -->
+    <!-- ===================================================================== -->
+    <section id="sec-klasik-turev" class="space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="border-b border-[var(--border)] pb-4 mb-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400">Bölüm I • Defterdeki Zorunlu Klasik Soru Simülatörü + Slayt 23–28 Limit Uygulamaları</span>
+          <h2 class="text-xl md:text-2xl font-extrabold mt-0.5">Klasik Soru 1: Limit Tanımıyla Türev Hesabı ve Kompleks Limit Yöntemleri</h2>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            Defterinizde <b>"Sınav 8-10 soru, 2 soru klasik (türev), 1. limiti yapmak zorunlu (klasik)"</b> olarak not edilen soru tipi! Sınavda doğrudan <span class="math-box">f'(z) = 2z</span> türev kuralını yazmak yerine <b>limit tanımını açıkça yazıp çarpanlara ayırarak sadeleştirmeniz</b> gerekmektedir.
+          </p>
+        </div>
+
+        <!-- HAZIR KLASİK SORU SENARYOLARI BUTONLARI -->
+        <div class="mb-4">
+          <div class="text-xs font-bold uppercase text-[var(--muted-foreground)] mb-2">1. Defter ve Slayttaki Hazır Klasik Soruları Seçin:</div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="selectDerivCase('defter1')" id="dbtn-defter1" class="sub-btn active px-3 py-2 rounded-lg border border-[var(--border)] text-xs font-bold transition">
+              ★ Defter Birebir: f(z) = z², z₀ = 2 - i
+            </button>
+            <button onclick="selectDerivCase('klasik2')" id="dbtn-klasik2" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-xs font-bold transition">
+              Klasik Varyasyon: f(z) = z² + 2z, z₀ = 1 + i
+            </button>
+            <button onclick="selectDerivCase('klasik3')" id="dbtn-klasik3" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-xs font-bold transition">
+              Küp Türevi: f(z) = z³, z₀ = 1 - i
+            </button>
+            <button onclick="selectDerivCase('klasik4')" id="dbtn-klasik4" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-xs font-bold transition">
+              Kesirli Türev: f(z) = 1/z, z₀ = 2 - i
+            </button>
+            <button onclick="selectDerivCase('slayt28')" id="dbtn-slayt28" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-xs font-bold transition">
+              Slayt 28 (0/0 Limit): lim(z→i) (z²+1)/(z-i)
+            </button>
+            <button onclick="selectDerivCase('slayt25')" id="dbtn-slayt25" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-xs font-bold transition">
+              Slayt 25 (Yola Bağımlılık): lim(z→0) z̄ / z
+            </button>
+            <button onclick="selectDerivCase('slayt27')" id="dbtn-slayt27" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-xs font-bold transition">
+              Slayt 27 (Bileşen Limiti): lim(z→3+2i) (z²+2)
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- SOL: SINAV KAĞIDI ADIM ADIM KLASİK ÇÖZÜM EKRANI -->
+          <div class="lg:col-span-7 p-5 rounded-xl bg-[var(--accent-bg)] border-2 border-blue-900/30 space-y-4">
+            <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
+              <div>
+                <span class="text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded bg-blue-900 text-white" id="deriv-badge">Defterdeki Birebir Vize Sorusu</span>
+                <h3 class="text-base font-extrabold mt-1.5" id="deriv-title">f(z) = z² fonksiyonunun z₀ = 2 - i noktasındaki türevini limit yardımıyla bulunuz.</h3>
+              </div>
+            </div>
+
+            <div id="deriv-steps-container" class="space-y-3 text-sm"></div>
+          </div>
+
+          <!-- SAĞ: KENDİ KLASİK TÜREV SORUNU OLUŞTUR VE ÇÖZ -->
+          <div class="lg:col-span-5 p-5 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-4">
+            <div class="border-b border-[var(--border)] pb-2">
+              <div class="text-xs font-extrabold uppercase text-blue-900 dark:text-blue-400">Canlı Klasik Türev Hesaplayıcı (Tam Kağıt Düzeni)</div>
+              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">
+                <span class="math-box font-bold">f(z) = a·z² + b·z + c</span> polinomu ve <span class="math-box font-bold">z₀ = x₀ + i·y₀</span> noktası için limit tanımıyla adım adım klasik çözümü üretin:
+              </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2.5 text-xs">
+              <div>
+                <label class="font-bold block mb-1">Katsayı a (z²):</label>
+                <input type="number" id="inp-da" value="1" oninput="updateCustomDeriv()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+              <div>
+                <label class="font-bold block mb-1">Katsayı b (z):</label>
+                <input type="number" id="inp-db" value="0" oninput="updateCustomDeriv()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+              <div>
+                <label class="font-bold block mb-1">Sabit c:</label>
+                <input type="number" id="inp-dc" value="0" oninput="updateCustomDeriv()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 text-xs">
+              <div>
+                <label class="font-bold block mb-1">Nokta Reel (x₀ = Re(z₀)):</label>
+                <input type="number" id="inp-dx0" value="2" oninput="updateCustomDeriv()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+              <div>
+                <label class="font-bold block mb-1">Nokta Sanal (y₀ = Im(z₀)):</label>
+                <input type="number" id="inp-dy0" value="-1" oninput="updateCustomDeriv()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+            </div>
+
+            <div id="custom-deriv-output" class="p-3.5 rounded-lg bg-[var(--card)] border border-[var(--border)] text-xs space-y-2 leading-relaxed"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- BÖLÜM II: TAHTA & DEFTER SORULARI — GEOMETRİK YORUM SİMÜLATÖRÜ -->
+    <!-- ===================================================================== -->
+    <section id="sec-geometri" class="space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="border-b border-[var(--border)] pb-4 mb-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Bölüm II • Sınıftaki Tahta Fotoğrafları (Örnek 1a–1f) & Defter Klasik Soru 2</span>
+          <h2 class="text-xl md:text-2xl font-extrabold mt-0.5">Kompleks Sayıların Geometrik Yorumu: Çember, Açık/Kapalı Yuvar ve Halka Çizici</h2>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            Tahtada çözülen tüm örneklerin (<span class="math-box">a, b, c, d, e, f</span>) ve defterdeki 2. klasik sorunun (<span class="math-box">1 ≤ |z - (3+2i)| ≤ 5</span>) birebir adım adım çözümleri ve Argand düzlemindeki çizimleri. <b>Kritik Kural:</b> <span class="math-box">|k·z - w| = R</span> verildiğinde önce mutlak değer içini <span class="math-box">k</span> parantezine alıp her iki tarafı <span class="math-box">k</span>'ya bölerek <span class="math-box">|z - (a+bi)| = r</span> standart formuna getiriniz!
+          </p>
+        </div>
+
+        <!-- TAHTA VE DEFTER ÖRNEKLERİ SEÇİM BUTONLARI -->
+        <div class="mb-5">
+          <div class="text-xs font-bold uppercase text-[var(--muted-foreground)] mb-2">Tahtadaki ve Defterdeki Örneklerden Birini Seçin:</div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 text-xs">
+            <button onclick="selectGeoPreset('defter_halka')" id="gbtn-defter_halka" class="sub-btn active p-2.5 rounded-lg border border-[var(--border)] text-left transition">
+              <div class="font-extrabold">★ Defter Klasik</div>
+              <div class="opacity-85 text-[11px] mt-0.5">1 ≤ |z-(3+2i)| ≤ 5</div>
+            </button>
+            <button onclick="selectGeoPreset('tahta_a')" id="gbtn-tahta_a" class="sub-btn p-2.5 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+              <div class="font-extrabold">Tahta Örnek 1a</div>
+              <div class="opacity-85 text-[11px] mt-0.5">|z - (3+4i)| = 5</div>
+            </button>
+            <button onclick="selectGeoPreset('tahta_b')" id="gbtn-tahta_b" class="sub-btn p-2.5 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+              <div class="font-extrabold">Tahta Örnek 1b</div>
+              <div class="opacity-85 text-[11px] mt-0.5">|2z - i| = 4</div>
+            </button>
+            <button onclick="selectGeoPreset('tahta_c')" id="gbtn-tahta_c" class="sub-btn p-2.5 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+              <div class="font-extrabold">Tahta Örnek 1c</div>
+              <div class="opacity-85 text-[11px] mt-0.5">|3z - 15i| = 3</div>
+            </button>
+            <button onclick="selectGeoPreset('tahta_d')" id="gbtn-tahta_d" class="sub-btn p-2.5 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+              <div class="font-extrabold">Tahta Örnek 1d</div>
+              <div class="opacity-85 text-[11px] mt-0.5">|4z + 8i| = 12</div>
+            </button>
+            <button onclick="selectGeoPreset('tahta_e')" id="gbtn-tahta_e" class="sub-btn p-2.5 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+              <div class="font-extrabold">Tahta Örnek 1e</div>
+              <div class="opacity-85 text-[11px] mt-0.5">|z - 2 - 3i| &lt; 4</div>
+            </button>
+            <button onclick="selectGeoPreset('tahta_f')" id="gbtn-tahta_f" class="sub-btn p-2.5 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+              <div class="font-extrabold">Tahta Örnek 1f</div>
+              <div class="opacity-85 text-[11px] mt-0.5">Re(z̄ - i) = 2</div>
+            </button>
+            <button onclick="selectGeoPreset('slayt_delinmis')" id="gbtn-slayt_delinmis" class="sub-btn p-2.5 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+              <div class="font-extrabold">Slayt 20</div>
+              <div class="opacity-85 text-[11px] mt-0.5">0 &lt; |z-(1-i)| &lt; 3</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- SOL: CANLI ARGAND DÜZLEMİ CANVAS -->
+          <div class="lg:col-span-6 bg-[var(--accent-bg)] border border-[var(--border)] rounded-xl p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-extrabold uppercase text-blue-900 dark:text-blue-400" id="geo-canvas-label">Argand Düzlemi Çizimi</span>
+              <span class="text-[11px] font-semibold text-[var(--muted-foreground)]">Düz Çizgi: Dahil (≤, =) • Kesikli: Hariç (&lt;)</span>
+            </div>
+            <canvas id="geoCanvas" width="520" height="440" class="rounded-lg bg-white dark:bg-slate-900 border border-[var(--border)]"></canvas>
+          </div>
+
+          <!-- SAĞ: ADIM ADIM TAHTA ÇÖZÜMÜ & MANUEL KONTROL SÜRGÜLERİ -->
+          <div class="lg:col-span-6 space-y-4">
+            <div class="p-5 rounded-xl bg-[var(--accent-bg)] border-2 border-amber-500/30 space-y-3">
+              <div class="flex items-center justify-between border-b border-[var(--border)] pb-2">
+                <span class="text-xs font-extrabold uppercase px-2.5 py-0.5 rounded bg-amber-700 text-white" id="geo-badge">Defter Klasik Soru 2</span>
+                <span class="text-xs font-bold text-[var(--muted-foreground)]" id="geo-summary-tag">M(3, 2) • r₁ = 1, r₂ = 5</span>
+              </div>
+              <h3 class="text-base font-extrabold" id="geo-title">1 ≤ |z - (3 + 2i)| ≤ 5 bölgesini düzlemde gösteriniz.</h3>
+              <div id="geo-steps" class="space-y-2 text-xs leading-relaxed"></div>
+            </div>
+
+            <!-- KENDİ ÇEMBER / YUVAR / HALKA DENKLEMİNİ TEST ET -->
+            <div class="p-4 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-3 text-xs">
+              <div class="font-extrabold uppercase text-blue-900 dark:text-blue-400 border-b border-[var(--border)] pb-1.5">
+                Kendi Geometrik Bölgeni Oluştur ve Çizdir
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <div>
+                  <label class="font-bold block mb-1">Bölge Tipi:</label>
+                  <select id="geo-custom-type" onchange="applyCustomGeo()" class="w-full px-2 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-semibold">
+                    <option value="circle">Çember: |z - z₀| = r</option>
+                    <option value="open_disk">Açık Yuvar: |z - z₀| &lt; r</option>
+                    <option value="closed_disk">Kapalı Yuvar: |z - z₀| ≤ r</option>
+                    <option value="punctured">Delinmiş Disk: 0 &lt; |z - z₀| &lt; r</option>
+                    <option value="annulus_closed" selected>Kapalı Halka: r₁ ≤ |z - z₀| ≤ r₂</option>
+                    <option value="annulus_half">Yarı Açık Halka: r₁ &lt; |z - z₀| ≤ r₂</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="font-bold block mb-1">Merkez a = Re(z₀): <span id="lbl-ga">3</span></label>
+                  <input type="range" id="inp-ga" min="-5" max="5" step="0.5" value="3" oninput="applyCustomGeo()" class="w-full" />
+                </div>
+                <div>
+                  <label class="font-bold block mb-1">Merkez b = Im(z₀): <span id="lbl-gb">2</span></label>
+                  <input type="range" id="inp-gb" min="-5" max="5" step="0.5" value="2" oninput="applyCustomGeo()" class="w-full" />
+                </div>
+                <div>
+                  <label class="font-bold block mb-1">Yarıçap r (veya Dış r₂): <span id="lbl-gr">5</span></label>
+                  <input type="range" id="inp-gr" min="1" max="6" step="0.5" value="5" oninput="applyCustomGeo()" class="w-full" />
+                </div>
+                <div>
+                  <label class="font-bold block mb-1">İç Yarıçap r₁ (Halka): <span id="lbl-gr1">1</span></label>
+                  <input type="range" id="inp-gr1" min="0.5" max="4" step="0.5" value="1" oninput="applyCustomGeo()" class="w-full" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- BÖLÜM III: KUTUPSAL FORM, DE MOIVRE VE KÖK BULMA SİMÜLATÖRÜ -->
+    <!-- ===================================================================== -->
+    <section id="sec-kutupsal" class="space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="border-b border-[var(--border)] pb-4 mb-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Bölüm III • Slayt 12–19 & Defter "Karmaşık Sayının Köklerini Bulma"</span>
+          <h2 class="text-xl md:text-2xl font-extrabold mt-0.5">Kutupsal (Üstel) Form, De Moivre Kuvvet Alma ve n. Dereceden Kök Simülatörü</h2>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            Slayt 14 (<span class="math-box">z = -1 + i√3</span>), Slayt 17 (<span class="math-box">(1-i)⁸ = 16</span>), Slayt 19 (<span class="math-box">z = 1</span>'in küp kökleri) ve sınavda çıkabilecek tüm kök/kuvvet sorularının adım adım hesabı ve köklerin oluşturduğu düzgün çokgenin çizimi.
+          </p>
+        </div>
+
+        <!-- HAZIR KÖK VE KUVVET ÖRNEKLERİ -->
+        <div class="mb-5">
+          <div class="text-xs font-bold uppercase text-[var(--muted-foreground)] mb-2">Slayttaki ve Sınavdaki Örnekleri Seçin:</div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <button onclick="selectPolarPreset('slayt19')" id="pbtn-slayt19" class="sub-btn active px-3 py-2 rounded-lg border border-[var(--border)] font-bold transition">
+              ★ Slayt 19: z = 1 Sayısının Küp Kökleri (n = 3)
+            </button>
+            <button onclick="selectPolarPreset('slayt14')" id="pbtn-slayt14" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] font-bold transition">
+              Slayt 14: z = -1 + i√3 Kutupsal & Kökleri (n = 3)
+            </button>
+            <button onclick="selectPolarPreset('slayt17')" id="pbtn-slayt17" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] font-bold transition">
+              Slayt 17: z = 1 - i Sayısının 8. Kuvveti (z⁸ = 16)
+            </button>
+            <button onclick="selectPolarPreset('kok_eksi8')" id="pbtn-kok_eksi8" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] font-bold transition">
+              Klasik Kök: z = -8 Sayısının Küp Kökleri (n = 3)
+            </button>
+            <button onclick="selectPolarPreset('kok_16')" id="pbtn-kok_16" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] font-bold transition">
+              Klasik Kök: z = 16 Sayısının 4. Kökleri (n = 4)
+            </button>
+            <button onclick="selectPolarPreset('kok_eksi8i')" id="pbtn-kok_eksi8i" class="sub-btn px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] font-bold transition">
+              Klasik Kök: z = -8i Sayısının Küp Kökleri (n = 3)
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- SOL: ADIM ADIM KUTUPSAL, DE MOIVRE VE w_k KÖK TABLOSU -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="p-4 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] grid grid-cols-3 gap-3 text-xs">
+              <div>
+                <label class="font-bold block mb-1">Reel Kısım x = Re(z):</label>
+                <input type="number" id="inp-px" value="1" step="0.1" oninput="updatePolarSim()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+              <div>
+                <label class="font-bold block mb-1">Sanal Kısım y = Im(z):</label>
+                <input type="number" id="inp-py" value="0" step="0.1" oninput="updatePolarSim()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+              <div>
+                <label class="font-bold block mb-1">Derece n (Kök / Kuvvet):</label>
+                <input type="number" id="inp-pn" value="3" min="2" max="8" step="1" oninput="updatePolarSim()" class="w-full px-2.5 py-1.5 rounded bg-[var(--card)] border border-[var(--border)] font-bold" />
+              </div>
+            </div>
+
+            <div id="polar-steps-box" class="p-5 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-3 text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- SAĞ: KÖKLERİN ÇEMBER ÜZERİNDEKİ DÜZGÜN n-GEN GEOMETRİSİ CANVAS -->
+          <div class="lg:col-span-5 bg-[var(--accent-bg)] border border-[var(--border)] rounded-xl p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-extrabold uppercase text-emerald-800 dark:text-emerald-400">Köklerin Geometrisi (Slayt 18–19)</span>
+              <span class="text-[11px] font-semibold text-[var(--muted-foreground)]" id="polar-canvas-sub">ⁿ√r Çemberi ve Düzgün n-Gen</span>
+            </div>
+            <canvas id="polarCanvas" width="460" height="420" class="rounded-lg bg-white dark:bg-slate-900 border border-[var(--border)]"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- BÖLÜM IV: ÖĞR. GÖR. DR. GÜLDEN KAPUSUZ GÖKDOĞAN 33 SLAYT TAM ÖZET -->
+    <!-- ===================================================================== -->
+    <section id="sec-slayt-ozet" class="space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="border-b border-[var(--border)] pb-4 mb-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-800 dark:text-blue-400">Bölüm IV • Slayt 1–33 Eksiksiz Ders Notu Referansı</span>
+          <h2 class="text-xl md:text-2xl font-extrabold mt-0.5">33 Sayfalık Ders Notunun Akademik Özeti, Formüller ve Kritik Teoremler</h2>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan'ın ders sunumundaki tüm tanımlar, teoremler ve sınavda şıklarda veya klasik sorularda sorulabilecek ince noktalar.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs leading-relaxed">
+          <!-- KART 1: SIRALI İKİLİLER VE CEBİRSEL İNŞA -->
+          <div class="p-4 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-blue-900 text-white font-bold text-[11px]">Slayt 3–8</span>
+              <span class="font-bold text-blue-900 dark:text-blue-400">1. Sıralı İkililer ve Sanal Birim</span>
+            </div>
+            <ul class="space-y-1.5 list-disc pl-4">
+              <li><b>Motivasyon (Slayt 3):</b> <span class="math-box">x² + 1 = 0</span> denkleminin <span class="math-box">ℝ</span>'de çözümü yoktur. Ayrıca <i>Elektromanyetizma, Akışkanlar dinamiği, Kuantum mekaniği ve Sinyal işleme (Fourier analizleri)</i> için vazgeçilmezdir.</li>
+              <li><b>Eşitlik ve Toplama (Slayt 4):</b> <span class="math-box">(x₁, y₁) = (x₂, y₂) ⇔ x₁ = x₂ ve y₁ = y₂</span>. Toplama: <span class="math-box">(x₁, y₁) + (x₂, y₂) = (x₁ + x₂, y₁ + y₂)</span>.</li>
+              <li><b>Özgün Çarpma Tanımı (Slayt 5):</b> Düzlemdeki dönme (rotasyon) hareketini kapsayacak şekilde:
+                <div class="p-2 mt-1 rounded bg-[var(--card)] border border-[var(--border)] font-bold text-center math-box text-sm">
+                  (x₁, y₁) · (x₂, y₂) = (x₁x₂ - y₁y₂ , x₁y₂ + y₁x₂)
+                </div>
+              </li>
+              <li><b>Sanal Birim Kanıtı (Slayt 8):</b> <span class="math-box">(x, 0) ↔ x</span> ve <span class="math-box">(0, 1) ↔ i</span>. Çarpma kuralıyla: <span class="math-box">i² = (0,1)·(0,1) = (0·0 - 1·1, 0·1 + 1·0) = (-1, 0) = -1</span>.</li>
+              <li><b>Kritik Uyarı (Slayt 8):</b> <span class="math-box">z = x + iy</span> yazılışında <span class="math-box">x = Re(z)</span> (Reel Kısım) ve <span class="math-box">y = Im(z)</span> (Sanal Kısım) olup <b>y'nin kendisi REEL bir sayıdır</b> (yanına <i>i</i> yazılmaz!).</li>
+            </ul>
+          </div>
+
+          <!-- KART 2: EŞLENİK, MODÜL VE KUTUPSAL GÖSTERİM -->
+          <div class="p-4 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-blue-900 text-white font-bold text-[11px]">Slayt 9–15</span>
+              <span class="font-bold text-blue-900 dark:text-blue-400">2. Eşlenik, Modül ve Üstel (Euler) Form</span>
+            </div>
+            <ul class="space-y-1.5 list-disc pl-4">
+              <li><b>Eşlenik (<span class="math-box">z̄</span>) ve Modül (<span class="math-box">|z|</span>) (Slayt 10):</b> <span class="math-box">z = x + iy</span> için <span class="math-box">z̄ = x - iy</span> (Reel eksene göre simetri). Orijine uzaklık: <span class="math-box">|z| = √(x² + y²)</span>.</li>
+              <li><b>Altın Çarpım Özelliği (Slayt 10–11):</b>
+                <div class="p-2 mt-1 rounded bg-[var(--card)] border border-[var(--border)] font-bold text-center math-box text-sm">
+                  z · z̄ = (x + iy)(x - iy) = x² + y² = |z|²  (Her zaman Reel!)
+                </div>
+                Bölme işleminde pay ve payda <b>paydanın eşleniği</b> ile çarpılır: <span class="math-box">z₁ / z₂ = (z₁ · z̄₂) / |z₂|²</span>.
+              </li>
+              <li><b>Euler Formülü ve Üstel Form (Slayt 12–13):</b> <span class="math-box">x = r cos θ, y = r sin θ</span> ile <span class="math-box">z = r(cos θ + i sin θ) = r e<sup>iθ</sup></span>.</li>
+              <li><b>Baş Argüman (Slayt 13):</b> <span class="math-box">-π &lt; θ ≤ π</span> aralığındaki tekil açıya <b>Baş Argüman (<span class="math-box">Arg(z)</span>)</b> denir.</li>
+              <li><b>Kutupsal Çarpma & Bölme (Slayt 15):</b> Çarpmada modüller çarpılır, açılar toplanır (<span class="math-box">r₁r₂ e<sup>i(θ₁+θ₂)</sup></span> — sündürme ve döndürme); bölmede modüller bölünür, açılar çıkarılır (<span class="math-box">(r₁/r₂) e<sup>i(θ₁-θ₂)</sup></span>).</li>
+            </ul>
+          </div>
+
+          <!-- KART 3: NOKTA KÜMELERİ VE RIEMANN KÜRESİ -->
+          <div class="p-4 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-blue-900 text-white font-bold text-[11px]">Slayt 20–21</span>
+              <span class="font-bold text-blue-900 dark:text-blue-400">3. Topolojik Kümeler ve Riemann Küresi</span>
+            </div>
+            <ul class="space-y-1.5 list-disc pl-4">
+              <li><b>Açık Yuvar (Komşuluk):</b> <span class="math-box">|z - z₀| &lt; r</span> (Merkezi <span class="math-box">z₀</span>, yarıçapı <span class="math-box">r</span> olan ve sınır çemberini <i>dahil etmeyen</i> disk — sınır kesikli çizilir).</li>
+              <li><b>Kapalı Yuvar:</b> <span class="math-box">|z - z₀| ≤ r</span> (Sınır çemberini de içerir — sınır düz çizgiyle çizilir).</li>
+              <li><b>Delinmiş Komşuluk:</b> <span class="math-box">0 &lt; |z - z₀| &lt; r</span> (Merkez <span class="math-box">z₀</span>'ın dahil edilmediği açık disk — <b>Epsilon-Delta limit tanımında kullanılır!</b>).</li>
+              <li><b>Çember:</b> <span class="math-box">|z - z₀| = r</span>.</li>
+              <li><b>Genişletilmiş Kompleks Düzlem ve Riemann Küresi (Slayt 21):</b> <span class="math-box">ℂ̂ = ℂ ∪ {∞}</span>. Düzlemin orijinine teğet kürede <b>Güney Kutbu = Orijin (0)</b>, <b>Kuzey Kutbu = Sonsuz (∞)</b> noktasını temsil eder (<i>Stereografik İzdüşüm</i>). Sayının modülü büyüdükçe izdüşümü kuzey kutbuna (<span class="math-box">∞</span>'a) yaklaşır.</li>
+            </ul>
+          </div>
+
+          <!-- KART 4: FONKSİYONLAR, LİMİT, SÜREKLİLİK VE KOMPAKTLIK -->
+          <div class="p-4 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-blue-900 text-white font-bold text-[11px]">Slayt 22–32</span>
+              <span class="font-bold text-blue-900 dark:text-blue-400">4. Limit, Düzgün Süreklilik ve Kompaktlık Teoremleri</span>
+            </div>
+            <ul class="space-y-1.5 list-disc pl-4">
+              <li><b>Bileşenlere Ayırma (Slayt 22 & 26):</b> <span class="math-box">w = f(z) = u(x,y) + i v(x,y)</span> (Giriş 2B + Çıkış 2B = 4 Boyut gerektirdiği için haritalama olarak incelenir). <span class="math-box">lim<sub>z→z₀</sub> f(z) = u₀ + iv₀ ⇔ lim u = u₀ ve lim v = v₀</span>.</li>
+              <li><b>Yola Bağımlılık (Slayt 24–25):</b> Düzlemde <span class="math-box">z → z₀</span>'a sonsuz farklı yönden yaklaşılabilir. İki farklı yol farklı limit verirse <b>limit yoktur</b> (Örn: <span class="math-box">lim<sub>z→0</sub> z̄/z</span> yatayda <span class="math-box">+1</span>, dikeyde <span class="math-box">-1</span>).</li>
+              <li><b>Süreklilik (Slayt 29):</b> <span class="math-box">lim<sub>z→z₀</sub> f(z) = f(z₀)</span>. Polinomlar ve üstel fonksiyonlar tüm <span class="math-box">ℂ</span>'de süreklidir; rasyonel fonksiyonlar paydayı sıfır yapan noktalarda süreksizdir.</li>
+              <li><b>Düzgün Süreklilik (Slayt 30–31):</b> <span class="math-box">|z₁ - z₂| &lt; δ ⇒ |f(z₁) - f(z₂)| &lt; ε</span> (<span class="math-box">δ</span> noktadan bağımsız, sadece <span class="math-box">ε</span>'a bağlı; tek noktada değil bir <span class="math-box">S</span> kümesi üzerinde tanımlıdır). Düzgün sürekli <span class="math-box">⇒</span> sürekli (<b>tersi her zaman doğru değildir!</b>).</li>
+              <li><b>Kompaktlık Teoremleri (Slayt 32):</b>
+                <b>Teorem 1:</b> Kompakt (kapalı ve sınırlı) bir <span class="math-box">S</span> kümesi üzerinde sürekli olan <span class="math-box">f</span>, <span class="math-box">S</span>'de <b>düzgün süreklidir</b>.
+                <b>Teorem 2:</b> <span class="math-box">S</span> kompakt ve <span class="math-box">f</span> sürekli ise <span class="math-box">f(S)</span> görüntü kümesi de <b>kompakttır</b> (sürekli fonksiyonlar kompaktlığı korur).
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- BÖLÜM V: 5 DENEME SINAVI × 20 SORU = 100 DETAYLI ÇÖZÜMLÜ SORU -->
+    <!-- ===================================================================== -->
+    <section id="sec-testler" class="space-y-5">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[var(--border)] pb-4 mb-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-800 dark:text-blue-400">Bölüm V • Kapsamlı Vize Sınav Bankası</span>
+            <h2 class="text-2xl font-extrabold mt-0.5">5 Deneme Sınavı × 20 Soru = 100 Detaylı Çözümlü Soru</h2>
+            <p class="text-xs text-[var(--muted-foreground)] mt-1">
+              Her test 20 sorudan oluşmaktadır (her soru 5 puan, toplam 100 puan). Şıklara tıklayarak kendinizi deneyebilir veya <b>"Tüm Çözümleri Göster"</b> butonuyla 100 sorunun tamamının adım adım çözümlerini inceleyebilirsiniz.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <div id="active-test-score" class="px-4 py-2 rounded-lg bg-blue-900 text-white font-bold text-xs">
+              Doğru: 0 / 20 • Puan: 0 / 100
+            </div>
+            <button onclick="toggleAllExplanations()" id="btn-toggle-exp" class="px-3.5 py-2 rounded-lg bg-[var(--accent-bg)] border border-[var(--border)] hover:border-blue-800 font-bold text-xs transition">
+              Tüm Çözümleri Göster
+            </button>
+            <button onclick="resetCurrentTest()" class="px-3 py-2 rounded-lg bg-[var(--accent-bg)] border border-[var(--border)] hover:border-red-600 font-semibold text-xs transition">
+              Sıfırla
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 Test Selector Buttons -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2 mb-6 text-xs">
+          <button onclick="selectTest('test1')" id="tbtn-test1" class="test-tab active p-3 rounded-lg border border-[var(--border)] text-left transition">
+            <div class="font-extrabold">TEST 1 (20 Soru)</div>
+            <div class="opacity-80 text-[11px] mt-0.5">★ Vize Birebir Prova (Defter+Tahta)</div>
+          </button>
+          <button onclick="selectTest('test2')" id="tbtn-test2" class="test-tab p-3 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+            <div class="font-extrabold">TEST 2 (20 Soru)</div>
+            <div class="opacity-80 text-[11px] mt-0.5">Sıralı İkililer, İşlemler & Eşlenik</div>
+          </button>
+          <button onclick="selectTest('test3')" id="tbtn-test3" class="test-tab p-3 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+            <div class="font-extrabold">TEST 3 (20 Soru)</div>
+            <div class="opacity-80 text-[11px] mt-0.5">Kutupsal Form, De Moivre & Kökler</div>
+          </button>
+          <button onclick="selectTest('test4')" id="tbtn-test4" class="test-tab p-3 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+            <div class="font-extrabold">TEST 4 (20 Soru)</div>
+            <div class="opacity-80 text-[11px] mt-0.5">Çember, Yuvar, Halka & Küre</div>
+          </button>
+          <button onclick="selectTest('test5')" id="tbtn-test5" class="test-tab p-3 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+            <div class="font-extrabold">TEST 5 (20 Soru)</div>
+            <div class="opacity-80 text-[11px] mt-0.5">Limit, Türev, Süreklilik & Kompaktlık</div>
+          </button>
+          <button onclick="selectTest('all')" id="tbtn-all" class="test-tab p-3 rounded-lg border border-[var(--border)] bg-[var(--accent-bg)] text-left transition">
+            <div class="font-extrabold">TÜM TESTLER (100 Soru)</div>
+            <div class="opacity-80 text-[11px] mt-0.5">5 Test Alt Alta Tam Liste</div>
+          </button>
+        </div>
+
+        <!-- Active Test Header -->
+        <div class="p-4 rounded-lg bg-[var(--accent-bg)] border border-[var(--border)] mb-5">
+          <h3 id="test-header-title" class="text-base font-extrabold text-blue-900 dark:text-blue-400"></h3>
+          <p id="test-header-sub" class="text-xs text-[var(--muted-foreground)] mt-0.5"></p>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questions-list" class="space-y-4"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // 1. BÖLÜM I: KLASİK TÜREV VE LİMİT SENARYOLARI VERİSİ
+    // =========================================================================
+    const DERIV_CASES = {
+      defter1: {
+        badge: "★ Defterdeki Birebir Vize Sorusu (Limit Yapmak Zorunlu!)",
+        title: "Örnek: f(z) = z² fonksiyonunun z₀ = 2 - i noktasındaki türevini limit tanımıyla bulunuz.",
+        steps: [
+          {
+            title: "Adım 1: Kompleks Türevin Limit Tanımını Yaz",
+            body: "f'(z₀) = lim<sub>z → z₀</sub> <span class='math-box font-bold'>[ f(z) - f(z₀) ] / [ z - z₀ ]</span><br>Burada f(z) = z² ve z₀ = 2 - i değerlerini yerine koyarız:<br><span class='math-box font-bold text-blue-900 dark:text-blue-300'>f'(2 - i) = lim<sub>z → 2 - i</sub> [ z² - (2 - i)² ] / [ z - (2 - i) ]</span>"
+          },
+          {
+            title: "Adım 2: Payı İki Kare Farkı a² - b² = (a - b)(a + b) İle Çarpanlarına Ayır",
+            body: "z = 2 - i doğrudan yazılırsa 0/0 belirsizliği oluşur. Pay kısmına iki kare farkı uygularız:<br><span class='math-box font-bold'>z² - (2 - i)² = [ z - (2 - i) ] · [ z + (2 - i) ]</span>"
+          },
+          {
+            title: "Adım 3: [ z - (2 - i) ] Çarpanlarını Sadeleştir",
+            body: "Limit tanımı gereği z → 2 - i yaklaşırken z ≠ 2 - i (delinmiş komşuluk) olduğundan sıfırdan farklı olan <span class='math-box'>[z - (2 - i)]</span> terimleri sadeleşir:<br><span class='math-box font-bold text-emerald-700 dark:text-emerald-400'>= lim<sub>z → 2 - i</sub> [ z + (2 - i) ]</span>"
+          },
+          {
+            title: "Adım 4: Limit Değerini Yerine Koy ve Sonuçlandır",
+            body: "Artık belirsizlik kalktığı için z yerine 2 - i yazarız:<br><span class='math-box font-bold text-base'>f'(2 - i) = (2 - i) + (2 - i) = 2(2 - i) = 4 - 2i</span>"
+          }
+        ]
+      },
+      klasik2: {
+        badge: "Klasik Türev Varyasyonu (Polinom)",
+        title: "Örnek: f(z) = z² + 2z fonksiyonunun z₀ = 1 + i noktasındaki türevini limit tanımıyla bulunuz.",
+        steps: [
+          {
+            title: "Adım 1: Türev Limit Tanımını Kur",
+            body: "<span class='math-box font-bold'>f'(1 + i) = lim<sub>z → 1+i</sub> [ (z² + 2z) - ((1+i)² + 2(1+i)) ] / [ z - (1 + i) ]</span>"
+          },
+          {
+            title: "Adım 2: Terimleri Gruplandırarak Çarpanlarına Ayır",
+            body: "Payı <span class='math-box'>[z² - z₀²] + 2[z - z₀]</span> şeklinde gruplandırıp <span class='math-box'>(z - z₀)</span> ortak parantezine alalım:<br><span class='math-box font-bold'>= lim<sub>z → z₀</sub> [ (z - z₀)(z + z₀ + 2) ] / (z - z₀)</span>"
+          },
+          {
+            title: "Adım 3: Sadeleştir ve z₀ = 1 + i Değerini Yerine Yaz",
+            body: "<span class='math-box'>(z - z₀)</span> çarpanları sadeleşir:<br><span class='math-box font-bold text-emerald-700 dark:text-emerald-400'>= lim<sub>z → 1+i</sub> (z + (1 + i) + 2) = 2(1 + i) + 2 = 4 + 2i</span>"
+          }
+        ]
+      },
+      klasik3: {
+        badge: "Klasik Türev Varyasyonu (İki Küp Farkı)",
+        title: "Örnek: f(z) = z³ fonksiyonunun z₀ = 1 - i noktasındaki türevini limit tanımıyla bulunuz.",
+        steps: [
+          {
+            title: "Adım 1: Limit Tanımını Yaz",
+            body: "<span class='math-box font-bold'>f'(z₀) = lim<sub>z → z₀</sub> (z³ - z₀³) / (z - z₀)</span>"
+          },
+          {
+            title: "Adım 2: İki Küp Farkı a³ - b³ = (a - b)(a² + ab + b²) Özdeşliğini Uygula",
+            body: "<span class='math-box font-bold'>z³ - z₀³ = (z - z₀)(z² + z·z₀ + z₀²)</span> yazılıp paydadaki <span class='math-box'>(z - z₀)</span> ile sadeleştirilir:<br><span class='math-box font-bold'>f'(z₀) = lim<sub>z → z₀</sub> (z² + z·z₀ + z₀²) = 3z₀²</span>"
+          },
+          {
+            title: "Adım 3: z₀ = 1 - i Noktasını Yerine Koy",
+            body: "<span class='math-box'>(1 - i)² = 1 - 2i + i² = 1 - 2i - 1 = -2i</span> olduğundan:<br><span class='math-box font-bold text-emerald-700 dark:text-emerald-400'>f'(1 - i) = 3(-2i) = -6i</span>"
+          }
+        ]
+      },
+      klasik4: {
+        badge: "Klasik Türev Varyasyonu (Rasyonel Fonksiyon)",
+        title: "Örnek: f(z) = 1 / z fonksiyonunun z₀ = 2 - i noktasındaki türevini limit tanımıyla bulunuz.",
+        steps: [
+          {
+            title: "Adım 1: Limit Tanımını Yaz ve Payda Eşitle",
+            body: "<span class='math-box font-bold'>f'(z₀) = lim<sub>z → z₀</sub> [ (1/z - 1/z₀) / (z - z₀) ] = lim<sub>z → z₀</sub> [ -(z - z₀) / (z · z₀ · (z - z₀)) ]</span>"
+          },
+          {
+            title: "Adım 2: (z - z₀) Terimlerini Sadeleştir",
+            body: "<span class='math-box font-bold'>f'(z₀) = lim<sub>z → z₀</sub> ( -1 / (z · z₀) ) = -1 / z₀²</span>"
+          },
+          {
+            title: "Adım 3: z₀ = 2 - i İçin Paydayı Eşlenikle Çarparak Standart Forma Getir",
+            body: "<span class='math-box'>z₀² = (2 - i)² = 4 - 4i + i² = 3 - 4i</span>.<br>Buradan <span class='math-box font-bold text-emerald-700 dark:text-emerald-400'>f'(2 - i) = -1 / (3 - 4i) = -(3 + 4i) / (3² + (-4)²) = -3/25 - (4/25)i</span> bulunur."
+          }
+        ]
+      },
+      slayt28: {
+        badge: "Slayt Sayfa 28 — Belirsizlik Durumlarında Limit",
+        title: "Örnek: lim(z → i) [ (z² + 1) / (z - i) ] limitini hesaplayınız.",
+        steps: [
+          {
+            title: "Adım 1: Belirsizlik Kontrolü",
+            body: "z = i doğrudan yazıldığında <span class='math-box'>(i² + 1) / (i - i) = (-1 + 1) / 0 = 0 / 0</span> belirsizliği çıkar."
+          },
+          {
+            title: "Adım 2: i² = -1 Özelliğiyle İki Kare Farkına Dönüştür",
+            body: "<span class='math-box font-bold'>z² + 1 = z² - (-1) = z² - i² = (z - i)(z + i)</span> olarak çarpanlarına ayrılır."
+          },
+          {
+            title: "Adım 3: Sadeleştirme ve Sonuç",
+            body: "z ≠ i kabulüyle:<br><span class='math-box font-bold text-emerald-700 dark:text-emerald-400'>lim<sub>z → i</sub> [ (z - i)(z + i) / (z - i) ] = lim<sub>z → i</sub> (z + i) = i + i = 2i</span>"
+          }
+        ]
+      },
+      slayt25: {
+        badge: "Slayt Sayfa 25 — Limitte Yola Bağımlılık İspatı",
+        title: "Örnek: lim(z → 0) (z̄ / z) limitinin olmadığını gösterelim.",
+        steps: [
+          {
+            title: "Adım 1: Kartezyen Forma Geçiş",
+            body: "<span class='math-box'>z = x + iy</span> alalım. Bu durumda <span class='math-box font-bold'>z̄ / z = (x - iy) / (x + iy)</span> olur."
+          },
+          {
+            title: "Adım 2: 1. Yol — Orijine Reel Eksen Üzerinden (Yatay, y = 0) Yaklaşma",
+            body: "y = 0 alarak x → 0'a gidelim:<br><span class='math-box font-bold text-blue-900 dark:text-blue-300'>lim<sub>x → 0</sub> [ (x - i(0)) / (x + i(0)) ] = lim<sub>x → 0</sub> (x / x) = 1</span>"
+          },
+          {
+            title: "Adım 3: 2. Yol — Orijine Sanal Eksen Üzerinden (Dikey, x = 0) Yaklaşma",
+            body: "x = 0 alarak y → 0'a gidelim:<br><span class='math-box font-bold text-red-700 dark:text-red-400'>lim<sub>y → 0</sub> [ (0 - iy) / (0 + iy) ] = lim<sub>y → 0</sub> (-iy / iy) = -1</span>"
+          },
+          {
+            title: "Adım 4: Karar",
+            body: "Farklı yollar farklı limitler verdi (<span class='math-box font-bold'>1 ≠ -1</span>). O halde <b>limit yoktur!</b>"
+          }
+        ]
+      },
+      slayt27: {
+        badge: "Slayt Sayfa 27 — Bileşenler Yardımıyla Limit Teoremi",
+        title: "Örnek: lim(z → 3 + 2i) (z² + 2) limitini bileşenlerine ayırarak hesaplayınız.",
+        steps: [
+          {
+            title: "Adım 1: Fonksiyonu u(x, y) + i·v(x, y) Bileşenlerine Ayır",
+            body: "<span class='math-box'>f(z) = (x + iy)² + 2 = (x² - y² + 2) + i(2xy)</span>.<br>Buradan <span class='math-box font-bold'>u(x, y) = x² - y² + 2</span> ve <span class='math-box font-bold'>v(x, y) = 2xy</span>. Noktamız: <span class='math-box'>z → 3 + 2i ⇒ (x, y) → (3, 2)</span>."
+          },
+          {
+            title: "Adım 2: Reel ve Sanal Kısım Limitlerini Hesapla",
+            body: "• Reel Kısım Limiti: <span class='math-box font-bold'>lim<sub>(x,y)→(3,2)</sub> (x² - y² + 2) = 3² - 2² + 2 = 9 - 4 + 2 = 7</span><br>• Sanal Kısım Limiti: <span class='math-box font-bold'>lim<sub>(x,y)→(3,2)</sub> (2xy) = 2(3)(2) = 12</span>"
+          },
+          {
+            title: "Adım 3: Sonuç",
+            body: "Her iki limit mevcut olduğundan: <span class='math-box font-bold text-emerald-700 dark:text-emerald-400'>lim<sub>z → 3+2i</sub> (z² + 2) = 7 + 12i</span>."
+          }
+        ]
+      }
+    };
+
+    function selectDerivCase(key) {
+      document.querySelectorAll('[id^="dbtn-"]').forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('bg-[var(--accent-bg)]');
+      });
+      const activeBtn = document.getElementById('dbtn-' + key);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-[var(--accent-bg)]');
+      }
+      const data = DERIV_CASES[key];
+      document.getElementById('deriv-badge').textContent = data.badge;
+      document.getElementById('deriv-title').textContent = data.title;
+      const container = document.getElementById('deriv-steps-container');
+      container.innerHTML = data.steps.map((s, idx) => `
+        <div class="p-3.5 rounded-lg bg-[var(--card)] border border-[var(--border)]">
+          <div class="font-extrabold text-xs text-blue-900 dark:text-blue-400 mb-1 flex items-center">
+            <span class="step-badge bg-blue-900 text-white">${idx + 1}</span>
+            ${s.title}
+          </div>
+          <div class="text-xs leading-relaxed pl-7">${s.body}</div>
+        </div>
+      `).join('');
+    }
+
+    function fmtComplex(re, im) {
+      const r = Math.round(re * 100) / 100;
+      const i = Math.round(im * 100) / 100;
+      if (r === 0 && i === 0) return "0";
+      if (i === 0) return `${r}`;
+      const absI = Math.abs(i) === 1 ? "i" : `${Math.abs(i)}i`;
+      if (r === 0) return i > 0 ? absI : `-${absI}`;
+      return i > 0 ? `${r} + ${absI}` : `${r} - ${absI}`;
+    }
+
+    function updateCustomDeriv() {
+      const a = parseFloat(document.getElementById('inp-da').value) || 0;
+      const b = parseFloat(document.getElementById('inp-db').value) || 0;
+      const c = parseFloat(document.getElementById('inp-dc').value) || 0;
+      const x0 = parseFloat(document.getElementById('inp-dx0').value) || 0;
+      const y0 = parseFloat(document.getElementById('inp-dy0').value) || 0;
+
+      const z0Str = fmtComplex(x0, y0);
+      // f'(z0) = 2*a*z0 + b
+      const resRe = 2 * a * x0 + b;
+      const resIm = 2 * a * y0;
+      const resStr = fmtComplex(resRe, resIm);
+
+      let polyParts = [];
+      if (a !== 0) polyParts.push(a === 1 ? "z²" : (a === -1 ? "-z²" : `${a}z²`));
+      if (b !== 0) polyParts.push(b > 0 ? (polyParts.length ? `+ ${b===1?'':b}z` : `${b===1?'':b}z`) : `- ${Math.abs(b)===1?'':Math.abs(b)}z`);
+      if (c !== 0) polyParts.push(c > 0 ? (polyParts.length ? `+ ${c}` : `${c}`) : `- ${Math.abs(c)}`);
+      const polyStr = polyParts.length ? polyParts.join(" ") : "0";
+
+      const box = document.getElementById('custom-deriv-output');
+      box.innerHTML = `
+        <div class="font-bold text-blue-900 dark:text-blue-300">Soru: f(z) = ${polyStr} fonksiyonunun z₀ = ${z0Str} noktasındaki türevi:</div>
+        <div><b>1. Limit Tanımı:</b> f'(${z0Str}) = lim<sub>z → ${z0Str}</sub> [ f(z) - f(${z0Str}) ] / [ z - (${z0Str}) ]</div>
+        <div><b>2. Çarpanlara Ayırma:</b> Pay ifadesi <span class="math-box">[z - (${z0Str})] · [ ${a}·(z + (${z0Str})) ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)} ]</span> şeklinde çarpanlarına ayrılır ve paydadaki <span class="math-box">[z - (${z0Str})]</span> ile sadeleşir.</div>
+        <div><b>3. Yerine Koyma:</b> lim<sub>z → ${z0Str}</sub> [ ${a}·(z + (${z0Str})) ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)} ] = 2·(${a})·(${z0Str}) + (${b})</div>
+        <div class="pt-1 border-t border-[var(--border)] font-extrabold text-sm text-emerald-700 dark:text-emerald-400">
+          Sonuç: f'(${z0Str}) = ${resStr}
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 2. BÖLÜM II: TAHTA VE DEFTER GEOMETRİK YORUM SİMÜLATÖRÜ
+    // =========================================================================
+    const GEO_PRESETS = {
+      defter_halka: {
+        badge: "★ Defter Klasik Soru 2",
+        summary: "M(3, 2) • r₁ = 1, r₂ = 5 (Kapalı Halka)",
+        title: "1 ≤ |z - (3 + 2i)| ≤ 5 eşitsizliğini kompleks düzlemde gösteriniz.",
+        type: "annulus_closed", a: 3, b: 2, r: 5, r1: 1,
+        steps: [
+          "<b>1. Merkez Tespiti:</b> İfade doğrudan <span class='math-box'>r₁ ≤ |z - (a + bi)| ≤ r₂</span> standart formundadır. Burada <span class='math-box'>z₀ = 3 + 2i</span> olduğundan merkez <b>M(3, 2)</b> noktasıdır.",
+          "<b>2. İç ve Dış Yarıçaplar:</b> İç çemberin yarıçapı <b>r₁ = 1</b>, dış çemberin yarıçapı <b>r₂ = 5</b>'tir.",
+          "<b>3. Sınır Çizgileri ve Tarama:</b> Her iki eşitsizlikte de <b>'≤' (küçük eşit)</b> bulunduğu için hem r₁ = 1 hem de r₂ = 5 çemberleri <b>DÜZ ÇİZGİ</b> ile çizilir (bölgeye dahildir) ve iki çember arasındaki halka (annulus) bölgesi taranır."
+        ]
+      },
+      tahta_a: {
+        badge: "Tahta Fotoğrafı — Örnek 1a",
+        summary: "M(3, 4) • r = 5 (Çember)",
+        title: "a) |z - (3 + 4i)| = 5 kompleks sayılarını düzlemde gösteriniz.",
+        type: "circle", a: 3, b: 4, r: 5, r1: 1,
+        steps: [
+          "<b>1. Standart Form:</b> <span class='math-box'>|z - (a + bi)| = r</span> formülüyle karşılaştırıldığında <span class='math-box'>a = 3, b = 4</span> ve <span class='math-box'>r = 5</span>'tir.",
+          "<b>2. Merkez ve Yarıçap:</b> Merkez <b>M(3, 4)</b> ve yarıçap <b>r = 5</b> birim olan çemberdir.",
+          "<b>3. Orijin Kontrolü (Tahtadaki Çizim Detayı):</b> Merkezin orijine uzaklığı <span class='math-box'>√(3² + 4²) = 5 = r</span> olduğu için çember tam <b>orijinden (0, 0)</b> geçer! Yalnızca çember yayı düz çizgiyle çizilir (içi taranmaz, çünkü '=' var)."
+        ]
+      },
+      tahta_b: {
+        badge: "Tahta Fotoğrafı — Örnek 1b (Katsayı Tuzağı!)",
+        summary: "M(0, 1/2) • r = 2 (Çember)",
+        title: "b) |2z - i| = 4 kompleks sayılarını düzlemde gösteriniz.",
+        type: "circle", a: 0, b: 0.5, r: 2, r1: 1,
+        steps: [
+          "<b>1. z'nin Katsayısını 1 Yapma (Çok Önemli!):</b> Standart formda z'nin katsayısı 1 olmalıdır. Mutlak değer içini 2 parantezine alırız:<br><span class='math-box font-bold'>|2z - i| = 4  ⇒  2 · |z - i/2| = 4</span>",
+          "<b>2. Her İki Tarafı 2'ye Böl:</b><br><span class='math-box font-bold'>|z - (0 + (1/2)i)| = 2</span>",
+          "<b>3. Merkez ve Yarıçap:</b> Merkez <b>M(0, 1/2)</b> (sanal eksen üzerinde) ve yarıçap <b>r = 2</b> birim olan çemberdir."
+        ]
+      },
+      tahta_c: {
+        badge: "Tahta Fotoğrafı — Örnek 1c",
+        summary: "M(0, 5) • r = 1 (Çember)",
+        title: "c) |3z - 15i| = 3 kompleks sayılarını düzlemde gösteriniz.",
+        type: "circle", a: 0, b: 5, r: 1, r1: 1,
+        steps: [
+          "<b>1. 3 Parantezine Alma:</b> <span class='math-box font-bold'>|3z - 15i| = 3  ⇒  3 · |z - 5i| = 3</span>",
+          "<b>2. Standart Form:</b> Her iki taraf 3'e bölünürse <span class='math-box font-bold'>|z - (0 + 5i)| = 1</span> elde edilir.",
+          "<b>3. Merkez ve Yarıçap:</b> Merkez <b>M(0, 5)</b> (dikey sanal eksende y = 5 noktası) ve yarıçap <b>r = 1</b> olan çemberdir (y eksenini 4 ve 6'da keser)."
+        ]
+      },
+      tahta_d: {
+        badge: "Tahta Fotoğrafı — Örnek 1d (İşaret Tuzağı!)",
+        summary: "M(0, -2) • r = 3 (Çember)",
+        title: "d) |4z + 8i| = 12 kompleks sayılarını düzlemde gösteriniz.",
+        type: "circle", a: 0, b: -2, r: 3, r1: 1,
+        steps: [
+          "<b>1. 4 Parantezine Alma:</b> <span class='math-box font-bold'>|4z + 8i| = 12  ⇒  4 · |z + 2i| = 12  ⇒  |z + 2i| = 3</span>",
+          "<b>2. Eksi İşaretine Dikkat:</b> Standart formda arada eksi (<span class='math-box'>|z - z₀|</span>) olduğu için:<br><span class='math-box font-bold'>|z - (0 - 2i)| = 3</span>",
+          "<b>3. Merkez ve Yarıçap:</b> Merkez <b>M(0, -2)</b> ve yarıçap <b>r = 3</b> olan çemberdir."
+        ]
+      },
+      tahta_e: {
+        badge: "Tahta Fotoğrafı — Örnek 1e (Açık Yuvar)",
+        summary: "M(2, 3) • r = 4 (Açık Yuvar)",
+        title: "e) |z - 2 - 3i| < 4 eşitsizliğini düzlemde gösteriniz.",
+        type: "open_disk", a: 2, b: 3, r: 4, r1: 1,
+        steps: [
+          "<b>1. Eksi Parantezine Alma:</b> <span class='math-box font-bold'>|z - 2 - 3i| < 4  ⇔  |z - (2 + 3i)| < 4</span>",
+          "<b>2. Merkez ve Yarıçap:</b> Merkez <b>M(2, 3)</b> ve yarıçap <b>r = 4</b>'tür.",
+          "<b>3. Kesikli Sınır ve İç Tarama:</b> Kesin küçüktür (<b>&lt;</b>) işareti olduğu için çember sınırı kümeye dahil değildir (<b>KESİKLİ ÇİZGİ</b> ile çizilir) ve çemberin <b>İÇ BÖLGESİ TARANIR</b> (Açık Yuvar / Komşuluk)."
+        ]
+      },
+      tahta_f: {
+        badge: "Tahta Fotoğrafı — Örnek 1f (Doğru Denklemi)",
+        summary: "x = 2 Dikey Doğrusu",
+        title: "f) Re(z̄ - i) = 2 denklemini düzlemde gösteriniz.",
+        type: "line_x2", a: 2, b: 0, r: 2, r1: 1,
+        steps: [
+          "<b>1. z = x + iy ve z̄ = x - iy Yaz:</b><br><span class='math-box font-bold'>z̄ - i = (x - iy) - i = x - i(y + 1)</span>",
+          "<b>2. Reel Kısmı Al:</b> Bu kompleks sayının reel kısmı (i içermeyen kısmı) doğrudan <span class='math-box font-bold'>Re(z̄ - i) = x</span>'tir.",
+          "<b>3. Geometrik Yer:</b> <span class='math-box font-bold'>x = 2</span> denklemi, Reel ekseni (2, 0) noktasında dik kesen <b>dikey doğrudur</b>."
+        ]
+      },
+      slayt_delinmis: {
+        badge: "Slayt Sayfa 20 — Delinmiş Komşuluk",
+        summary: "M(1, -1) • r = 3 (Merkez Hariç Açık Disk)",
+        title: "0 < |z - (1 - i)| < 3 delinmiş komşuluğunu düzlemde gösteriniz.",
+        type: "punctured", a: 1, b: -1, r: 3, r1: 1,
+        steps: [
+          "<b>1. Merkez ve Yarıçap:</b> <span class='math-box'>z₀ = 1 - i</span> olduğundan merkez <b>M(1, -1)</b> ve yarıçap <b>r = 3</b>'tür.",
+          "<b>2. Sol Eşitsizlik (0 &lt; |z - z₀|):</b> Uzaklığın 0'dan kesin büyük olması <span class='math-box'>z ≠ 1 - i</span> demektir; yani <b>merkez noktası M(1, -1) içi boş çembercik olarak çıkarılır (delinir)!</b>",
+          "<b>3. Sağ Eşitsizlik (&lt; 3):</b> Dış çember sınırı kesikli çizilir ve merkez hariç iç bölge taranır (Limit tanımındaki <span class='math-box'>0 &lt; |z - z₀| &lt; δ</span> kümesi)."
+        ]
+      }
+    };
+
+    let currentGeoState = { type: "annulus_closed", a: 3, b: 2, r: 5, r1: 1 };
+
+    function selectGeoPreset(key) {
+      document.querySelectorAll('[id^="gbtn-"]').forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('bg-[var(--accent-bg)]');
+      });
+      const btn = document.getElementById('gbtn-' + key);
+      if (btn) {
+        btn.classList.add('active');
+        btn.classList.remove('bg-[var(--accent-bg)]');
+      }
+      const p = GEO_PRESETS[key];
+      document.getElementById('geo-badge').textContent = p.badge;
+      document.getElementById('geo-summary-tag').textContent = p.summary;
+      document.getElementById('geo-title').textContent = p.title;
+      document.getElementById('geo-steps').innerHTML = p.steps.map(s => `<div class="p-2.5 rounded bg-[var(--card)] border border-[var(--border)]">${s}</div>`).join('');
+
+      currentGeoState = { type: p.type, a: p.a, b: p.b, r: p.r, r1: p.r1 };
+      if (p.type !== 'line_x2') {
+        document.getElementById('geo-custom-type').value = p.type;
+        document.getElementById('inp-ga').value = p.a;
+        document.getElementById('inp-gb').value = p.b;
+        document.getElementById('inp-gr').value = p.r;
+        document.getElementById('inp-gr1').value = p.r1;
+        document.getElementById('lbl-ga').textContent = p.a;
+        document.getElementById('lbl-gb').textContent = p.b;
+        document.getElementById('lbl-gr').textContent = p.r;
+        document.getElementById('lbl-gr1').textContent = p.r1;
+      }
+      drawGeoCanvas();
+    }
+
+    function applyCustomGeo() {
+      const type = document.getElementById('geo-custom-type').value;
+      const a = parseFloat(document.getElementById('inp-ga').value);
+      const b = parseFloat(document.getElementById('inp-gb').value);
+      let r = parseFloat(document.getElementById('inp-gr').value);
+      let r1 = parseFloat(document.getElementById('inp-gr1').value);
+      if (r1 >= r) r = r1 + 0.5;
+
+      document.getElementById('lbl-ga').textContent = a;
+      document.getElementById('lbl-gb').textContent = b;
+      document.getElementById('lbl-gr').textContent = r;
+      document.getElementById('lbl-gr1').textContent = r1;
+
+      currentGeoState = { type, a, b, r, r1 };
+      const z0Str = fmtComplex(a, b);
+      document.getElementById('geo-badge').textContent = "Özel Bölge Simülasyonu";
+      document.getElementById('geo-summary-tag').textContent = `M(${a}, ${b}) • r = ${r}`;
+
+      let eqStr = `|z - (${z0Str})| = ${r}`;
+      if (type === 'open_disk') eqStr = `|z - (${z0Str})| < ${r} (Açık Yuvar)`;
+      if (type === 'closed_disk') eqStr = `|z - (${z0Str})| ≤ ${r} (Kapalı Yuvar)`;
+      if (type === 'punctured') eqStr = `0 < |z - (${z0Str})| < ${r} (Delinmiş Komşuluk)`;
+      if (type === 'annulus_closed') eqStr = `${r1} ≤ |z - (${z0Str})| ≤ ${r} (Kapalı Halka)`;
+      if (type === 'annulus_half') eqStr = `${r1} < |z - (${z0Str})| ≤ ${r} (Yarı-Açık Halka)`;
+
+      document.getElementById('geo-title').textContent = eqStr;
+      drawGeoCanvas();
+    }
+
+    function drawGeoCanvas() {
+      const canvas = document.getElementById('geoCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+      const isDark = document.documentElement.classList.contains('dark');
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+      ctx.fillRect(0, 0, W, H);
+
+      const { type, a, b, r, r1 } = currentGeoState;
+      const maxExtent = Math.max(Math.abs(a) + r + 1.5, Math.abs(b) + r + 1.5, 6);
+      const scale = Math.min(W, H) / (2 * maxExtent);
+      const cx = W / 2 - (a * 0.25 * scale);
+      const cy = H / 2 + (b * 0.25 * scale);
+
+      const toX = (x) => cx + x * scale;
+      const toY = (y) => cy - y * scale;
+
+      // Grid lines
+      ctx.strokeStyle = isDark ? '#1e293b' : '#f1f5f9';
+      ctx.lineWidth = 1;
+      for (let i = -15; i <= 15; i++) {
+        ctx.beginPath();
+        ctx.moveTo(toX(i), 0); ctx.lineTo(toX(i), H);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, toY(i)); ctx.lineTo(W, toY(i));
+        ctx.stroke();
+      }
+
+      // Axes
+      ctx.strokeStyle = isDark ? '#64748b' : '#475569';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, cy); ctx.lineTo(W, cy);
+      ctx.moveTo(cx, 0); ctx.lineTo(cx, H);
+      ctx.stroke();
+
+      // Axis labels
+      ctx.fillStyle = isDark ? '#94a3b8' : '#334155';
+      ctx.font = 'bold 11px Inter, sans-serif';
+      ctx.fillText('Re(z) (x)', W - 62, cy - 6);
+      ctx.fillText('Im(z) (y)', cx + 6, 16);
+
+      if (type === 'line_x2') {
+        const lx = toX(2);
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(lx, 0); ctx.lineTo(lx, H);
+        ctx.stroke();
+        ctx.fillStyle = '#dc2626';
+        ctx.font = 'bold 13px Inter, sans-serif';
+        ctx.fillText('x = 2 doğrusu (Re(z̄ - i) = 2)', lx + 8, 45);
+        return;
+      }
+
+      const mx = toX(a);
+      const my = toY(b);
+      const pr = r * scale;
+      const pr1 = r1 * scale;
+
+      // Shaded Regions
+      if (type === 'open_disk' || type === 'closed_disk' || type === 'punctured') {
+        ctx.fillStyle = isDark ? 'rgba(59, 130, 246, 0.22)' : 'rgba(30, 58, 138, 0.14)';
+        ctx.beginPath();
+        ctx.arc(mx, my, pr, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (type === 'annulus_closed' || type === 'annulus_half') {
+        ctx.fillStyle = isDark ? 'rgba(245, 158, 11, 0.25)' : 'rgba(217, 119, 6, 0.16)';
+        ctx.beginPath();
+        ctx.arc(mx, my, pr, 0, Math.PI * 2, false);
+        ctx.arc(mx, my, pr1, 0, Math.PI * 2, true);
+        ctx.fill();
+      }
+
+      // Outer Boundary Circle
+      ctx.strokeStyle = isDark ? '#38bdf8' : '#1e3a8a';
+      ctx.lineWidth = 2.5;
+      if (type === 'open_disk' || type === 'punctured') {
+        ctx.setLineDash([7, 5]);
+      } else {
+        ctx.setLineDash([]);
+      }
+      ctx.beginPath();
+      ctx.arc(mx, my, pr, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Inner Boundary Circle (for Annulus)
+      if (type === 'annulus_closed' || type === 'annulus_half') {
+        ctx.strokeStyle = '#d97706';
+        ctx.lineWidth = 2.5;
+        if (type === 'annulus_half') ctx.setLineDash([6, 4]);
+        else ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.arc(mx, my, pr1, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.setLineDash([]);
+
+      // Dashed projection lines from Center M(a,b) to axes
+      ctx.strokeStyle = isDark ? '#94a3b8' : '#64748b';
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(mx, my); ctx.lineTo(mx, cy);
+      ctx.moveTo(mx, my); ctx.lineTo(cx, my);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Radius vector
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(mx, my);
+      ctx.lineTo(mx + pr * Math.cos(Math.PI / 6), my - pr * Math.sin(Math.PI / 6));
+      ctx.stroke();
+      ctx.fillStyle = '#dc2626';
+      ctx.font = 'bold 12px Inter, sans-serif';
+      ctx.fillText(`r = ${r}`, mx + (pr * 0.5) * Math.cos(Math.PI / 6) - 6, my - (pr * 0.5) * Math.sin(Math.PI / 6) - 6);
+
+      // Center Point M(a,b)
+      if (type === 'punctured') {
+        ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(mx, my, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = '#dc2626';
+        ctx.beginPath();
+        ctx.arc(mx, my, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
+      ctx.font = 'bold 12px Inter, sans-serif';
+      ctx.fillText(`M(${a}, ${b})`, mx + 8, my + 14);
+      if (a !== 0) ctx.fillText(`${a}`, mx - 4, cy + 14);
+      if (b !== 0) ctx.fillText(`${b}i`, cx - 22, my + 4);
+    }
+
+    // =========================================================================
+    // 3. BÖLÜM III: KUTUPSAL FORM, DE MOIVRE VE KÖK BULMA SİMÜLATÖRÜ
+    // =========================================================================
+    function selectPolarPreset(key) {
+      document.querySelectorAll('[id^="pbtn-"]').forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('bg-[var(--accent-bg)]');
+      });
+      const btn = document.getElementById('pbtn-' + key);
+      if (btn) {
+        btn.classList.add('active');
+        btn.classList.remove('bg-[var(--accent-bg)]');
+      }
+
+      const presets = {
+        slayt19: { x: 1, y: 0, n: 3 },
+        slayt14: { x: -1, y: 1.732, n: 3 },
+        slayt17: { x: 1, y: -1, n: 8 },
+        kok_eksi8: { x: -8, y: 0, n: 3 },
+        kok_16: { x: 16, y: 0, n: 4 },
+        kok_eksi8i: { x: 0, y: -8, n: 3 }
+      };
+      const p = presets[key];
+      document.getElementById('inp-px').value = p.x;
+      document.getElementById('inp-py').value = p.y;
+      document.getElementById('inp-pn').value = p.n;
+      updatePolarSim();
+    }
+
+    function updatePolarSim() {
+      const x = parseFloat(document.getElementById('inp-px').value) || 0;
+      const y = parseFloat(document.getElementById('inp-py').value) || 0;
+      const n = Math.max(2, Math.min(8, parseInt(document.getElementById('inp-pn').value) || 3));
+
+      const r = Math.sqrt(x * x + y * y);
+      const thetaRad = Math.atan2(y, x); // (-pi, pi]
+      const thetaDeg = (thetaRad * 180) / Math.PI;
+
+      // De Moivre z^n
+      const rn = Math.pow(r, n);
+      const nThetaRad = n * thetaRad;
+      const znRe = rn * Math.cos(nThetaRad);
+      const znIm = rn * Math.sin(nThetaRad);
+
+      // n-th roots w_k
+      const rootR = Math.pow(r, 1 / n);
+      let roots = [];
+      for (let k = 0; k < n; k++) {
+        const angRad = (thetaRad + 2 * k * Math.PI) / n;
+        const angDeg = (angRad * 180) / Math.PI;
+        const wx = rootR * Math.cos(angRad);
+        const wy = rootR * Math.sin(angRad);
+        roots.push({ k, angRad, angDeg, wx, wy });
+      }
+
+      const box = document.getElementById('polar-steps-box');
+      const zStr = fmtComplex(x, y);
+      const znStr = fmtComplex(znRe, znIm);
+
+      let rootsRows = roots.map(rt => `
+        <tr class="border-t border-[var(--border)]">
+          <td class="py-1.5 px-2 font-bold">k = ${rt.k} (w<sub>${rt.k}</sub>)</td>
+          <td class="py-1.5 px-2">${rt.angDeg.toFixed(1)}° (${(rt.angRad / Math.PI).toFixed(2)}π rad)</td>
+          <td class="py-1.5 px-2 font-mono font-bold text-blue-900 dark:text-blue-300">${fmtComplex(rt.wx, rt.wy)}</td>
+        </tr>
+      `).join('');
+
+      box.innerHTML = `
+        <div class="p-3 rounded-lg bg-[var(--card)] border border-[var(--border)]">
+          <div class="font-extrabold text-blue-900 dark:text-blue-400">1. Kutupsal ve Üstel (Euler) Forma Geçiş (Slayt 12–14):</div>
+          <div class="mt-1">• <b>Sayı:</b> z = ${zStr} &nbsp;|&nbsp; <b>Modül:</b> r = |z| = √(${x.toFixed(2)}² + ${y.toFixed(2)}²) = <b>${r.toFixed(3)}</b></div>
+          <div>• <b>Baş Argüman (-π &lt; Arg(z) ≤ π):</b> θ = <b>${thetaDeg.toFixed(1)}°</b> (${(thetaRad / Math.PI).toFixed(2)}π rad)</div>
+          <div>• <b>Üstel Form:</b> <span class="math-box font-bold">z = ${r.toFixed(2)} · e<sup>i(${(thetaRad / Math.PI).toFixed(2)}π)</sup></span></div>
+        </div>
+
+        <div class="p-3 rounded-lg bg-[var(--card)] border border-[var(--border)]">
+          <div class="font-extrabold text-amber-800 dark:text-amber-400">2. De Moivre Kuvvet Alma — z<sup>${n}</sup> Hesabı (Slayt 16–17):</div>
+          <div class="mt-1"><span class="math-box">z<sup>${n}</sup> = r<sup>${n}</sup>[cos(${n}θ) + i·sin(${n}θ)] = (${r.toFixed(2)})<sup>${n}</sup>[cos(${(n*thetaDeg).toFixed(1)}°) + i·sin(${(n*thetaDeg).toFixed(1)}°)]</span></div>
+          <div class="font-extrabold text-sm text-emerald-700 dark:text-emerald-400 mt-1">Sonuç: z<sup>${n}</sup> = ${znStr}</div>
+        </div>
+
+        <div class="p-3 rounded-lg bg-[var(--card)] border border-[var(--border)]">
+          <div class="font-extrabold text-emerald-800 dark:text-emerald-400 mb-1.5">3. n = ${n}. Dereceden Kökler Tablosu (w<sub>k</sub> = <sup>${n}</sup>√z, Yarıçap <sup>${n}</sup>√r = ${rootR.toFixed(3)}):</div>
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="text-[var(--muted-foreground)]">
+                <th class="py-1 px-2">İndis (k)</th>
+                <th class="py-1 px-2">Açı (θ + 2kπ) / ${n}</th>
+                <th class="py-1 px-2">Kök Değeri (w<sub>k</sub> = x + iy)</th>
+              </tr>
+            </thead>
+            <tbody>${rootsRows}</tbody>
+          </table>
+        </div>
+      `;
+
+      drawPolarCanvas(rootR, roots, n);
+    }
+
+    function drawPolarCanvas(rootR, roots, n) {
+      const canvas = document.getElementById('polarCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+      const isDark = document.documentElement.classList.contains('dark');
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+      ctx.fillRect(0, 0, W, H);
+
+      const cx = W / 2;
+      const cy = H / 2;
+      const radiusPx = Math.min(W, H) * 0.34;
+
+      // Axes
+      ctx.strokeStyle = isDark ? '#475569' : '#94a3b8';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(15, cy); ctx.lineTo(W - 15, cy);
+      ctx.moveTo(cx, 15); ctx.lineTo(cx, H - 15);
+      ctx.stroke();
+
+      // Circle of radius n-th root of r
+      ctx.strokeStyle = isDark ? '#38bdf8' : '#1e3a8a';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.arc(cx, cy, radiusPx, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Polygon connecting the roots
+      if (roots.length >= 3) {
+        ctx.fillStyle = isDark ? 'rgba(16, 185, 129, 0.16)' : 'rgba(5, 150, 105, 0.12)';
+        ctx.strokeStyle = '#059669';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        roots.forEach((rt, idx) => {
+          const px = cx + radiusPx * Math.cos(rt.angRad);
+          const py = cy - radiusPx * Math.sin(rt.angRad);
+          if (idx === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        });
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      // Root vectors and labels
+      roots.forEach(rt => {
+        const px = cx + radiusPx * Math.cos(rt.angRad);
+        const py = cy - radiusPx * Math.sin(rt.angRad);
+
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(px, py);
+        ctx.stroke();
+
+        ctx.fillStyle = '#dc2626';
+        ctx.beginPath();
+        ctx.arc(px, py, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        const lx = cx + (radiusPx + 24) * Math.cos(rt.angRad) - 10;
+        const ly = cy - (radiusPx + 22) * Math.sin(rt.angRad) + 4;
+        ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
+        ctx.font = 'bold 12px Inter, sans-serif';
+        ctx.fillText(`w${rt.k}`, lx, ly);
+      });
+
+      document.getElementById('polar-canvas-sub').textContent = `Yarıçap ⁿ√r = ${rootR.toFixed(2)} • Düzgün ${n}-Gen`;
+    }
+
+    // =========================================================================
+    // 4. BÖLÜM V: 5 DENEME SINAVI (100 SORU) MOTORU
+    // =========================================================================
+    const ALL_TESTS = {"test1": {"title": "Test 1: Vize Birebir Prova Sınavı — Defter Tüyoları, Tahta Örnekleri ve Slayt Klasikleri (20 Soru)", "subtitle": "Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan'ın vize vurguları: Limit tanımıyla türev, halka/yuvar geometrisi, dört işlem, eşlenik, kök bulma ve limit", "questions": [{"no": 1, "q": "(Defter Klasik Soru 1) f(z) = z² fonksiyonunun z₀ = 2 - i noktasındaki türevini limit tanımı f'(z₀) = lim(z→z₀) [f(z) - f(z₀)] / (z - z₀) yardımıyla hesapladığımızda sonuç aşağıdakilerden hangisidir?", "opts": ["A) 4 - 2i", "B) 3 - 4i", "C) 4 + 2i", "D) 2 - 2i", "E) 3 + 2i"], "ans": 0, "exp": "ADIM ADIM KLASİK ÇÖZÜM (Defter Notu — Sınavda Limit Tanımı Zorunlu!):\n1. Türevin limit tanımı yazılır:\n   f'(z₀) = lim(z→2-i) [f(z) - f(2-i)] / [z - (2-i)] = lim(z→2-i) [z² - (2-i)²] / [z - (2-i)]\n2. Pay kısmına iki kare farkı a² - b² = (a - b)(a + b) uygulanır:\n   = lim(z→2-i) [z - (2-i)]·[z + (2-i)] / [z - (2-i)]\n3. z ≠ 2-i olduğundan [z - (2-i)] çarpanları sadeleşir:\n   = lim(z→2-i) [z + (2-i)]\n4. z yerine 2 - i yazılır:\n   = (2 - i) + (2 - i) = 2(2 - i) = 4 - 2i."}, {"no": 2, "q": "(Defter Klasik Soru 2) Kompleks düzlemde 1 ≤ |z - (3 + 2i)| ≤ 5 eşitsizliğinin belirttiği geometrik bölge, merkez koordinatı M ve yarıçapları (r₁, r₂) aşağıdakilerden hangisidir?", "opts": ["A) M(3, 2) merkezli, r₁ = 1 ve r₂ = 5 yarıçaplı, sınır çemberleri dahil (düz çizgi) kapalı halka bölgesi", "B) M(-3, -2) merkezli, r₁ = 1 ve r₂ = 5 yarıçaplı açık halka bölgesi", "C) M(3, 2) merkezli, r = 5 yarıçaplı açık yuvar", "D) M(3, -2) merkezli, r₁ = 1 ve r₂ = 5 yarıçaplı, sınırları kesikli halka", "E) M(2, 3) merkezli, r₁ = 1 ve r₂ = √5 yarıçaplı kapalı halka"], "ans": 0, "exp": "ADIM ADIM KLASİK ÇÖZÜM (Defter & Tahta Notu):\n1. |z - z₀| = r ifadesinde z₀ = a + bi = 3 + 2i olduğundan merkez M(a, b) = M(3, 2) noktasıdır.\n2. İç sınır |z - (3+2i)| = 1 -> M(3, 2) merkezli r₁ = 1 yarıçaplı çemberdir.\n3. Dış sınır |z - (3+2i)| = 5 -> M(3, 2) merkezli r₂ = 5 yarıçaplı çemberdir.\n4. Eşitsizliklerde '≤' (küçük eşit) kullanıldığı için her iki sınır çemberi de DÜZ ÇİZGİ ile çizilir (bölgeye dahildir) ve iki çember arasındaki halka (annulus) bölgesi taranır."}, {"no": 3, "q": "(Tahta Örnek 1b) Kompleks düzlemde |2z - i| = 4 denkleminin belirttiği çemberin merkezi M(a, b) ve yarıçapı r aşağıdakilerden hangisidir?", "opts": ["A) M(0, 1) ve r = 4", "B) M(0, 1/2) ve r = 2", "C) M(0, -1/2) ve r = 2", "D) M(1/2, 0) ve r = 4", "E) M(2, -1) ve r = 2"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Tahta Fotoğrafı 1b):\n1. Standart çember formülü |z - z₀| = r şeklindedir (z'nin katsayısı 1 olmalıdır!).\n2. |2z - i| = 4 ifadesinde mutlak değer içi 2 parantezine alınır:\n   |2(z - i/2)| = 4  =>  2·|z - i/2| = 4\n3. Her iki taraf 2'ye bölünür:\n   |z - (0 + (1/2)i)| = 2\n4. Buradan z₀ = 0 + (1/2)i olduğu görülür; merkez M(0, 1/2) ve yarıçap r = 2 bulunur."}, {"no": 4, "q": "(Tahta Örnek 1c & 1d) |3z - 15i| = 3 ve |4z + 8i| = 12 denklemlerinin belirttiği çemberlerin merkez ve yarıçapları sırasıyla nedir?", "opts": ["A) M₁(0, 5), r₁ = 1  ve  M₂(0, -2), r₂ = 3", "B) M₁(0, 15), r₁ = 3  ve  M₂(0, 8), r₂ = 12", "C) M₁(0, -5), r₁ = 1  ve  M₂(0, 2), r₂ = 3", "D) M₁(5, 0), r₁ = 1  ve  M₂(-2, 0), r₂ = 3", "E) M₁(0, 5), r₁ = 3  ve  M₂(0, -2), r₂ = 4"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Tahta Fotoğrafı 1c ve 1d):\n• 1c için: |3z - 15i| = 3 => 3|z - 5i| = 3 => |z - (0 + 5i)| = 1.\n  Merkez M₁(0, 5) ve yarıçap r₁ = 1.\n• 1d için: |4z + 8i| = 12 => 4|z + 2i| = 12 => |z - (0 - 2i)| = 3.\n  (Dikkat: +2i = -(-2i) olduğu için y₀ = -2'dir!) Merkez M₂(0, -2) ve yarıçap r₂ = 3."}, {"no": 5, "q": "(Tahta Örnek 1e) |z - 2 - 3i| < 4 eşitsizliğinin kompleks düzlemdeki gösterimi için aşağıdakilerden hangisi doğrudur?", "opts": ["A) M(-2, -3) merkezli, r = 4 yarıçaplı kapalı yuvar", "B) M(2, 3) merkezli, r = 4 yarıçaplı açık yuvar (sınır çemberi kesikli çizgi, içi taralı)", "C) M(2, 3) merkezli, r = 2 yarıçaplı açık yuvar", "D) M(2, -3) merkezli, r = 4 yarıçaplı çember", "E) M(2, 3) merkezli, r = 4 yarıçaplı çemberin dış bölgesi"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Tahta Fotoğrafı 1e & Slayt Syf 20):\n1. İfadeyi |z - z₀| < r formuna düzenleyelim:\n   |z - 2 - 3i| < 4  <=>  |z - (2 + 3i)| < 4.\n2. Merkez M(2, 3) ve yarıçap r = 4'tür.\n3. '<' (kesin küçüktür) işareti olduğundan sınır çemberi bölgeye dahil değildir (KESİKLİ çizgi ile çizilir) ve çemberin iç bölgesi taranır. Bu kümeye 'Açık Yuvar (Komşuluk)' denir."}, {"no": 6, "q": "(Slayt Syf 11) z₁ = 3 + 2i ve z₂ = 1 - i kompleks sayıları veriliyor. z₁ / z₂ ifadesinin standart (kartezyen) formdaki eşiti nedir?", "opts": ["A) 1/2 + (5/2)i", "B) 5/2 + (1/2)i", "C) 1/2 - (5/2)i", "D) 1 + 5i", "E) 5/2 - (1/2)i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 11):\n1. Bölme işleminde paydayı reel sayı yapmak için pay ve payda, paydanın eşleniği olan z̄₂ = 1 + i ile çarpılır:\n   (3 + 2i) / (1 - i) = [(3 + 2i)(1 + i)] / [(1 - i)(1 + i)]\n2. Pay: 3(1) + 3(i) + 2i(1) + 2i² = 3 + 5i - 2 = 1 + 5i.\n3. Payda: 1² + (-1)² = 1 + 1 = 2.\n4. Sonuç: (1 + 5i) / 2 = 1/2 + (5/2)i."}, {"no": 7, "q": "(Slayt Syf 14) z = -1 + i√3 kompleks sayısının kutupsal (trigonometrik) ve üstel (Euler) formdaki yazılışı aşağıdakilerden hangisidir?", "opts": ["A) z = 2(cos(π/3) + i·sin(π/3)) = 2e^(iπ/3)", "B) z = 2(cos(2π/3) + i·sin(2π/3)) = 2e^(i2π/3)", "C) z = 2(cos(-π/3) + i·sin(-π/3)) = 2e^(-iπ/3)", "D) z = 4(cos(2π/3) + i·sin(2π/3)) = 4e^(i2π/3)", "E) z = 2(cos(5π/6) + i·sin(5π/6)) = 2e^(i5π/6)"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 14):\n1. Modülün bulunması: x = -1, y = √3 => r = √((-1)² + (√3)²) = √(1 + 3) = 2.\n2. Argümanın (açının) bulunması: tan(θ) = y / x = √3 / (-1) = -√3.\n3. Bölge kontrolü: x = -1 < 0 ve y = √3 > 0 olduğundan nokta 2. BÖLGEDEDİR!\n   2. bölgede tanjantı -√3 olan açı θ = π - π/3 = 2π/3 (120°)'dir.\n4. Sonuç: z = 2(cos(2π/3) + i·sin(2π/3)) = 2e^(i2π/3)."}, {"no": 8, "q": "(Slayt Syf 17) De Moivre Teoremi kullanılarak z = 1 - i sayısının 8. kuvveti (z⁸) hesaplandığında sonuç ne olur?", "opts": ["A) -16", "B) 16i", "C) -16i", "D) 16", "E) 8 - 8i"], "ans": 3, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 17):\n1. Kutupsal forma çevirme: x = 1, y = -1 => r = √(1² + (-1)²) = √2.\n   Nokta 4. bölgededir (x > 0, y < 0), tan(θ) = -1/1 = -1 => θ = -π/4.\n   Yani z = √2·e^(-iπ/4).\n2. De Moivre ile 8. kuvvet:\n   z⁸ = (√2)⁸ · e^(i·8·(-π/4)) = (2^(1/2))⁸ · e^(-i2π) = 2⁴ · (cos(-2π) + i·sin(-2π))\n3. cos(-2π) = 1 ve sin(-2π) = 0 olduğundan:\n   z⁸ = 16 · (1 + i·0) = 16."}, {"no": 9, "q": "(Slayt Syf 19 & Defter Tüyosu) z = 1 sayısının küp kökleri (w = ∛1) ve bu köklerin kompleks düzlemdeki geometrik anlamı aşağıdakilerden hangisidir?", "opts": ["A) w₀ = 1, w₁ = -1/2 + i(√3/2), w₂ = -1/2 - i(√3/2) — Birim çember üzerindeki düzgün eşkenar üçgenin köşeleri", "B) w₀ = 1, w₁ = i, w₂ = -i — Birim çember üzerindeki dik üçgenin köşeleri", "C) w₀ = 1, w₁ = 1/2 + i(√3/2), w₂ = 1/2 - i(√3/2) — Eşkenar üçgenin köşeleri", "D) Yalnızca w₀ = 1 — Reel eksen üzerinde tek bir nokta", "E) w₀ = -1, w₁ = 1/2 + i(√3/2), w₂ = 1/2 - i(√3/2)"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 18–19):\n1. z = 1 = 1(cos 0 + i·sin 0) => r = 1, θ = 0, n = 3.\n2. Kök formülü: w_k = ∛1 · [cos((0 + 2kπ)/3) + i·sin((0 + 2kπ)/3)], k = 0, 1, 2.\n   • k = 0 => w₀ = cos 0 + i·sin 0 = 1\n   • k = 1 => w₁ = cos(2π/3) + i·sin(2π/3) = -1/2 + i(√3/2)\n   • k = 2 => w₂ = cos(4π/3) + i·sin(4π/3) = -1/2 - i(√3/2)\n3. Bu üç kök birim çember içine yerleştirilmiş düzgün bir eşkenar üçgenin köşelerini oluşturur."}, {"no": 10, "q": "(Slayt Syf 25) lim(z→0) (z̄ / z) limitinin varlığı hakkında aşağıdakilerden hangisi doğrudur?", "opts": ["A) Limit vardır ve 1'e eşittir.", "B) Limit vardır ve -1'e eşittir.", "C) Limit vardır ve 0'a eşittir.", "D) Reel eksen (y=0) üzerinden yaklaşırken 1, sanal eksen (x=0) üzerinden yaklaşırken -1 çıktığı için (1 ≠ -1) limit YOKTUR.", "E) Limit vardır ve i'ye eşittir."], "ans": 3, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 24–25 — Yola Bağımlılık İspatı):\n1. z = x + iy yazılırsa z̄ / z = (x - iy) / (x + iy) olur.\n2. 1. Yol (Reel eksen üzerinden yatay yaklaşma, y = 0 alarak x → 0):\n   lim(x→0) (x - 0) / (x + 0) = lim(x→0) (x / x) = 1.\n3. 2. Yol (Sanal eksen üzerinden dikey yaklaşma, x = 0 alarak y → 0):\n   lim(y→0) (0 - iy) / (0 + iy) = lim(y→0) (-iy / iy) = -1.\n4. İki farklı yaklaşım yolu iki farklı değer (1 ≠ -1) verdiği için bu noktada limit YOKTUR."}, {"no": 11, "q": "(Slayt Syf 27) Bileşenler yardımıyla limit teoremi kullanılarak lim(z→3+2i) (z² + 2) limiti hesaplandığında sonuç nedir?", "opts": ["A) 7 + 12i", "B) 11 + 12i", "C) 5 + 6i", "D) 7 - 12i", "E) 15 + 12i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 27):\n1. f(z) = z² + 2 = (x + iy)² + 2 = (x² - y² + 2) + i(2xy).\n   Buradan u(x, y) = x² - y² + 2 ve v(x, y) = 2xy olur.\n2. z → 3 + 2i demek (x, y) → (3, 2) demektir.\n3. Reel kısım limiti: u₀ = 3² - 2² + 2 = 9 - 4 + 2 = 7.\n4. Sanal kısım limiti: v₀ = 2(3)(2) = 12.\n5. Sonuç: w₀ = u₀ + iv₀ = 7 + 12i."}, {"no": 12, "q": "(Slayt Syf 28) lim(z→i) [(z² + 1) / (z - i)] limitinin değeri aşağıdakilerden hangisidir?", "opts": ["A) 0", "B) 2i", "C) -2i", "D) 2", "E) Limit yoktur"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 28 — Belirsizlik Durumlarında Limit):\n1. z = i doğrudan yazılırsa (i² + 1) / (i - i) = (-1 + 1) / 0 = 0/0 belirsizliği çıkar.\n2. i² = -1 olduğundan z² + 1 = z² - i² = (z - i)(z + i) şeklinde iki kare farkıyla çarpanlarına ayrılır.\n3. Limit içinde yerine konursa (z ≠ i):\n   lim(z→i) [(z - i)(z + i) / (z - i)] = lim(z→i) (z + i) = i + i = 2i."}, {"no": 13, "q": "(Slayt Syf 7) z₁ = 1 + i, z₂ = -1 + 3i ve z₃ = 4 + 2i kompleks sayıları için z₁·(z₂ + z₃) işleminin sonucu nedir?", "opts": ["A) -2 + 8i", "B) 8 + 8i", "C) -2 - 8i", "D) 3 + 5i", "E) -4 + 2i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 7 — Dağılma Özelliği Uygulaması):\n1. Önce parantez içi toplanır:\n   z₂ + z₃ = (-1 + 3i) + (4 + 2i) = 3 + 5i.\n2. Şimdi z₁ = 1 + i ile çarpılır:\n   (1 + i)(3 + 5i) = 3 + 5i + 3i + 5i² = 3 + 8i - 5 = -2 + 8i."}, {"no": 14, "q": "(Slayt Syf 8) z = 4 - 7i kompleks sayısı için Re(z) ve Im(z) değerleri sırasıyla aşağıdakilerden hangisidir?", "opts": ["A) Re(z) = 4 ve Im(z) = -7i", "B) Re(z) = 4 ve Im(z) = -7", "C) Re(z) = 4 ve Im(z) = 7", "D) Re(z) = -7 ve Im(z) = 4", "E) Re(z) = 4i ve Im(z) = -7"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 8 — Kritik Uyarı!):\nHocanın slayt 8'deki 'Dikkat: y'nin kendisi reel bir sayıdır!' uyarısına göre z = x + iy sayısında Im(z) = y'dir (yanına i yazılmaz!). Dolayısıyla z = 4 - 7i için Re(z) = 4 ve Im(z) = -7'dir (-7i şıkkı klasik sınav tuzağıdır)."}, {"no": 15, "q": "(Tahta Örnek 1f) Kompleks düzlemde Re(z̄ - i) = 2 denklemini sağlayan z = x + iy noktalarının geometrik yeri nedir?", "opts": ["A) y = 2 yatay doğrusu", "B) x = 2 dikey doğrusu", "C) x = 3 dikey doğrusu", "D) M(2, -1) merkezli çember", "E) x - y = 2 doğrusu"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Tahta Fotoğrafı 1f):\n1. z = x + iy alınırsa eşleniği z̄ = x - iy olur.\n2. Parantez içi düzenlenir:\n   z̄ - i = x - iy - i = x - i(y + 1).\n3. Bu ifadenin reel kısmı Re(z̄ - i) = x'tir (-i ortak çarpanındaki y+1 sanal kısımdır!).\n4. Re(z̄ - i) = 2 => x = 2 dikey doğrusu bulunur."}, {"no": 16, "q": "(Slayt Syf 20) 0 < |z - z₀| < r eşitsizliği ile tanımlanan ve limit tanımında kullanılan nokta kümesine ne ad verilir?", "opts": ["A) Kapalı Yuvar", "B) Açık Yuvar", "C) Delinmiş Komşuluk (Delinmiş Açık Disk)", "D) Çember", "E) Kompakt Küme"], "ans": 2, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 20 ve 23):\n|z - z₀| < r açık yuvarından merkez noktası z = z₀'ın (yani |z - z₀| = 0 durumunun) çıkarılmasıyla elde edilen 0 < |z - z₀| < r kümesine 'Delinmiş Komşuluk' denir. Epsilon-Delta limit tanımında (0 < |z - z₀| < δ) tam olarak bu küme kullanılır."}, {"no": 17, "q": "(Slayt Syf 21) Riemann Küresi ve Genişletilmiş Kompleks Düzlem (Ĉ = C ∪ {∞}) üzerinde kürenin Güney Kutbu ve Kuzey Kutbu sırasıyla hangi noktaları temsil eder?", "opts": ["A) Güney Kutbu: Sonsuz (∞) — Kuzey Kutbu: Orijin (0)", "B) Güney Kutbu: Orijin (0) — Kuzey Kutbu: Sonsuz (∞)", "C) Güney Kutbu: -1 — Kuzey Kutbu: +1", "D) Güney Kutbu: -i — Kuzey Kutbu: +i", "E) Güney Kutbu: 1 — Kuzey Kutbu: ∞"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 21):\nSlayt 21'deki modele göre küre düzlemin orijinine teğettir: Kürenin Güney Kutbu orijini (0), Kuzey Kutbu ise sonsuzluğu (∞) temsil eder. Sayının modülü |z| büyüdükçe küre üzerindeki stereografik izdüşümü kuzey kutbuna (∞'a) yaklaşır."}, {"no": 18, "q": "(Slayt Syf 30–32) Düzgün Süreklilik (Uniform Continuity) ve Kompaktlık ile ilgili aşağıdaki ifadelerden hangisi YANLIŞTIR?", "opts": ["A) Bir f fonksiyonu S kümesi üzerinde düzgün sürekli ise S'nin içindeki tüm noktalarda süreklidir.", "B) Sürekli olan her fonksiyon her küme üzerinde mutlaka düzgün süreklidir.", "C) Düzgün süreklilik tek bir noktada araştırılamaz, daima bir küme (bölge) üzerinde tanımlıdır.", "D) Kompakt (kapalı ve sınırlı) bir S kümesi üzerinde sürekli olan bir fonksiyon S'de düzgün süreklidir.", "E) S kümesi kompakt ve f, S üzerinde sürekli ise f(S) görüntü kümesi de kompakttır."], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 30–32):\nSlayt 31'de açıkça vurgulandığı üzere: 'Eğer f bir S kümesi üzerinde düzgün sürekli ise S'deki tüm noktalarda süreklidir. Fakat TERSİ HER ZAMAN DOĞRU DEĞİLDİR (Sürekli her fonksiyon düzgün sürekli olmayabilir).' Ancak küme kompakt (kapalı ve sınırlı) ise süreklilik düzgün sürekliliği garanti eder."}, {"no": 19, "q": "(Defter Klasik Türev Benzeri) f(z) = z² + 4z fonksiyonunun z₀ = 1 + i noktasındaki türevi limit tanımıyla hesaplandığında kaç bulunur?", "opts": ["A) 6 + 2i", "B) 2 + 2i", "C) 4 + 2i", "D) 6 - 2i", "E) 5 + 4i"], "ans": 0, "exp": "ADIM ADIM KLASİK ÇÖZÜM:\n1. Limit tanımı: f'(z₀) = lim(z→z₀) [z² + 4z - (z₀² + 4z₀)] / (z - z₀)\n2. Payı gruplandıralım: (z² - z₀²) + 4(z - z₀) = (z - z₀)(z + z₀ + 4)\n3. Paydadaki (z - z₀) ile sadeleştirilir:\n   f'(z₀) = lim(z→z₀) (z + z₀ + 4) = 2z₀ + 4\n4. z₀ = 1 + i yerine yazılır:\n   f'(1 + i) = 2(1 + i) + 4 = 2 + 2i + 4 = 6 + 2i."}, {"no": 20, "q": "(Kök Bulma Klasik Benzeri) z = -8i kompleks sayısının küp köklerinden (w = ∛(-8i)) k = 0 için elde edilen birinci kökü (w₀) aşağıdakilerden hangisidir? (θ = -π/2 baş argümanını kullanınız)", "opts": ["A) √3 - i", "B) 2i", "C) -√3 - i", "D) 1 - i√3", "E) 2(cos(π/6) + i·sin(π/6))"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = -8i sayısının modülü r = |-8i| = 8 ve baş argümanı θ = -π/2'dir (negatif sanal eksen üzerinde).\n2. n = 3 için kök yarıçapı ∛8 = 2'dir.\n3. k = 0 için w₀ = 2[cos((-π/2 + 0)/3) + i·sin((-π/2 + 0)/3)] = 2[cos(-π/6) + i·sin(-π/6)].\n4. cos(-π/6) = √3/2 ve sin(-π/6) = -1/2 olduğundan:\n   w₀ = 2(√3/2 - i/2) = √3 - i. (Diğer kökler k=1 için 2i, k=2 için -√3 - i'dir)."}]}, "test2": {"title": "Test 2: Sıralı İkililer, Dört İşlem, Eşlenik, Modül ve Argand Düzlemi (20 Soru)", "subtitle": "Slayt 1–11 kapsamındaki sıralı ikili inşası, özel çarpma tanımı, cebirsel özellikler, eşlenik ve modül kuralları", "questions": [{"no": 1, "q": "(Slayt Syf 4–5) Kompleks sayılar kümesi C = {(x, y) : x, y ∈ R} üzerinde sıralı ikililerin çarpma işlemi nasıl tanımlanmıştır?", "opts": ["A) (x₁, y₁) · (x₂, y₂) = (x₁x₂, y₁y₂)", "B) (x₁, y₁) · (x₂, y₂) = (x₁x₂ + y₁y₂, x₁y₂ - y₁x₂)", "C) (x₁, y₁) · (x₂, y₂) = (x₁x₂ - y₁y₂, x₁y₂ + y₁x₂)", "D) (x₁, y₁) · (x₂, y₂) = (x₁y₂ - y₁x₂, x₁x₂ + y₁y₂)", "E) (x₁, y₁) · (x₂, y₂) = (x₁ + x₂, y₁ + y₂)"], "ans": 2, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 5):\nKompleks sayılarda çarpma işlemi düzlemdeki dönme (rotasyon) hareketini de kapsayacak şekilde:\n(x₁, y₁) · (x₂, y₂) = (x₁x₂ - y₁y₂, x₁y₂ + y₁x₂) olarak tanımlanmıştır."}, {"no": 2, "q": "Sıralı ikili formunda verilen z₁ = (2, -3) ve z₂ = (4, 1) kompleks sayıları için z₁ · z₂ çarpımının sonucu hangi sıralı ikilidir?", "opts": ["A) (8, -3)", "B) (11, -10)", "C) (5, -10)", "D) (11, 14)", "E) (5, 14)"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\nFormül: (x₁x₂ - y₁y₂, x₁y₂ + y₁x₂)\n• 1. bileşen (Reel): 2·4 - (-3)·1 = 8 - (-3) = 11.\n• 2. bileşen (Sanal): 2·1 + (-3)·4 = 2 - 12 = -10.\nSonuç: (11, -10)."}, {"no": 3, "q": "(Slayt Syf 8) Sıralı ikili gösteriminde sanal birim 'i' hangi ikiliye karşılık gelir ve i² işleminin sıralı ikili çarpımıyla kanıtı nasıldır?", "opts": ["A) i = (1, 0) ve i² = (1, 0)", "B) i = (0, 1) ve i² = (0, 1)·(0, 1) = (0·0 - 1·1, 0·1 + 1·0) = (-1, 0) = -1", "C) i = (0, -1) ve i² = (0, 1)", "D) i = (1, 1) ve i² = (0, 2)", "E) i = (-1, 0) ve i² = (1, 0)"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 8):\n(x, 0) ikilisi reel sayılardaki x'e, (0, 1) ikilisi ise sanal birim i'ye karşılık gelir. Özel çarpma kuralına göre:\ni² = (0, 1)·(0, 1) = (0·0 - 1·1, 0·1 + 1·0) = (-1, 0) = -1 bulunur."}, {"no": 4, "q": "(2x - y, 3x + y) = (5, 5) sıralı ikili eşitliğini sağlayan x ve y reel sayıları için z = x + iy kompleks sayısının modülü |z| kaçtır?", "opts": ["A) √5", "B) √2", "C) 5", "D) 3", "E) √10"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 4 ve 10):\n1. Sıralı ikililerin eşitliğinden: 2x - y = 5 ve 3x + y = 5.\n2. Taraf tarafa toplanırsa: 5x = 10 => x = 2.\n3. Yerine yazılırsa: 2(2) - y = 5 => y = -1.\n4. z = 2 - i sayısının modülü: |z| = √(2² + (-1)²) = √(4 + 1) = √5."}, {"no": 5, "q": "Sanal birim i'nin kuvvetleri için i²⁰²⁶ + i²⁰²⁷ + i²⁰²⁸ + i²⁰²⁹ toplamının sonucu kaçtır?", "opts": ["A) -1", "B) i", "C) -i", "D) 0", "E) 1"], "ans": 3, "exp": "ADIM ADIM ÇÖZÜM:\ni'nin ardışık 4 kuvvetinin toplamı her zaman 0'dır:\ni²⁰²⁶ = i² = -1, i²⁰²⁷ = i³ = -i, i²⁰²⁸ = i⁰ = 1, i²⁰²⁹ = i¹ = i.\nToplam: (-1) + (-i) + 1 + i = 0."}, {"no": 6, "q": "(Slayt Syf 10) Bir z = x + iy kompleks sayısının eşleniği z̄ = x - iy için aşağıdakilerden hangisi YANLIŞTIR?", "opts": ["A) Geometrik olarak z sayısının Reel eksene (x-eksenine) göre simetriğidir.", "B) z · z̄ = x² + y² = |z|² olup sonuç her zaman negatif olmayan bir reel sayıdır.", "C) z + z̄ = 2·Re(z) ve z - z̄ = 2i·Im(z) eşitlikleri geçerlidir.", "D) |z̄| = |z| eşitliği daima sağlanır.", "E) z · z̄ = x² - y² eşitliği geçerlidir."], "ans": 4, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 10):\nz · z̄ = (x + iy)(x - iy) = x² - i²y² = x² - (-1)y² = x² + y² = |z|² olur. E şıkkındaki x² - y² ifadesi yanlıştır (i² = -1 işareti artıya çevirir)."}, {"no": 7, "q": "z₁ = 2 - 3i ve z₂ = -1 + 4i kompleks sayıları veriliyor. z̄₁ · z₂ işleminin sonucu aşağıdakilerden hangisidir?", "opts": ["A) -14 + 5i", "B) 10 + 11i", "C) -14 + 11i", "D) 10 + 5i", "E) -2 - 12i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. Önce z₁'in eşleniği alınır: z̄₁ = 2 + 3i.\n2. Çarpma işlemi yapılır:\n   z̄₁ · z₂ = (2 + 3i)(-1 + 4i) = -2 + 8i - 3i + 12i² = -2 + 5i - 12 = -14 + 5i."}, {"no": 8, "q": "z = (3 - 4i) · (1 + i√3) / (2i) kompleks sayısının modülü |z| kaçtır?", "opts": ["A) 5", "B) 10", "C) 5/2", "D) 5√3", "E) 20"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nModül çarpma ve bölme üzerine dağılır (|z₁·z₂ / z₃| = |z₁|·|z₂| / |z₃|):\n1. |3 - 4i| = √(3² + (-4)²) = 5.\n2. |1 + i√3| = √(1² + (√3)²) = √4 = 2.\n3. |2i| = √(0² + 2²) = 2.\n4. |z| = (5 · 2) / 2 = 5. (Uzun uzun çarpmaya gerek kalmadan saniyeler içinde çözülür!)."}, {"no": 9, "q": "z + 2z̄ = 9 - 4i denklemini sağlayan z = x + iy kompleks sayısı aşağıdakilerden hangisidir?", "opts": ["A) 3 + 4i", "B) 3 - 4i", "C) 9 + 4i", "D) 3 + 2i", "E) -3 + 4i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = x + iy ve z̄ = x - iy yerine yazılır:\n   (x + iy) + 2(x - iy) = 9 - 4i\n   3x - iy = 9 - 4i.\n2. Reel ve sanal kısımların eşitliğinden:\n   3x = 9 => x = 3\n   -y = -4 => y = 4.\n3. Buradan z = 3 + 4i bulunur."}, {"no": 10, "q": "z = (1 + i) / (1 - i) + (1 - i) / (1 + i) işleminin sonucu kaçtır?", "opts": ["A) 2i", "B) -2i", "C) 0", "D) 2", "E) 1"], "ans": 2, "exp": "ADIM ADIM ÇÖZÜM:\n1. (1 + i) / (1 - i) = (1 + i)² / (1² + 1²) = (1 + 2i - 1) / 2 = 2i / 2 = i.\n2. (1 - i) / (1 + i) = (1 - i)² / 2 = -2i / 2 = -i.\n3. Toplamları: i + (-i) = 0."}, {"no": 11, "q": "(Slayt Syf 6) Kompleks sayılarda toplama ve çarpma işlemlerinin sahip olduğu:\nI. z₁ + z₂ = z₂ + z₁ ve z₁·z₂ = z₂·z₁\nII. z₁ + (z₂ + z₃) = (z₁ + z₂) + z₃\nIII. z₁·(z₂ + z₃) = z₁·z₂ + z₁·z₃\nözelliklerinin isimleri sırasıyla nedir?", "opts": ["A) Birleşme — Değişme — Dağılma", "B) Değişme — Birleşme — Dağılma", "C) Dağılma — Değişme — Birleşme", "D) Değişme — Dağılma — Birleşme", "E) Kapalılık — Birleşme — Değişme"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 6 — Önerme 1.2):\nI: Değişme Özelliği, II: Birleşme Özelliği, III: Dağılma Özelliği."}, {"no": 12, "q": "Sıfırdan farklı bir z = x + iy kompleks sayısının çarpmaya göre tersi olan z⁻¹ = 1 / z ifadesinin eşlenik ve modül cinsinden yazılışı aşağıdakilerden hangisidir?", "opts": ["A) z̄ / |z|", "B) z̄ / |z|²", "C) z / |z|²", "D) -z̄ / |z|²", "E) |z|² / z̄"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\nz · z̄ = |z|² olduğundan her iki taraf z · |z|²'ye bölünürse:\n1 / z = z̄ / |z|² = (x - iy) / (x² + y²) elde edilir."}, {"no": 13, "q": "(Slayt Syf 9) Argand düzleminde (kompleks düzlemde) iki kompleks sayının toplamı olan z₁ + z₂ geometrik olarak neyi ifade eder?", "opts": ["A) Orijinden çizilen iki vektörün paralelkenar yöntemiyle vektörel toplamını", "B) İki vektörün skaler (iç) çarpımını", "C) z₁ vektörünün z₂ açısı kadar döndürülmesini", "D) Reel eksene göre simetriğini", "E) Birim çember üzerindeki izdüşümünü"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 9):\nDüzlemdeki her (x, y) noktası orijinden o noktaya çizilen bir vektör olarak düşünülebilir. Toplama işlemi fizikteki vektörel toplama (paralelkenar yöntemi) ile birebir aynıdır."}, {"no": 14, "q": "|z + 3i| = |z - 1| denklemini sağlayan z = x + iy noktalarının kompleks düzlemdeki geometrik yeri aşağıdakilerden hangisidir?", "opts": ["A) x + 3y + 4 = 0 doğrusu", "B) x - 3y - 4 = 0 doğrusu", "C) x + 3y - 4 = 0 doğrusu", "D) M(1, -3) merkezli çember", "E) 2x + 6y + 5 = 0 doğrusu"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = x + iy yazılırsa: |x + i(y + 3)| = |(x - 1) + iy|.\n2. Her iki tarafın modülünün karesi alınır:\n   x² + (y + 3)² = (x - 1)² + y²\n   x² + y² + 6y + 9 = x² - 2x + 1 + y²\n3. x² ve y²'ler sadeleşir:\n   2x + 6y + 8 = 0  =>  x + 3y + 4 = 0 doğrusu (iki noktaya eşit uzaklıktaki noktaların orta dikme doğrusu)."}, {"no": 15, "q": "z = (2 + i) / (3 - i) kompleks sayısının sanal kısmı Im(z) kaçtır?", "opts": ["A) 1/2", "B) 1/2 i", "C) 1/5", "D) 7/10", "E) -1/2"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. Pay ve payda 3 + i ile çarpılır:\n   z = (2 + i)(3 + i) / (3² + (-1)²) = (6 + 2i + 3i + i²) / 10 = (5 + 5i) / 10 = 1/2 + (1/2)i.\n2. Buradan Im(z) = 1/2 bulunur (yanına i konulmaz!)."}, {"no": 16, "q": "Kompleks düzlemde z₁ = -2 + 5i ve z₂ = 2 + 2i noktaları arasındaki uzaklık |z₁ - z₂| kaç birimdir?", "opts": ["A) 5", "B) √13", "C) 7", "D) √65", "E) 25"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n|z₁ - z₂| = |(-2 + 5i) - (2 + 2i)| = |-4 + 3i| = √((-4)² + 3²) = √(16 + 9) = 5 birim."}, {"no": 17, "q": "Eşlenik özellikleri kullanılarak z₁ = 1 - 2i ve z₂ = 3 + 4i için Re(z₁ · z̄₂) değeri hesaplandığında kaç bulunur?", "opts": ["A) -5", "B) 11", "C) 5", "D) -11", "E) 10"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z̄₂ = 3 - 4i.\n2. z₁ · z̄₂ = (1 - 2i)(3 - 4i) = 3 - 4i - 6i + 8i² = 3 - 10i - 8 = -5 - 10i.\n3. Reel kısım: Re(z₁ · z̄₂) = -5."}, {"no": 18, "q": "(Slayt Syf 3) Aşağıdakilerden hangisi hocanın ders notlarında kompleks sayıların doğayı modellemek için vazgeçilmez olduğu belirtilen mühendislik ve fizik alanlarından biridir?", "opts": ["A) Sinyal işleme (Fourier analizleri), Elektromanyetizma, Akışkanlar dinamiği ve Kuantum mekaniği", "B) Yalnızca arkeolojik karbon testi", "C) Yalnızca birinci dereceden tam sayı denklemleri", "D) Sadece klasik statik sürtünme hesapları", "E) Yalnızca finansal faiz toplamları"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 3):\nSlayt 3'te kompleks sayıların x² + 1 = 0 gibi denklemleri çözmenin yanı sıra Elektromanyetizma, Akışkanlar dinamiği, Kuantum mekaniği ve Sinyal işleme (Fourier analizleri) alanlarında vazgeçilmez bir araç olduğu vurgulanmıştır."}, {"no": 19, "q": "(1 + i)⁴ ifadesinin kartezyen formdaki eşiti nedir?", "opts": ["A) 4", "B) -4", "C) 4i", "D) -4i", "E) 2i"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n(1 + i)² = 1 + 2i + i² = 2i.\n(1 + i)⁴ = [(1 + i)²]² = (2i)² = 4i² = -4."}, {"no": 20, "q": "|z| - z = 1 + 2i denklemini sağlayan z kompleks sayısı aşağıdakilerden hangisidir?", "opts": ["A) 3/2 - 2i", "B) -3/2 + 2i", "C) 3/2 + 2i", "D) 2 - 2i", "E) 5/2 - 2i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = x + iy ve |z| = √(x² + y²) yerine yazılır:\n   √(x² + y²) - (x + iy) = 1 + 2i  =>  (√(x² + y²) - x) - iy = 1 + 2i.\n2. Sanal kısımların eşitliğinden: -y = 2 => y = -2.\n3. Reel kısımların eşitliğinden:\n   √(x² + (-2)²) - x = 1  =>  √(x² + 4) = x + 1.\n4. Her iki tarafın karesi alınır:\n   x² + 4 = x² + 2x + 1  =>  2x = 3  =>  x = 3/2.\n5. Sonuç: z = 3/2 - 2i."}]}, "test3": {"title": "Test 3: Kutupsal (Üstel) Form, Baş Argüman, De Moivre ve Kök Bulma (20 Soru)", "subtitle": "Slayt 12–19 kapsamındaki Euler formülü, Baş Argüman Arg(z), üstel çarpma/bölme, De Moivre kuvvet alma ve n. köklerin geometrisi", "questions": [{"no": 1, "q": "(Slayt Syf 13) Bir z kompleks sayısının Baş Argümanı olan Arg(z) hangi açı aralığında tanımlanır?", "opts": ["A) 0 ≤ θ < 2π", "B) -π < θ ≤ π", "C) -π/2 ≤ θ ≤ π/2", "D) 0 < θ ≤ π", "E) -2π < θ < 2π"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 13):\nSlayt 13'teki nota göre: Argüman θ tekil değildir (θ + 2kπ açıları aynı noktayı gösterir). Ancak -π < θ ≤ π aralığındaki tekil açıya Baş Argüman (Arg(z)) denir."}, {"no": 2, "q": "z = -3 - 3i kompleks sayısının modülü r = |z| ve Baş Argümanı Arg(z) sırasıyla nedir?", "opts": ["A) r = 3√2, Arg(z) = 5π/4", "B) r = 3√2, Arg(z) = -3π/4", "C) r = 3√2, Arg(z) = 3π/4", "D) r = 6, Arg(z) = -3π/4", "E) r = 3√2, Arg(z) = -π/4"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. Modül: r = √((-3)² + (-3)²) = √18 = 3√2.\n2. Nokta 3. bölgededir (x < 0, y < 0). Dar açı α = π/4'tür.\n3. Baş argüman -π < θ ≤ π aralığında olmalıdır! 3. bölgeye saat yönünde (negatif yönde) gidilirse:\n   Arg(z) = -π + π/4 = -3π/4 bulunur (5π/4 değeri π'den büyük olduğu için baş argüman değildir!)."}, {"no": 3, "q": "(Slayt Syf 15) Kutupsal (üstel) formda verilen z₁ = 6e^(iπ/3) ve z₂ = 2e^(iπ/6) sayıları için z₁ · z₂ çarpımı ve z₁ / z₂ bölümü sırasıyla nedir?", "opts": ["A) z₁·z₂ = 12i  ve  z₁/z₂ = 3(√3/2 + i/2)", "B) z₁·z₂ = 12  ve  z₁/z₂ = 3i", "C) z₁·z₂ = 8e^(iπ/2)  ve  z₁/z₂ = 4e^(iπ/6)", "D) z₁·z₂ = -12i  ve  z₁/z₂ = 3", "E) z₁·z₂ = 12e^(iπ/18)  ve  z₁/z₂ = 3e^(i2)"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 15):\n1. Çarpma (Modüller çarpılır, açılar toplanır):\n   z₁·z₂ = (6·2)e^(i(π/3 + π/6)) = 12e^(iπ/2) = 12(cos(π/2) + i·sin(π/2)) = 12i.\n2. Bölme (Modüller bölünür, açılar çıkarılır):\n   z₁/z₂ = (6/2)e^(i(π/3 - π/6)) = 3e^(iπ/6) = 3(cos(π/6) + i·sin(π/6)) = 3(√3/2 + i/2)."}, {"no": 4, "q": "Euler formülü e^(iθ) = cos(θ) + i·sin(θ) kullanıldığında, matematik tarihinin en ünlü özdeşliği olan e^(iπ) + 1 ifadesinin değeri kaçtır?", "opts": ["A) 2", "B) 0", "C) 1 + i", "D) -1", "E) 2i"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\ne^(iπ) = cos(π) + i·sin(π) = -1 + i(0) = -1.\nBuradan e^(iπ) + 1 = -1 + 1 = 0 bulunur."}, {"no": 5, "q": "(Slayt Syf 16) z = 1 + i kompleks sayısının De Moivre teoremi ile 10. kuvveti (z¹⁰) hesaplandığında sonuç ne olur?", "opts": ["A) 32i", "B) -32i", "C) 32", "D) -32", "E) 1024i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = 1 + i için r = √2 ve θ = π/4 (1. bölge) => z = √2·e^(iπ/4).\n2. De Moivre teoremi:\n   z¹⁰ = (√2)¹⁰ · e^(i·10π/4) = 2⁵ · e^(i·5π/2).\n3. 5π/2 = 2π + π/2 olduğundan cos(5π/2) = cos(π/2) = 0 ve sin(5π/2) = sin(π/2) = 1.\n4. Sonuç: z¹⁰ = 32(0 + i·1) = 32i."}, {"no": 6, "q": "z = (-√3 + i)⁶ ifadesinin De Moivre teoremiyle hesaplanan değeri kaçtır?", "opts": ["A) 64", "B) -64", "C) 64i", "D) -64i", "E) 8"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. x = -√3, y = 1 => r = √(3 + 1) = 2.\n2. Nokta 2. bölgededir (x < 0, y > 0): tan(θ) = -1/√3 => θ = 5π/6 (150°).\n3. z⁶ = 2⁶ · [cos(6 · 5π/6) + i·sin(6 · 5π/6)] = 64 · [cos(5π) + i·sin(5π)].\n4. cos(5π) = cos(π) = -1 ve sin(5π) = 0 olduğundan z⁶ = 64(-1) = -64."}, {"no": 7, "q": "(Slayt Syf 18) Sıfırdan farklı bir z = r·e^(iθ) kompleks sayısının n. dereceden kökleri (w = ⁿ√z) ile ilgili aşağıdakilerden hangisi doğrudur?", "opts": ["A) Yalnızca n çift ise kökü vardır.", "B) Tam n tane farklı kökü vardır; hepsi yarıçapı ⁿ√r olan çember üzerinde birbirlerine eşit 2π/n açılarla (düzgün n-gen oluşturacak şekilde) dağılır.", "C) Sonsuz tane farklı kökü vardır.", "D) Köklerin hepsi yarıçapı r/n olan bir doğru üzerinde bulunur.", "E) k = 0, 1, ..., n değerleri için n+1 tane farklı kök vardır."], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 18):\nKompleks düzlemde sıfırdan farklı bir sayının n. dereceden kökü k = 0, 1, 2, ..., n-1 için tam n tane farklı değer alır. Köklerin hepsi yarıçapı ⁿ√r olan bir çember üzerinde yer alır ve düzgün n-genin köşelerini oluştururlar."}, {"no": 8, "q": "z = 16 kompleks sayısının 4. dereceden kökleri (⁴√16) aşağıdakilerden hangisidir?", "opts": ["A) Sadece 2 ve -2", "B) 2, 2i, -2, -2i", "C) 4, 4i, -4, -4i", "D) √2 + i√2, -√2 + i√2, -√2 - i√2, √2 - i√2", "E) 2, -1 + i√3, -1 - i√3, -2"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = 16 = 16e^(i0) => r = 16, θ = 0, n = 4. Kök yarıçapı ⁴√16 = 2.\n2. w_k = 2[cos(2kπ/4) + i·sin(2kπ/4)] = 2[cos(kπ/2) + i·sin(kπ/2)], k = 0, 1, 2, 3.\n   • k = 0 => w₀ = 2(1) = 2\n   • k = 1 => w₁ = 2(i) = 2i\n   • k = 2 => w₂ = 2(-1) = -2\n   • k = 3 => w₃ = 2(-i) = -2i.\n(Yarıçapı 2 olan çember üzerinde bir karenin 4 köşesi!)."}, {"no": 9, "q": "z = -4 kompleks sayısının karekökleri (√(-4)) aşağıdakilerden hangisidir?", "opts": ["A) Sadece 2i", "B) 2i ve -2i", "C) 2 ve -2", "D) √2 + i√2 ve -√2 - i√2", "E) Çözüm kümesi boştur"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\nz = -4 = 4e^(iπ) => r = 4, θ = π, n = 2.\n• k = 0 => w₀ = √4[cos(π/2) + i·sin(π/2)] = 2i.\n• k = 1 => w₁ = √4[cos(3π/2) + i·sin(3π/2)] = -2i."}, {"no": 10, "q": "z = 2i kompleks sayısının karekökleri (w² = 2i denkleminin kökleri) aşağıdakilerden hangisidir?", "opts": ["A) 1 + i  ve  -1 - i", "B) 1 - i  ve  -1 + i", "C) √2 + i  ve  -√2 - i", "D) i  ve  -i", "E) 2 + 2i  ve  -2 - 2i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = 2i => r = 2 ve θ = π/2 (pozitif sanal eksen). n = 2 için √r = √2.\n2. k = 0 => w₀ = √2[cos(π/4) + i·sin(π/4)] = √2(√2/2 + i√2/2) = 1 + i.\n3. k = 1 => w₁ = √2[cos(5π/4) + i·sin(5π/4)] = -1 - i.\n(Kontrol: (1 + i)² = 1 + 2i + i² = 2i!)."}, {"no": 11, "q": "Bir z kompleks sayısının 5. dereceden kökleri (⁵√z) kompleks düzlemde çizildiğinde, ardışık iki kök vektörü arasındaki merkez açı kaç derecedir (veya kaç radyandır)?", "opts": ["A) 60° (π/3 rad)", "B) 72° (2π/5 rad)", "C) 45° (π/4 rad)", "D) 90° (π/2 rad)", "E) 36° (π/5 rad)"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 18):\nn. dereceden kökler çember üzerinde düzgün n-gen oluşturur. Tam açı 360° (2π radyan) olduğundan ardışık iki kök arasındaki açı:\nΔθ = 2π / n = 2π / 5 radyan = 360° / 5 = 72° olur."}, {"no": 12, "q": "z₁ = -1 + i ve z₂ = √3 + i kompleks sayıları için Arg(z₁) ve Arg(z₂) baş argümanlarının toplamı kaç radyandır?", "opts": ["A) 11π/12", "B) 5π/12", "C) 7π/12", "D) π/2", "E) 13π/12"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z₁ = -1 + i noktası 2. bölgededir (x = -1, y = 1): Arg(z₁) = 3π/4 (135°).\n2. z₂ = √3 + i noktası 1. bölgededir (x = √3, y = 1): tan(θ) = 1/√3 => Arg(z₂) = π/6 (30°).\n3. Toplamları: 3π/4 + π/6 = 9π/12 + 2π/12 = 11π/12 (165°)."}, {"no": 13, "q": "z = -5 (negatif reel sayı) ve w = -4i (negatif sanal sayı) için Baş Argüman değerleri Arg(-5) ve Arg(-4i) sırasıyla nedir?", "opts": ["A) Arg(-5) = π  ve  Arg(-4i) = -π/2", "B) Arg(-5) = -π  ve  Arg(-4i) = 3π/2", "C) Arg(-5) = 0  ve  Arg(-4i) = -π/2", "D) Arg(-5) = π  ve  Arg(-4i) = π/2", "E) Arg(-5) = -π  ve  Arg(-4i) = -π/2"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 13):\nBaş argüman aralığı -π < θ ≤ π'dir (-π dahil DEĞİL, +π DAHİLDİR!).\n• Negatif reel eksen üzerindeki -5 sayısı için Arg(-5) = π'dir (-π alınamaz!).\n• Negatif sanal eksen üzerindeki -4i sayısı için Arg(-4i) = -π/2'dir (3π/2 aralık dışındadır)."}, {"no": 14, "q": "Üstel formda verilen z = 4e^(-iπ/3) kompleks sayısının kartezyen (standart x + iy) formdaki karşılığı nedir?", "opts": ["A) 2 - 2√3 i", "B) 2 + 2√3 i", "C) 2√3 - 2i", "D) -2 - 2√3 i", "E) -2 + 2√3 i"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nz = 4[cos(-π/3) + i·sin(-π/3)] = 4[1/2 + i(-√3/2)] = 2 - 2√3 i."}, {"no": 15, "q": "[ (cos(π/12) + i·sin(π/12))⁹ ] / [ (cos(π/6) - i·sin(π/6))³ ] ifadesinin en sade hali aşağıdakilerden hangisidir?", "opts": ["A) -√2/2 + i(√2/2)", "B) √2/2 + i(√2/2)", "C) -1", "D) i", "E) -√2/2 - i(√2/2)"], "ans": 4, "exp": "ADIM ADIM ÇÖZÜM:\n1. Pay: (e^(iπ/12))⁹ = e^(i·9π/12) = e^(i·3π/4).\n2. Payda: cos(π/6) - i·sin(π/6) = e^(-iπ/6) => Küpü: (e^(-iπ/6))³ = e^(-i·3π/6) = e^(-i·2π/4).\n3. Bölme işleminde açılar çıkarılır:\n   e^(i(3π/4 - (-2π/4))) = e^(i·5π/4) = cos(5π/4) + i·sin(5π/4) = -√2/2 - i(√2/2)."}, {"no": 16, "q": "z³ + 8 = 0 denkleminin çözüm kümesi (yani z = -8 sayısının küp kökleri) aşağıdakilerden hangisidir?", "opts": ["A) Sadece -2", "B) -2,  1 + i√3,  1 - i√3", "C) 2,  -1 + i√3,  -1 - i√3", "D) -2,  -1 + i√3,  -1 - i√3", "E) 2i,  -√3 - i,  √3 - i"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = -8 = 8e^(iπ) => r = 8, θ = π, n = 3. Kök yarıçapı ∛8 = 2.\n2. w_k = 2[cos((π + 2kπ)/3) + i·sin((π + 2kπ)/3)], k = 0, 1, 2.\n   • k = 0 => w₀ = 2[cos(π/3) + i·sin(π/3)] = 2(1/2 + i√3/2) = 1 + i√3.\n   • k = 1 => w₁ = 2[cos(π) + i·sin(π)] = 2(-1 + 0) = -2.\n   • k = 2 => w₂ = 2[cos(5π/3) + i·sin(5π/3)] = 2(1/2 - i√3/2) = 1 - i√3."}, {"no": 17, "q": "Bir z kompleks sayısını i = e^(iπ/2) birimi ile çarpmak, o sayının kompleks düzlemdeki vektörüne geometrik olarak ne yapar?", "opts": ["A) Uzunluğunu değiştirmeden orijin etrafında pozitif yönde (saat yönünün tersine) 90° (π/2 radyan) döndürür.", "B) Uzunluğunu 2 katına çıkarır.", "C) Reel eksene göre simetriğini alır.", "D) Orijin etrafında 180° döndürür.", "E) Uzunluğunu yarıya indirir."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 5 ve 15):\ni = 1·e^(iπ/2) sayısının modülü 1, açısı π/2 (90°)'dir. z = r·e^(iθ) sayısını i ile çarptığımızda i·z = r·e^(i(θ + π/2)) olur; yani modülü değişmez, açısı +90° döner."}, {"no": 18, "q": "|e^(iθ)| ifadesinin değeri her θ ∈ R reel açısı için kaçtır?", "opts": ["A) θ", "B) 1", "C) e", "D) 0", "E) cos(θ)"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n|e^(iθ)| = |cos(θ) + i·sin(θ)| = √(cos²θ + sin²θ) = √1 = 1. (e^(iθ) her zaman birim çember üzerindedir!)."}, {"no": 19, "q": "e^z = e^(x + iy) = e^x · (cos y + i·sin y) kompleks üstel fonksiyonu kullanılarak e^(2 + iπ) sayısı hesaplandığında sonuç nedir?", "opts": ["A) e²", "B) -e²", "C) e²·i", "D) -e²·i", "E) 2e"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\ne^(2 + iπ) = e² · e^(iπ) = e² · (cos π + i·sin π) = e² · (-1 + 0) = -e²."}, {"no": 20, "q": "Bir z kompleks sayısının tüm n. dereceden köklerinin (w₀, w₁, ..., w_{n-1}) toplamı (n ≥ 2 için) kaçtır?", "opts": ["A) z", "B) n", "C) 0", "D) 1", "E) ⁿ√|z|"], "ans": 2, "exp": "ADIM ADIM ÇÖZÜM:\nKökler orijin merkezli bir çember üzerinde düzgün bir n-genin köşelerine simetrik olarak dağıldığı için (veya w^n - z = 0 polinomunda w^(n-1) teriminin katsayısı 0 olduğu için) köklerin vektörel toplamı daima 0'dır (Örn: 1 + (-1/2 + i√3/2) + (-1/2 - i√3/2) = 0)."}]}, "test4": {"title": "Test 4: Kompleks Düzlemde Nokta Kümeleri, Tahta Soruları ve Topolojik Yapılar (20 Soru)", "subtitle": "Slayt 20–21 ve Tahta fotoğraflarındaki Çember, Açık/Kapalı Yuvar, Halka, Delinmiş Komşuluk, Doğru ve Riemann Küresi", "questions": [{"no": 1, "q": "(Tahta Örnek 1a) Kompleks düzlemde |z - (3 + 4i)| = 5 denkleminin belirttiği çemberin merkezi M, yarıçapı r ve bu çemberin orijinden (0, 0) geçip geçmediği hakkında hangisi doğrudur?", "opts": ["A) M(3, 4), r = 5 — Merkezin orijine uzaklığı √(3²+4²) = 5 = r olduğu için çember tam orijinden (0, 0) geçer.", "B) M(-3, -4), r = 5 — Orijinden geçmez.", "C) M(3, 4), r = √5 — Orijinden geçmez.", "D) M(4, 3), r = 5 — Orijinden geçer.", "E) M(3, -4), r = 25 — Orijinden geçmez."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Tahta Fotoğrafı 1a):\n1. |z - (3 + 4i)| = 5 denkleminde z₀ = 3 + 4i olduğundan merkez M(3, 4) ve yarıçap r = 5'tir.\n2. z = 0 (orijin) denkleme yazılırsa: |0 - (3 + 4i)| = √(3² + 4²) = 5 (sağlar!). Tahtadaki çizimde de çemberin tam orijinden geçtiği gösterilmiştir."}, {"no": 2, "q": "|2z + 6 - 8i| ≤ 10 eşitsizliğinin belirttiği kapalı yuvarın merkezi M(a, b) ve yarıçapı r nedir?", "opts": ["A) M(6, -8) ve r = 10", "B) M(-3, 4) ve r = 5", "C) M(3, -4) ve r = 5", "D) M(-3, 4) ve r = 10", "E) M(-6, 8) ve r = 5"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. Önce z'nin katsayısı olan 2 parantezine alınır:\n   2·|z + 3 - 4i| ≤ 10  =>  |z + 3 - 4i| ≤ 5.\n2. |z - z₀| ≤ r formuna yazılır:\n   |z - (-3 + 4i)| ≤ 5.\n3. Merkez M(-3, 4) ve yarıçap r = 5 olan kapalı yuvardır."}, {"no": 3, "q": "Kompleks düzlemde 2 < |z + 1 - 2i| ≤ 4 eşitsizliğinin belirttiği bölge için aşağıdakilerden hangisi doğrudur?", "opts": ["A) M(-1, 2) merkezli; iç sınırı r₁ = 2 (kesikli çizgi / dahil değil), dış sınırı r₂ = 4 (düz çizgi / dahil) olan yarı-açık halka bölgesi", "B) M(1, -2) merkezli; her iki sınırı düz çizgi olan kapalı halka", "C) M(-1, 2) merkezli; iç sınırı düz, dış sınırı kesikli halka", "D) M(1, 2) merkezli; r = 2 yarıçaplı çember", "E) M(-1, -2) merkezli; her iki sınırı kesikli açık halka"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. |z + 1 - 2i| = |z - (-1 + 2i)| olduğundan merkez M(-1, 2)'dir.\n2. Sol tarafta '2 <' (kesin küçük) olduğu için r₁ = 2 iç çemberi KESİKLİ ÇİZGİ ile çizilir (dahil değil).\n3. Sağ tarafta '≤ 4' (küçük eşit) olduğu için r₂ = 4 dış çemberi DÜZ ÇİZGİ ile çizilir (dahil) ve iki çember arası taranır."}, {"no": 4, "q": "(Slayt Syf 20) Aşağıdaki nokta kümelerinden hangisi hem KAPALI hem de SINIRLI (yani KOMPAKT) bir kümedir?", "opts": ["A) |z - z₀| < r (Açık Yuvar)", "B) 0 < |z - z₀| < r (Delinmiş Komşuluk)", "C) |z - z₀| ≤ r (Kapalı Yuvar)", "D) Re(z) ≥ 0 (Sağ Yarı Düzlem)", "E) |z| > 2 (Çemberin Dışı)"], "ans": 2, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 20 ve 32):\nKompakt küme, hem kapalı (sınır noktalarını içeren) hem de sınırlı (sonlu bir diskin içine sığan) kümedir.\n• A ve B sınırlarını içermediği için açık/kapalı değildir.\n• D kapalıdır ancak sonsuza uzandığı için sınırlı değildir.\n• C şıkkındaki |z - z₀| ≤ r kapalı yuvarı (veya 1 ≤ |z - z₀| ≤ 5 kapalı halkası, veya |z - z₀| = r çemberi) hem kapalı hem sınırlı olduğundan KOMPAKTTIR."}, {"no": 5, "q": "Kompleks düzlemde Im(z + 2i) > 3 eşitsizliğinin belirttiği bölge aşağıdakilerden hangisidir?", "opts": ["A) y > 1 üst yarı düzlemi (y = 1 doğrusu kesikli çizgi)", "B) y > 5 üst yarı düzlemi", "C) x > 1 sağ yarı düzlemi", "D) y ≥ 1 kapalı yarı düzlemi", "E) y < 1 alt yarı düzlemi"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = x + iy yazılırsa: z + 2i = x + i(y + 2).\n2. Sanal kısım: Im(z + 2i) = y + 2.\n3. Eşitsizlik: y + 2 > 3 => y > 1.\n4. y = 1 yatay doğrusu kesikli çizgiyle çizilir ve üst tarafı taranır."}, {"no": 6, "q": "Kompleks düzlemde |z - i| = |z + i| denklemini sağlayan noktaların kümesi nedir?", "opts": ["A) Sanal eksen (x = 0 doğrusu)", "B) Reel eksen (y = 0 doğrusu)", "C) Birim çember (|z| = 1)", "D) y = x açıortay doğrusu", "E) Sadece orijin noktası (0, 0)"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. Geometrik olarak z noktasının (0, 1) ve (0, -1) noktalarına eşit uzaklıkta olması demektir; bu da x-eksenidir (Reel eksen, y = 0).\n2. Cebirsel olarak: x² + (y - 1)² = x² + (y + 1)² => -2y = 2y => 4y = 0 => y = 0."}, {"no": 7, "q": "|z|² - 2·Re(z) - 3 = 0 denkleminin kompleks düzlemde belirttiği şekil aşağıdakilerden hangisidir?", "opts": ["A) M(1, 0) merkezli, r = 2 yarıçaplı çember", "B) M(-1, 0) merkezli, r = 2 yarıçaplı çember", "C) M(0, 1) merkezli, r = √3 yarıçaplı çember", "D) x = -3/2 doğrusu", "E) M(1, 0) merkezli, r = 4 yarıçaplı çember"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = x + iy için |z|² = x² + y² ve Re(z) = x'tir.\n2. Denkleme yazılırsa: x² + y² - 2x - 3 = 0.\n3. Tam kareye tamamlanır: (x² - 2x + 1) + y² = 3 + 1 => (x - 1)² + y² = 2².\n4. Bu denklem M(1, 0) merkezli, r = 2 yarıçaplı çemberdir (|z - 1| = 2)."}, {"no": 8, "q": "(Slayt Syf 21) Riemann küresi üzerinde kompleks düzlemin birim çemberi (|z| = 1) kürenin neresine karşılık gelir (orijin güney kutbuna teğet standart modelde)?", "opts": ["A) Kuzey kutbu ile güney kutbu arasındaki bir enlem çemberine", "B) Sadece kuzey kutbuna", "C) Sadece güney kutbuna", "D) Kürenin dışındaki bir doğruya", "E) Kürenin merkez noktasına"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 21):\nStereografik izdüşümde |z| = r sabit modüllü çemberler, Riemann küresi üzerinde kuzey-güney eksenine dik yatay enlem çemberlerine eşlenir. |z| büyüdükçe bu çemberler kuzey kutbuna (∞'a) yaklaşır."}, {"no": 9, "q": "Kompleks düzlemde 0 < |z - (1 - i)| < 3 kümesi için aşağıdakilerden hangisi doğrudur?", "opts": ["A) M(1, -1) merkezli, r = 3 yarıçaplı delinmiş komşuluktur; z₀ = 1 - i merkez noktası kümeye dahil DEĞİLDİR.", "B) M(1, -1) merkezli kapalı yuvardır; z₀ = 1 - i kümeye dahildir.", "C) M(-1, 1) merkezli, r = 3 yarıçaplı delinmiş komşuluktur.", "D) M(1, -1) ve M(0, 0) merkezli iki çember arası halkadır.", "E) Kompakt bir kümedir."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 20):\n0 < |z - z₀| < r ifadesi z₀ = 1 - i yani M(1, -1) merkezli, r = 3 yarıçaplı Delinmiş Komşuluktur. Sol taraftaki '0 <' şartı |z - (1 - i)| ≠ 0 yani z ≠ 1 - i demektir; merkez noktası oyulup çıkarılmıştır."}, {"no": 10, "q": "Kompleks düzlemde -1 ≤ Re(z) < 2 ve 0 ≤ Im(z) ≤ 3 koşullarını aynı anda sağlayan z noktalarının belirttiği geometrik bölge nedir?", "opts": ["A) Köşeleri (-1,0), (2,0), (2,3), (-1,3) olan ve yalnızca x = 2 sağ kenarı kesikli çizgi (hariç) olan dikdörtgen bölge", "B) Merkezi (-1, 2) ve yarıçapı 3 olan halka", "C) Tüm kenarları dahil olan kapalı kare", "D) Sonsuz şerit bölge", "E) Köşeleri (0,-1), (0,2), (3,2), (3,-1) olan dikdörtgen"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nRe(z) = x ve Im(z) = y olduğundan: -1 ≤ x < 2 ve 0 ≤ y ≤ 3 bir dikdörtgen bölgedir. x = -1, y = 0 ve y = 3 sınırlarında '≤' olduğu için düz çizgi; x = 2 sınırında '<' olduğu için kesikli çizgi kullanılır."}, {"no": 11, "q": "|z / i - 2| = 3 denkleminin belirttiği çemberin merkezi M(a, b) ve yarıçapı r nedir?", "opts": ["A) M(2, 0) ve r = 3", "B) M(0, 2) ve r = 3", "C) M(0, -2) ve r = 3", "D) M(0, 2) ve r = 1", "E) M(-2, 0) ve r = 3"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. Payda eşitlenir veya mutlak değer içi i ile çarpılır (|i| = 1 olduğu için sonuç değişmez!):\n   |z / i - 2| = |(z - 2i) / i| = |z - 2i| / |i| = |z - 2i| / 1 = 3.\n2. |z - (0 + 2i)| = 3 olduğundan merkez M(0, 2) ve yarıçap r = 3'tür."}, {"no": 12, "q": "|z̄ - (2 + 3i)| = 4 denkleminin belirttiği çemberin merkezi M(a, b) ve yarıçapı r nedir?", "opts": ["A) M(2, 3) ve r = 4", "B) M(2, -3) ve r = 4", "C) M(-2, 3) ve r = 4", "D) M(-2, -3) ve r = 4", "E) M(3, -2) ve r = 4"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1. Bir kompleks sayının modülü eşleniğinin modülüne eşittir: |w| = |w̄|.\n2. İfadenin eşleniğini mutlak değer içinde alalım:\n   |z̄ - (2 + 3i)| = |z̿ - (2 + 3i)̄| = |z - (2 - 3i)| = 4.\n3. Buradan z₀ = 2 - 3i => Merkez M(2, -3) ve yarıçap r = 4 bulunur! (Çok popüler bir sınav sorusudur)."}, {"no": 13, "q": "Kompleks düzlemde Arg(z) = π/4 (r > 0) denkleminin belirttiği geometrik küme nedir?", "opts": ["A) Orijin hariç, 1. bölgede başlangıç noktası orijin olan ve reel eksenle 45° açı yapan açık ışın (y = x, x > 0)", "B) Hem 1. hem 3. bölgedeki y = x doğrusunun tamamı", "C) Orijin merkezli π/4 yarıçaplı çember", "D) 1. bölgenin tamamı", "E) x = π/4 dikey doğrusu"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nz = 0 noktasının argümanı tanımsızdır. Arg(z) = π/4 koşulu yalnızca 1. bölgede (x > 0, y > 0) y = x doğrusu üzerindeki açık ışını belirtir (3. bölgedeki kısmın argümanı -3π/4'tür!)."}, {"no": 14, "q": "|z - 4i| + |z + 4i| = 10 denklemi kompleks düzlemde hangi geometrik şekli belirtir?", "opts": ["A) Odakları F₁(0, 4) ve F₂(0, -4) olan, büyük eksen uzunluğu 10 olan bir elips", "B) M(0, 4) merkezli, r = 10 yarıçaplı bir çember", "C) İki doğrusal ışın", "D) Odakları (4, 0) ve (-4, 0) olan bir hiperbol", "E) Boş küme"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nSabit iki noktaya (F₁ = 4i ve F₂ = -4i, aralarındaki uzaklık 2c = 8) olan uzaklıkları toplamı sabit (2a = 10 > 8) olan noktaların geometrik yeri bir ELİPSTİR."}, {"no": 15, "q": "|z - 3| + |z + 3| = 4 denkleminin kompleks düzlemdeki çözüm kümesi nedir?", "opts": ["A) Elips", "B) Çember", "C) Doğru parçası", "D) Boş küme (∅) — Çünkü iki odak arası uzaklık |3 - (-3)| = 6 iken uzaklıklar toplamı 6'dan küçük (4) olamaz!", "E) Hiperbol"], "ans": 3, "exp": "ADIM ADIM ÇÖZÜM (Üçgen Eşitsizliği Tuzağı!):\n3 ve -3 noktaları arasındaki uzaklık 6 birimdir. Üçgen eşitsizliğine göre her z için |z - 3| + |z + 3| ≥ 6 olmak zorundadır. Toplamın 4 olması imkansızdır; çözüm kümesi boş kümedir (∅). (Eğer = 6 olsaydı [-3, 3] doğru parçası olurdu)."}, {"no": 16, "q": "|z - 2| = 5 çemberinin x-eksenini (Reel ekseni) kestiği noktaların koordinatları nedir?", "opts": ["A) (-3, 0) ve (7, 0)", "B) (-5, 0) ve (5, 0)", "C) (-7, 0) ve (3, 0)", "D) (0, -3) ve (0, 7)", "E) (2, -5) ve (2, 5)"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nMerkez M(2, 0) reel eksen üzerindedir ve yarıçap r = 5'tir. Reel ekseni 2 - 5 = -3 ve 2 + 5 = 7 noktalarında, yani (-3, 0) ve (7, 0)'da keser."}, {"no": 17, "q": "(Slayt Syf 23) z₀ ∈ C noktasının bir S kümesinin 'Yığılma Noktası (Limit Noktası)' olması ne demektir?", "opts": ["A) z₀'ın her delinmiş komşuluğunun (0 < |z - z₀| < r) S kümesi ile kesişiminin boş olmaması (en az bir S elemanı içermesi)", "B) z₀ noktasının mutlaka S kümesinin dışında olması", "C) z₀'ın orijine uzaklığının 1 olması", "D) S kümesinin sadece tek bir elemandan oluşması", "E) z₀'ın sanal kısmının sıfır olması"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 20 ve 23):\nBir fonksiyonun z₀ noktasında limitinin tanımlanabilmesi için z₀'ın tanım kümesinin bir yığılma noktası olması gerekir; yani her δ > 0 için 0 < |z - z₀| < δ delinmiş komşuluğunda kümeye ait noktalar bulunmalıdır."}, {"no": 18, "q": "Kompleks düzlemde |z| ≥ 3 eşitsizliğinin belirttiği bölge aşağıdakilerden hangisidir?", "opts": ["A) Orijin merkezli, r = 3 yarıçaplı çemberin kendisi (düz çizgi) ve çemberin DIŞ bölgesi", "B) Orijin merkezli, r = 3 yarıçaplı kapalı yuvar (iç bölge)", "C) Orijin merkezli, r = 3 yarıçaplı çemberin sadece dış bölgesi (sınır kesikli)", "D) x ≥ 3 sağ yarı düzlemi", "E) Kompakt bir disk"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n|z - 0| ≥ 3 ifadesi orijine uzaklığı 3 veya 3'ten büyük olan tüm noktaları, yani r = 3 çemberini (düz çizgi) ve çemberin dışındaki sınırsız bölgeyi gösterir."}, {"no": 19, "q": "Re(z²) > 0 eşitsizliğini sağlayan z = x + iy noktalarının kartezyen koordinatlardaki karşılığı nedir?", "opts": ["A) x² - y² > 0  (yani |x| > |y| bölgesi)", "B) x² + y² > 0", "C) 2xy > 0", "D) x > 0", "E) x² - y² < 0"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 22):\nz² = (x + iy)² = (x² - y²) + i(2xy) olduğundan Re(z²) = x² - y²'dir. Dolayısıyla Re(z²) > 0 eşitsizliği x² - y² > 0 (yani |x| > |y|) bölgesini belirtir."}, {"no": 20, "q": "(Tahta & Defter Sentez) 2 ≤ |2z - 6 + 4i| < 8 eşitsizliğinin standart halka formuna dönüştürülmüş hali, merkezi M ve yarıçapları (r₁, r₂) nedir?", "opts": ["A) 1 ≤ |z - (3 - 2i)| < 4  =>  M(3, -2), r₁ = 1 (dahil/düz), r₂ = 4 (hariç/kesikli)", "B) 2 ≤ |z - (3 - 2i)| < 8  =>  M(3, -2), r₁ = 2, r₂ = 8", "C) 1 ≤ |z - (-3 + 2i)| < 4  =>  M(-3, 2), r₁ = 1, r₂ = 4", "D) 1 ≤ |z - (3 + 2i)| < 4  =>  M(3, 2), r₁ = 1, r₂ = 4", "E) 4 ≤ |z - (3 - 2i)| < 16  =>  M(3, -2), r₁ = 4, r₂ = 16"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. Ortadaki ifade 2 parantezine alınır:\n   2 ≤ 2·|z - 3 + 2i| < 8.\n2. Tüm eşitsizlik 2'ye bölünür:\n   1 ≤ |z - (3 - 2i)| < 4.\n3. Merkez M(3, -2), iç yarıçap r₁ = 1 (≤ olduğu için düz çizgi), dış yarıçap r₂ = 4 (< olduğu için kesikli çizgi)."}]}, "test5": {"title": "Test 5: Kompleks Fonksiyonlar, Limit, Türev, Süreklilik ve Kompaktlık (20 Soru)", "subtitle": "Slayt 22–33 ve Defter notlarındaki u(x,y)+iv(x,y) ayrıştırması, ε-δ limit, yola bağımlılık, türev, süreklilik ve düzgün süreklilik teoremleri", "questions": [{"no": 1, "q": "(Slayt Syf 22) w = f(z) kompleks değişkenli bir fonksiyonun grafiğinin reel analizdeki y = f(x) eğrileri gibi çizilememesinin temel nedeni nedir?", "opts": ["A) Kompleks fonksiyonların değerlerinin her zaman sonsuz olması", "B) Giriş düzlemi z = (x, y) için 2 boyut ve görüntü düzlemi w = (u, v) için 2 boyut olmak üzere toplam 4 boyut gerektirmesi; bu yüzden dönüşüm (haritalama) olarak incelenmesi", "C) Kompleks sayıların yalnızca 1 boyutlu sayı doğrusunda gösterilebilmesi", "D) Fonksiyonların reel kısımlarının olmaması", "E) Türevlerinin alınamaması"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 22):\nSlayt 22'de açıklandığı üzere: w = f(z) fonksiyonu 2 boyutlu z-düzlemini alıp başka bir 2 boyutlu w-düzlemine eşler (toplam 2 + 2 = 4 boyut gerekir). Bu yüzden grafiğini çizemeyiz, dönüşüm (haritalama) olarak inceleriz."}, {"no": 2, "q": "(Slayt Syf 22) f(z) = z² - 3z + i fonksiyonu f(z) = u(x, y) + i·v(x, y) şeklinde reel ve sanal bileşenlerine ayrıldığında u(x, y) ve v(x, y) ne olur?", "opts": ["A) u(x, y) = x² - y² - 3x  ve  v(x, y) = 2xy - 3y + 1", "B) u(x, y) = x² + y² - 3x  ve  v(x, y) = 2xy + 1", "C) u(x, y) = x² - y² - 3x + 1  ve  v(x, y) = 2xy - 3y", "D) u(x, y) = x² - y²  ve  v(x, y) = 2xy", "E) u(x, y) = 2xy - 3y + 1  ve  v(x, y) = x² - y² - 3x"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\n1. z = x + iy yerine yazılır:\n   f(x + iy) = (x + iy)² - 3(x + iy) + i = (x² + 2ixy - y²) - 3x - 3iy + i\n2. Reel ve sanal terimler gruplandırılır:\n   f(x + iy) = (x² - y² - 3x) + i(2xy - 3y + 1).\n3. Buradan u(x, y) = x² - y² - 3x ve v(x, y) = 2xy - 3y + 1 bulunur."}, {"no": 3, "q": "f(z) = 1 / z fonksiyonunun (z ≠ 0 için) reel kısmı u(x, y) ve sanal kısmı v(x, y) aşağıdakilerden hangisidir?", "opts": ["A) u(x, y) = 1/x  ve  v(x, y) = 1/y", "B) u(x, y) = x / (x² + y²)  ve  v(x, y) = -y / (x² + y²)", "C) u(x, y) = x / (x² + y²)  ve  v(x, y) = y / (x² + y²)", "D) u(x, y) = x / (x² - y²)  ve  v(x, y) = -y / (x² - y²)", "E) u(x, y) = -x / (x² + y²)  ve  v(x, y) = y / (x² + y²)"], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM:\n1 / z = z̄ / |z|² = (x - iy) / (x² + y²) = [x / (x² + y²)] + i·[-y / (x² + y²)].\nDolayısıyla u(x, y) = x / (x² + y²) ve v(x, y) = -y / (x² + y²)'dir."}, {"no": 4, "q": "(Slayt Syf 23) lim(z→z₀) f(z) = w₀ limitinin Epsilon-Delta (ε - δ) matematiksel tanımı aşağıdakilerden hangisidir?", "opts": ["A) ∀ε > 0 için ∃δ > 0 vardır öyle ki; 0 < |z - z₀| < δ  ==>  |f(z) - w₀| < ε", "B) ∀ε > 0 için ∃δ > 0 vardır öyle ki; |z - z₀| ≤ δ  ==>  |f(z) - w₀| ≤ ε", "C) ∀δ > 0 için ∃ε > 0 vardır öyle ki; |f(z) - w₀| < δ  ==>  0 < |z - z₀| < ε", "D) Sadece z = z₀ için |f(z₀) - w₀| = 0", "E) |z - z₀| > δ  ==>  |f(z) - w₀| > ε"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 23):\nHer ε > 0 sayısına karşılık öyle bir δ > 0 sayısı bulunabilmelidir ki; z noktası z₀'ın delinmiş komşuluğunda (0 < |z - z₀| < δ) olduğunda görüntüsü |f(z) - w₀| < ε açık yuvarına düşsün."}, {"no": 5, "q": "lim(z→0) [ Re(z) / |z| ] limitinin varlığı hakkında aşağıdakilerden hangisi doğrudur?", "opts": ["A) Limit vardır ve 1'dir.", "B) Limit vardır ve 0'dır.", "C) Pozitif reel eksen (y=0, x→0⁺) üzerinden 1, sanal eksen (x=0, y→0) üzerinden 0 çıktığı için limit YOKTUR.", "D) Limit vardır ve i'dir.", "E) Limit vardır ve -1'dir."], "ans": 2, "exp": "ADIM ADIM ÇÖZÜM:\n1. Sanal eksen üzerinden (x = 0, y → 0): Re(iy) / |iy| = 0 / |y| = 0.\n2. Pozitif reel eksen üzerinden (y = 0, x → 0⁺): x / |x| = x / x = 1 (negatif reel eksenden -1).\nFarklı yollar farklı sonuçlar verdiği için limit YOKTUR."}, {"no": 6, "q": "lim(z→0) [ z̄² / z² ] limitini incelemek için y = mx doğruları boyunca orijine yaklaşıldığında ne görülür?", "opts": ["A) y = 0 (reel eksen) ve x = 0 (sanal eksen) üzerinde limit 1 çıkmasına rağmen, y = x doğrusu üzerinde -1 çıktığı için limit YOKTUR!", "B) Tüm y = mx doğrularında 1 çıktığı için limit vardır ve 1'dir.", "C) Limit vardır ve 0'dır.", "D) Limit vardır ve -1'dir.", "E) Sadece sanal eksende tanımsızdır."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Çok Önemli Yola Bağımlılık Örneği!):\n1. y = 0 (reel eksen) için: x² / x² = 1.\n2. x = 0 (sanal eksen) için: (-iy)² / (iy)² = -y² / -y² = 1. (Sadece eksenlere bakan bir öğrenci yanılabilir!).\n3. Ancak y = x doğrusu (θ = π/4) üzerinden yaklaşılırsa: z = x(1 + i) => z̄ = x(1 - i).\n   (1 - i)² / (1 + i)² = (-2i) / (2i) = -1 bulunur!\n4. 1 ≠ -1 olduğundan limit YOKTUR."}, {"no": 7, "q": "(Slayt Syf 26) f(z) = u(x, y) + i·v(x, y), z₀ = x₀ + iy₀ ve w₀ = u₀ + iv₀ olmak üzere; lim(z→z₀) f(z) = w₀ olması için gerek ve yeter şart nedir?", "opts": ["A) Yalnızca lim_{(x,y)→(x₀,y₀)} u(x, y) = u₀ olması yeterlidir.", "B) lim_{(x,y)→(x₀,y₀)} u(x, y) = u₀  VE  lim_{(x,y)→(x₀,y₀)} v(x, y) = v₀ limitlerinin her ikisinin de mevcut ve bu değerlere eşit olmasıdır.", "C) u(x₀, y₀) = v(x₀, y₀) olmasıdır.", "D) u₀² + v₀² = 1 olmasıdır.", "E) Sadece x → x₀ limitinin var olmasıdır."], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 26 — Bileşenler Yardımıyla Limit Teoremi):\nKompleks limitin var olması ve w₀ = u₀ + iv₀'a eşit olması, ancak ve ancak hem reel kısım u(x,y)'nin iki değişkenli limitinin u₀'a hem de sanal kısım v(x,y)'nin iki değişkenli limitinin v₀'a eşit olmasıyla mümkündür."}, {"no": 8, "q": "lim(z→2-i) (z² - 4z + 5) limitinin değeri aşağıdakilerden hangisidir?", "opts": ["A) -2i", "B) 2i", "C) 8 - 2i", "D) 0", "E) 2 - 4i"], "ans": 3, "exp": "ADIM ADIM ÇÖZÜM:\n1. Polinom fonksiyonlar tüm kompleks düzlemde sürekli olduğu için doğrudan z = 2 - i yerine yazılır:\n2. (2 - i)² = 4 - 4i + i² = 4 - 4i - 1 = 3 - 4i.\n3. -4(2 - i) + 5 = -8 + 4i + 5 = -3 + 4i.\n4. Toplam: (3 - 4i) + (-3 + 4i) = 0 bulunur! (2 - i sayısı z² - 4z + 5 = 0 polinomunun tam köküdür)."}, {"no": 9, "q": "lim(z→2i) [ (z² + 4) / (z - 2i) ] limitinin değeri aşağıdakilerden hangisidir?", "opts": ["A) 4i", "B) -4i", "C) 4", "D) 0", "E) Limit yoktur"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 28 Benzeri):\n1. z = 2i yazılırsa ((2i)² + 4) / (2i - 2i) = (-4 + 4) / 0 = 0/0 belirsizliği oluşur.\n2. Pay iki kare farkıyla çarpanlarına ayrılır: z² + 4 = z² - (2i)² = (z - 2i)(z + 2i).\n3. Sadeleştirme yapılır:\n   lim(z→2i) [(z - 2i)(z + 2i) / (z - 2i)] = lim(z→2i) (z + 2i) = 2i + 2i = 4i."}, {"no": 10, "q": "(Slayt Syf 29) Bir f(z) fonksiyonunun z₀ noktasında SÜREKLİ olması için sağlaması gereken 3 şart nedir?", "opts": ["A) 1) lim(z→z₀) f(z) mevcut olmalı,  2) f(z₀) tanımlı olmalı,  3) lim(z→z₀) f(z) = f(z₀) olmalı", "B) Sadece f(z₀) tanımlı olmalı", "C) Sadece lim(z→z₀) f(z) mevcut olmalı", "D) f(z₀) = 0 olmalı", "E) Fonksiyonun sadece reel eksen üzerinde tanımlı olması"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 29):\nBir fonksiyonun limitinin olması sürekli olmasını garanti etmez. Süreklilik için:\n1) lim(z→z₀) f(z) mevcut olmalı,\n2) f(z₀) değeri tanımlı olmalı,\n3) lim(z→z₀) f(z) = f(z₀) (hedef ile gerçek değer aynı) olmalıdır."}, {"no": 11, "q": "(Slayt Syf 29) f(z) = (z + 2) / (z² + 9) rasyonel fonksiyonu kompleks düzlemde hangi noktalarda SÜREKSİZDİR?", "opts": ["A) Tüm kompleks düzlemde süreklidir (çünkü reel sayılarda z² + 9 = 0 olmaz!).", "B) z = 3i ve z = -3i noktalarında süreksizdir.", "C) Sadece z = -2 noktasında süreksizdir.", "D) z = 3 ve z = -3 noktalarında süreksizdir.", "E) z = 9i noktasında süreksizdir."], "ans": 1, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 29):\nRasyonel fonksiyonlar paydayı sıfır yapan noktalarda süreksizdir. Kompleks düzlemde:\nz² + 9 = 0  =>  z² = -9 = (3i)²  =>  z₁ = 3i ve z₂ = -3i noktalarında payda sıfır olur ve fonksiyon süreksizdir."}, {"no": 12, "q": "f(z) = { (z² + 1)/(z - i) , z ≠ i ise ;  k , z = i ise } parçalı fonksiyonunun z₀ = i noktasında SÜREKLİ olabilmesi için k sabiti ne olmalıdır?", "opts": ["A) 2i", "B) -2i", "C) i", "D) 0", "E) 2"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 28 ve 29):\nSüreklilik şartı gereği f(i) = lim(z→i) f(z) olmalıdır.\nSlayt 28'de lim(z→i) [(z² + 1)/(z - i)] = lim(z→i) (z + i) = 2i bulundu. O halde k = f(i) = 2i seçilirse kaldırılabilir süreksizlik giderilir ve fonksiyon z = i'de sürekli olur."}, {"no": 13, "q": "(Slayt Syf 30) Düzgün Süreklilik (Uniform Continuity) tanımındaki δ > 0 sayısının, noktasal süreklilikteki δ sayısından temel farkı nedir?", "opts": ["A) Noktasal süreklilikte δ hem ε'a hem de seçilen z₀ noktasına bağlı olabilirken; düzgün süreklilikte δ noktadan bağımsızdır (yalnızca ε'a bağlıdır ve S kümesinin her yerinde geçerli evrensel bir güvenlik payıdır).", "B) Düzgün süreklilikte δ negatif olabilir.", "C) Düzgün süreklilikte ε'a ihtiyaç yoktur.", "D) Noktasal süreklilik sadece kompakt kümelerde tanımlıdır.", "E) İkisi arasında hiçbir fark yoktur."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 30):\nSlayt 30'da vurgulandığı gibi: Süreklilikte δ değeri hem ε'a hem de seçtiğimiz z₀ noktasına bağlı olabilir. Düzgün süreklilikte ise |z₁ - z₂| < δ => |f(z₁) - f(z₂)| < ε şartını sağlayan δ, kümenin her yerinde geçerli, noktadan bağımsız (sadece ε'a bağlı) evrensel bir güvenlik payıdır."}, {"no": 14, "q": "(Slayt Syf 32) f(z) = 1 / (z - 4) fonksiyonu S = {z ∈ C : |z| ≤ 2} kapalı yuvarı üzerinde düzgün sürekli midir?", "opts": ["A) Evet; çünkü fonksiyonun tek süreksizlik noktası olan z = 4 bu kümenin dışındadır ve S = {|z| ≤ 2} kompakt (kapalı ve sınırlı) bir küme olduğu için Teorem 1 gereği S üzerinde düzgün süreklidir.", "B) Hayır; rasyonel fonksiyonlar hiçbir kümede düzgün sürekli olamaz.", "C) Hayır; S kümesi kompakt değildir.", "D) Sadece z = 0 noktasında düzgün süreklidir.", "E) Hayır; z = 2 noktasında payda sıfır olur."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 29 ve 32 — Teorem 1):\n1. f(z) = 1/(z - 4) fonksiyonu yalnızca z = 4 noktasında süreksizdir.\n2. S = {|z| ≤ 2} kapalı diski içinde |z| en fazla 2 olduğundan z = 4 bu kümenin dışındadır; yani f fonksiyonu S üzerinde her noktada süreklidir.\n3. S kapalı ve sınırlı (kompakt) bir küme olduğundan, Teorem 1 ('Kompakt kümede sürekli fonksiyon düzgün süreklidir') gereği f, S üzerinde DÜZGÜN SÜREKLİDİR."}, {"no": 15, "q": "(Defter Klasik Türev Tipi) f(z) = z³ fonksiyonunun herhangi bir z₀ noktasındaki türevi limit tanımı f'(z₀) = lim(z→z₀) [(z³ - z₀³) / (z - z₀)] ile hesaplanırken hangi çarpanlara ayırma özdeşliği kullanılır ve z₀ = i için sonuç nedir?", "opts": ["A) z³ - z₀³ = (z - z₀)(z² + z·z₀ + z₀²) özdeşliği kullanılır; f'(z₀) = 3z₀² ve f'(i) = 3i² = -3 bulunur.", "B) z³ - z₀³ = (z - z₀)³ kullanılır ve sonuç 0 bulunur.", "C) z³ - z₀³ = (z - z₀)(z² - z·z₀ + z₀²) kullanılır ve f'(i) = -1 bulunur.", "D) Türevi yoktur.", "E) f'(i) = 3i bulunur."], "ans": 0, "exp": "ADIM ADIM KLASİK ÇÖZÜM:\n1. İki küp farkı: z³ - z₀³ = (z - z₀)(z² + z·z₀ + z₀²).\n2. Limit içinde (z - z₀)'lar sadeleşir:\n   f'(z₀) = lim(z→z₀) (z² + z·z₀ + z₀²) = z₀² + z₀² + z₀² = 3z₀².\n3. z₀ = i için: f'(i) = 3(i)² = -3."}, {"no": 16, "q": "(Defter Klasik Türev Tipi) f(z) = 1 / z fonksiyonunun z₀ = 1 + i noktasındaki türevi limit tanımıyla hesaplandığında sonuç nedir?", "opts": ["A) i / 2  (yani (1/2)i)", "B) -i / 2", "C) 1 / (2i) = -i / 2", "D) 2i", "E) -1 / 2"], "ans": 0, "exp": "ADIM ADIM KLASİK ÇÖZÜM:\n1. Limit tanımı: f'(z₀) = lim(z→z₀) [ (1/z - 1/z₀) / (z - z₀) ]\n2. Payda eşitlenir: (1/z - 1/z₀) = (z₀ - z) / (z·z₀) = -(z - z₀) / (z·z₀).\n3. (z - z₀) sadeleştirilir:\n   f'(z₀) = lim(z→z₀) [ -1 / (z·z₀) ] = -1 / z₀².\n4. z₀ = 1 + i için z₀² = (1 + i)² = 2i olduğundan:\n   f'(1 + i) = -1 / (2i) = (-1 · i) / (2i²) = -i / (-2) = i / 2."}, {"no": 17, "q": "f(z) = z̄ (eşlenik fonksiyonu) için her z₀ ∈ C noktasında türev limitini araştırdığımızda lim(Δz→0) [ (f(z₀ + Δz) - f(z₀)) / Δz ] neye dönüşür ve türev var mıdır?", "opts": ["A) lim(Δz→0) (Δz̄ / Δz) limitine dönüşür; Slayt 25'te kanıtlandığı gibi bu limit yola bağımlı olduğundan (reel eksende 1, sanal eksende -1) hiçbir noktada türevi YOKTUR!", "B) Her noktada türevi vardır ve 1'dir.", "C) Her noktada türevi vardır ve -1'dir.", "D) Sadece z₀ = 0 noktasında türevlidir.", "E) Türevi z̄²'dir."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 25 ve 33 Bağlantısı):\nf(z) = z̄ için fark bölümü:\n[ (z₀ + Δz)̄ - z̄₀ ] / Δz = (z̄₀ + Δz̄ - z̄₀) / Δz = Δz̄ / Δz.\nΔz → 0 iken lim(Δz→0) (Δz̄ / Δz) limiti Slayt 25'te ispatlandığı üzere mevcut değildir (yatay yolda +1, dikey yolda -1). Dolayısıyla f(z) = z̄ fonksiyonu sürekli olmasına rağmen hiçbir noktada türevlenemez!"}, {"no": 18, "q": "(Slayt Syf 32) S = {z ∈ C : 1 ≤ |z| ≤ 2} kompakt halkası üzerinde sürekli bir f(z) = z² + 1 fonksiyonu tanımlanıyor. Görüntü kümesi f(S) hakkında Teorem 2 ne söyler?", "opts": ["A) f(S) görüntü kümesi de KOMPAKTTIR (kapalı ve sınırlıdır); çünkü sürekli fonksiyonlar kompaktlığı korur.", "B) f(S) açık ve sınırsız bir kümedir.", "C) f(S) sadece tek bir noktadan oluşur.", "D) f(S) boş kümedir.", "E) f(S) kompakt değildir."], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM (Slayt Syf 32 — Teorem 2):\nTeorem 2 (Görüntü Kümesinin Kompaktlığı): 'S kümesi kompakt ve f, S üzerinde sürekli bir fonksiyon ise f(S) görüntü kümesi de kompakttır (Sürekli fonksiyonlar kompaktlığı korur).'"}, {"no": 19, "q": "lim(z→1-i) [ z̄² + 2z ] limitinin değeri aşağıdakilerden hangisidir?", "opts": ["A) 2", "B) 2 - 4i", "C) 2 + 4i", "D) 4i", "E) 0"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nz → 1 - i iken z̄ → (1 - i)̄ = 1 + i olur (eşlenik fonksiyonu her yerde süreklidir!).\nYerine koyarsak:\n(1 + i)² + 2(1 - i) = (1 + 2i + i²) + 2 - 2i = 2i + 2 - 2i = 2."}, {"no": 20, "q": "(Slayt Syf 21 & Genel Limit) Genişletilmiş kompleks düzlemde f(z) = (3z² - 2z + 1) / (z² + 4) fonksiyonunun sonsuzdaki limiti lim(z→∞) f(z) kaçtır?", "opts": ["A) 3", "B) 1/4", "C) 0", "D) ∞", "E) -2"], "ans": 0, "exp": "ADIM ADIM ÇÖZÜM:\nz → ∞ iken pay ve payda en yüksek dereceli terim olan z²'ye bölünür:\nlim(z→∞) [ (3 - 2/z + 1/z²) / (1 + 4/z²) ] = (3 - 0 + 0) / (1 + 0) = 3."}]}};
+
+    let currentTestKey = 'test1';
+    let userAnswers = {};
+    let showAllExp = false;
+
+    function getActiveQuestions() {
+      if (currentTestKey === 'all') {
+        let combined = [];
+        ['test1', 'test2', 'test3', 'test4', 'test5'].forEach((tk, tIdx) => {
+          ALL_TESTS[tk].questions.forEach(q => {
+            combined.push({ ...q, uid: `${tk}_${q.no}`, displayNo: `${tIdx + 1}.${q.no}` });
+          });
+        });
+        return combined;
+      } else {
+        return ALL_TESTS[currentTestKey].questions.map(q => ({
+          ...q,
+          uid: `${currentTestKey}_${q.no}`,
+          displayNo: `${q.no}`
+        }));
+      }
+    }
+
+    function selectTest(key) {
+      currentTestKey = key;
+      showAllExp = false;
+      document.getElementById('btn-toggle-exp').textContent = 'Tüm Çözümleri Göster';
+
+      document.querySelectorAll('.test-tab').forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('bg-[var(--accent-bg)]');
+      });
+      const activeBtn = document.getElementById('tbtn-' + key);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-[var(--accent-bg)]');
+      }
+
+      if (key === 'all') {
+        document.getElementById('test-header-title').textContent = 'Tüm Deneme Sınavları Birleşik Liste (100 Çözümlü Soru)';
+        document.getElementById('test-header-sub').textContent = 'Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan ders notları, tahta fotoğrafları ve defter tüyolarındaki tüm soru tipleri';
+      } else {
+        document.getElementById('test-header-title').textContent = ALL_TESTS[key].title;
+        document.getElementById('test-header-sub').textContent = ALL_TESTS[key].subtitle;
+      }
+
+      renderQuestions();
+    }
+
+    function renderQuestions() {
+      const questions = getActiveQuestions();
+      const container = document.getElementById('questions-list');
+
+      let correctCount = 0;
+      questions.forEach(q => {
+        if (userAnswers[q.uid] === q.ans) correctCount++;
+      });
+      const totalQ = questions.length;
+      const score = Math.round((correctCount / totalQ) * 100);
+      document.getElementById('active-test-score').textContent = `Doğru: ${correctCount} / ${totalQ} • Puan: ${score} / 100`;
+
+      container.innerHTML = questions.map(q => {
+        const picked = userAnswers[q.uid];
+        const isAnswered = picked !== undefined;
+        const showExp = showAllExp || isAnswered;
+
+        const optsHtml = q.opts.map((optText, oIdx) => {
+          let btnCls = 'bg-[var(--card)] border-[var(--border)] hover:border-blue-800';
+          if (isAnswered) {
+            if (oIdx === q.ans) {
+              btnCls = 'bg-emerald-600/15 border-emerald-600 text-emerald-900 dark:text-emerald-300 font-bold';
+            } else if (oIdx === picked && picked !== q.ans) {
+              btnCls = 'bg-red-600/15 border-red-600 text-red-900 dark:text-red-300 font-bold';
+            }
+          } else if (showAllExp && oIdx === q.ans) {
+            btnCls = 'bg-emerald-600/15 border-emerald-600 text-emerald-900 dark:text-emerald-300 font-bold';
+          }
+
+          return `
+            <button onclick="pickAnswer('${q.uid}', ${oIdx})" class="w-full text-left px-3.5 py-2.5 rounded-lg border text-xs transition ${btnCls}">
+              ${optText}
+            </button>
+          `;
+        }).join('');
+
+        return `
+          <div class="p-5 rounded-xl bg-[var(--accent-bg)] border border-[var(--border)] space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="font-bold text-sm leading-snug">
+                <span class="inline-block px-2 py-0.5 rounded bg-blue-900 text-white text-xs font-extrabold mr-1.5">Soru ${q.displayNo}</span>
+                ${q.q}
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              ${optsHtml}
+            </div>
+            <div class="${showExp ? 'block' : 'hidden'} p-3.5 rounded-lg bg-[var(--card)] border-l-4 border-blue-900 text-xs whitespace-pre-line leading-relaxed text-[var(--foreground)]">
+              ${q.exp}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function pickAnswer(uid, optIndex) {
+      userAnswers[uid] = optIndex;
+      renderQuestions();
+    }
+
+    function toggleAllExplanations() {
+      showAllExp = !showAllExp;
+      document.getElementById('btn-toggle-exp').textContent = showAllExp ? 'Çözümleri Gizle' : 'Tüm Çözümleri Göster';
+      renderQuestions();
+    }
+
+    function resetCurrentTest() {
+      const questions = getActiveQuestions();
+      questions.forEach(q => delete userAnswers[q.uid]);
+      showAllExp = false;
+      document.getElementById('btn-toggle-exp').textContent = 'Tüm Çözümleri Göster';
+      renderQuestions();
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      drawGeoCanvas();
+      updatePolarSim();
+    }
+
+    // Initialize everything on load
+    window.addEventListener('DOMContentLoaded', () => {
+      selectDerivCase('defter1');
+      updateCustomDeriv();
+      selectGeoPreset('defter_halka');
+      selectPolarPreset('slayt19');
+      selectTest('test1');
+    });
+  </script>
+</body>
+</html>
