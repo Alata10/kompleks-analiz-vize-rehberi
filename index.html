@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kompleks Analiz — 7/24 Görsel Vize Kampı | Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan</title>
+  <title>Kompleks Analiz — Sıfırdan "Mala Anlatır Gibi" Görsel Vize Kampı | Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
-      --background: #070b14;
-      --card: #111827;
+      --background: #060913;
+      --card: #0f172a;
       --card-alt: #1e293b;
       --foreground: #f8fafc;
-      --muted-foreground: #94a3b8;
-      --border: #1e293b;
+      --muted-foreground: #cbd5e1;
+      --border: #334155;
     }
     html.light {
       --background: #f8fafc;
       --card: #ffffff;
       --card-alt: #f1f5f9;
       --foreground: #0f172a;
-      --muted-foreground: #475569;
+      --muted-foreground: #334155;
       --border: #cbd5e1;
     }
     body {
@@ -27,57 +27,69 @@
       background-color: var(--background);
       color: var(--foreground);
     }
-    /* Gülden Kapusuz Hoca Beamer Kutu Stilleri */
     .beamer-blue {
-      border-radius: 0.85rem;
+      border-radius: 1rem;
       overflow: hidden;
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      box-shadow: 0 4px 20px rgba(49, 46, 129, 0.25);
+      border: 2px solid rgba(99, 102, 241, 0.5);
+      box-shadow: 0 8px 25px rgba(49, 46, 129, 0.3);
     }
     .beamer-blue-header {
-      background: linear-gradient(90deg, #2e3192 0%, #4338ca 100%);
+      background: linear-gradient(90deg, #312e81 0%, #4f46e5 100%);
       color: #ffffff;
-      padding: 0.6rem 1rem;
+      padding: 0.75rem 1.1rem;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
     .beamer-green {
-      border-radius: 0.85rem;
+      border-radius: 1rem;
       overflow: hidden;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      box-shadow: 0 4px 20px rgba(4, 120, 87, 0.2);
+      border: 2px solid rgba(16, 185, 129, 0.5);
+      box-shadow: 0 8px 25px rgba(4, 120, 87, 0.25);
     }
     .beamer-green-header {
-      background: linear-gradient(90deg, #065f46 0%, #059669 100%);
+      background: linear-gradient(90deg, #065f46 0%, #10b981 100%);
       color: #ffffff;
-      padding: 0.6rem 1rem;
+      padding: 0.75rem 1.1rem;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
     .beamer-red {
-      border-radius: 0.85rem;
+      border-radius: 1rem;
       overflow: hidden;
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      box-shadow: 0 4px 20px rgba(185, 28, 28, 0.2);
+      border: 2px solid rgba(244, 63, 94, 0.5);
+      box-shadow: 0 8px 25px rgba(185, 28, 28, 0.25);
     }
     .beamer-red-header {
-      background: linear-gradient(90deg, #991b1b 0%, #dc2626 100%);
+      background: linear-gradient(90deg, #991b1b 0%, #e11d48 100%);
       color: #ffffff;
-      padding: 0.6rem 1rem;
+      padding: 0.75rem 1.1rem;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+    }
+    .beamer-amber {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 2px solid rgba(245, 158, 11, 0.55);
+      box-shadow: 0 8px 25px rgba(180, 83, 9, 0.25);
+    }
+    .beamer-amber-header {
+      background: linear-gradient(90deg, #92400e 0%, #d97706 100%);
+      color: #ffffff;
+      padding: 0.75rem 1.1rem;
+      font-weight: 800;
+      font-size: 0.9rem;
     }
     .sub-btn.active {
       background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
       color: #ffffff !important;
       border-color: #60a5fa !important;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
     }
     .test-tab.active {
       background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
       color: #ffffff !important;
       border-color: #60a5fa !important;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.45);
     }
     canvas {
       width: 100%;
@@ -93,266 +105,293 @@
     }
   </style>
 </head>
-<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen pb-20">
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen pb-24">
 
   <!-- STICKY RENKLİ ÜST NAVİGASYON BAR -->
   <div class="sticky top-0 z-50 bg-[var(--card)]/95 backdrop-blur-md border-b border-[var(--border)] shadow-lg">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
-        <span class="px-3 py-1 rounded-lg text-xs font-extrabold bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow">KOMPLEKS ANALİZ</span>
-        <span class="font-bold text-xs sm:text-sm hidden md:inline text-indigo-300">Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan Vize Kampı</span>
+        <span class="px-3 py-1 rounded-lg text-xs font-extrabold bg-gradient-to-r from-amber-500 to-rose-600 text-white shadow">🪨 SIFIRDAN VİZE KAMPI</span>
+        <span class="font-bold text-xs sm:text-sm hidden md:inline text-amber-300">Gülden Kapusuz Gökdoğan — Hiç Bilmeyen İçin Adım Adım!</span>
       </div>
       <div class="flex flex-wrap gap-1.5 text-xs">
-        <a href="#sec-tuyolar" class="px-2.5 py-1.5 rounded-lg font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 hover:bg-amber-500/25 transition">⭐ Vize Tüyoları</a>
-        <a href="#sec-klasik-turev" class="px-2.5 py-1.5 rounded-lg font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30 hover:bg-rose-500/25 transition">🔥 1. Klasik Türev & Limit</a>
-        <a href="#sec-geometri" class="px-2.5 py-1.5 rounded-lg font-bold bg-purple-500/15 text-purple-400 border border-purple-500/30 hover:bg-purple-500/25 transition">🎯 2. Tahta Çember & Halka</a>
-        <a href="#sec-cebir" class="px-2.5 py-1.5 rounded-lg font-bold bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/25 transition">🧮 3. İkililer & Eşlenik</a>
-        <a href="#sec-kutupsal" class="px-2.5 py-1.5 rounded-lg font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition">🧭 4. Kutupsal & Kök Bulma</a>
-        <a href="#sec-topoloji" class="px-2.5 py-1.5 rounded-lg font-bold bg-blue-500/15 text-blue-400 border border-blue-500/30 hover:bg-blue-500/25 transition">🌍 5. Küre & Süreklilik</a>
-        <a href="#sec-testler" class="px-3 py-1.5 rounded-lg font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow hover:opacity-90 transition">📝 6. 100 Soru Test</a>
+        <a href="#sec-sifirdan" class="px-2.5 py-1.5 rounded-lg font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition">🪨 0. Temel Mantık</a>
+        <a href="#sec-klasik-turev" class="px-2.5 py-1.5 rounded-lg font-extrabold bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30 transition">🔥 1. Klasik Türev & Limit</a>
+        <a href="#sec-geometri" class="px-2.5 py-1.5 rounded-lg font-extrabold bg-purple-500/20 text-purple-300 border border-purple-500/40 hover:bg-purple-500/30 transition">🎯 2. Tahta Çember & Halka</a>
+        <a href="#sec-kutupsal" class="px-2.5 py-1.5 rounded-lg font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 transition">🧭 3. Kök Bulma & Üs</a>
+        <a href="#sec-topoloji" class="px-2.5 py-1.5 rounded-lg font-extrabold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/30 transition">🌍 4. Küre & Sözel Şifreler</a>
+        <a href="#sec-testler" class="px-3 py-1.5 rounded-lg font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow hover:opacity-90 transition">📝 5. 100 Soru Test</a>
         <button onclick="toggleTheme()" class="px-2.5 py-1.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)] font-bold" title="Gece / Gündüz Modu">🌓</button>
       </div>
     </div>
   </div>
 
-  <!-- ANA İÇERİK (HİÇBİR ŞEY GİZLİ DEĞİL, HEPSİ RENKLİ KARTLARLA AÇIK!) -->
   <div class="max-w-7xl mx-auto px-4 pt-6 space-y-12">
 
     <!-- ===================================================================== -->
-    <!-- HERO BANNER & DEFTERDEKİ VİZE SORU DAĞILIMI İSTİHBARATI -->
+    <!-- HERO BANNER: DERSİN ÖZETİ VE DEFTERDEKİ SINAV SORU PLANI -->
     <!-- ===================================================================== -->
-    <div id="sec-tuyolar" class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950 border-2 border-indigo-500/40 rounded-3xl p-6 md:p-8 shadow-2xl text-white">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-indigo-400/20 pb-6 mb-6">
+    <div class="bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 border-2 border-amber-400/50 rounded-3xl p-6 md:p-8 shadow-2xl text-white">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-white/15 pb-6 mb-6">
         <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/40">
-            <span>🎓 Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan</span>
-            <span>•</span>
-            <span>33 Slayt + Sınıftaki Tahta Fotoğrafları (a–f) + Defter Sınav Notu</span>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-extrabold bg-amber-400 text-slate-950">
+            <span>🚨 HİÇBİR ŞEY BİLMEYEN BİRİ BİLE 15 DAKİKADA ANLASIN DİYE HAZIRLANDI!</span>
           </div>
           <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight">
-            ✨ Kompleks Analiz — Görsel Vize Hazırlık ve Simülasyon Kampı
+            🪨 "Mala Anlatır Gibi" Kompleks Analiz Vize Rehberi
           </h1>
           <p class="text-indigo-200 text-sm max-w-3xl leading-relaxed">
-            Hocanın derste slaytlarında (Mavi <b>Tanım/Teorem</b>, Yeşil <b>Uygulama/Örnek</b>, Kırmızı <b>Standart Form/Uyarı</b> kutularıyla) ve tahtada çözdüğü <b>tüm sorular</b> hiçbir sekme arkasına gizlenmeden, renkli çizimleri ve adım adım çözümleriyle aşağıda!
+            <b>Öğr. Gör. Dr. Gülden Kapusuz Gökdoğan</b> hocanın 33 slaytı, tahtada çözdüğü <b>a, b, c, d, e, f</b> soruları ve defterdeki vize tüyoları burada! Ağır matematik lafları yok: <b>"Şunu görürsen ŞUNU YAP!"</b> mantığıyla sıfırdan anlatım.
           </p>
         </div>
 
-        <div class="flex flex-col gap-2.5 text-xs shrink-0">
-          <div class="px-4 py-2.5 rounded-2xl bg-rose-500/20 border border-rose-400/40 text-rose-200 font-bold shadow">
-            📌 <b>Defter Notu #1:</b> Sınav <b>8–10 Soru</b> (2 Tanesi Klasik!)
+        <div class="flex flex-col gap-2 text-xs shrink-0">
+          <div class="px-4 py-2.5 rounded-2xl bg-rose-500/25 border-2 border-rose-400 text-white font-extrabold">
+            🎯 Sınavda 8–10 Soru Var (Defter Notu!)
           </div>
-          <div class="px-4 py-2.5 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 font-bold shadow">
-            📌 <b>Defter Notu #2:</b> 1. Klasik <b>Limit Tanımıyla Türev</b> (Zorunlu!)
+          <div class="px-4 py-2.5 rounded-2xl bg-emerald-500/25 border-2 border-emerald-400 text-white font-extrabold">
+            ✍️ Klasik Soru 1: Limit Yaparak Türev Bulma (Zorunlu!)
           </div>
-          <div class="px-4 py-2.5 rounded-2xl bg-amber-500/20 border border-amber-400/40 text-amber-200 font-bold shadow">
-            📌 <b>Defter Notu #3:</b> 2. Klasik <b>1 ≤ |z-(3+2i)| ≤ 5</b> Halka / Çember!
+          <div class="px-4 py-2.5 rounded-2xl bg-amber-500/25 border-2 border-amber-400 text-white font-extrabold">
+            ⭕ Klasik Soru 2: Çember / Halka Çizimi (1 ≤ |z-(3+2i)| ≤ 5)
           </div>
         </div>
       </div>
 
-      <!-- 4 ALTIN KURAL: SINAVDA HAYAT KURTARAN TAKTİKLER -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur border border-rose-400/30 hover:border-rose-400 transition">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="px-2.5 py-0.5 rounded-md bg-rose-600 text-white font-extrabold">Klasik #1 (Zorunlu)</span>
-            <span class="text-rose-300 font-bold">Defter Sayfa 1</span>
-          </div>
-          <h3 class="font-extrabold text-sm text-white mb-1">🔥 Limit Tanımıyla Türev</h3>
-          <p class="text-indigo-200 leading-relaxed">
-            Sınavda <code class="text-amber-300 font-bold">f(z) = z²</code> türevini sorunca direkt <code class="text-rose-300">2z</code> yazma! Mutlaka <code class="text-emerald-300 font-bold">lim [z² - z₀²] / (z - z₀)</code> yazıp iki kare farkıyla sadeleştir!
-          </p>
+      <!-- ===================================================================== -->
+      <!-- BÖLÜM 0: 🪨 "BEN HİÇBİR ŞEY BİLMİYORUM" DİYENLER İÇİN 4 TEMEL KURAL -->
+      <!-- ===================================================================== -->
+      <div id="sec-sifirdan" class="space-y-4">
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-lg bg-amber-400 text-slate-950 font-extrabold text-xs uppercase">BÖLÜM 0 • SIFIRDAN BAŞLANGIÇ</span>
+          <h2 class="text-lg md:text-xl font-extrabold text-amber-300">🪨 Derse Başlamadan Önce Bilmen Gereken 4 Çocuk Oyuncağı Kural (Slayt 4–11)</h2>
         </div>
 
-        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur border border-purple-400/30 hover:border-purple-400 transition">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="px-2.5 py-0.5 rounded-md bg-purple-600 text-white font-extrabold">Klasik #2 (Tahta+Defter)</span>
-            <span class="text-purple-300 font-bold">Örnek 1a–1f</span>
-          </div>
-          <h3 class="font-extrabold text-sm text-white mb-1">🎯 Katsayı Parantezi Tuzağı</h3>
-          <p class="text-indigo-200 leading-relaxed">
-            Tahtadaki <code class="text-amber-300 font-bold">|2z - i| = 4</code> veya <code class="text-amber-300 font-bold">|3z - 15i| = 3</code> sorularında önce <code class="text-emerald-300 font-bold">z</code>'nin katsayısına böl! Yoksa merkez ve yarıçap yanlış çıkar!
-          </p>
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
 
-        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur border border-cyan-400/30 hover:border-cyan-400 transition">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="px-2.5 py-0.5 rounded-md bg-cyan-600 text-white font-extrabold">Slayt 8 & 10–11</span>
-            <span class="text-cyan-300 font-bold">Hocanın Uyarısı</span>
+          <!-- KURAL 1: i NEDİR, i^2 NEDİR? -->
+          <div class="p-4 rounded-2xl bg-slate-900/90 border-2 border-amber-400/40 space-y-2">
+            <div class="text-amber-400 font-extrabold text-sm">1️⃣ "i" Harfi Nedir? Ne İşe Yarar?</div>
+            <p class="text-slate-200 leading-relaxed">
+              Normalde dört işlem yaparken <code class="text-amber-300 font-bold">i</code> harfini lisedeki <code class="text-amber-300 font-bold">x</code> harfi gibi düşün (elmayla elma, i'li ile i'li toplanır).
+            </p>
+            <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-400/50 text-white font-bold">
+              🔑 <b>TEK ALTIN KURAL:</b><br>
+              Çarpma yaparken nerede <span class="text-base text-amber-300 font-extrabold">i²</span> görürsen üstünü çiz ve yerine <span class="text-base text-rose-400 font-extrabold">-1</span> yaz!
+            </div>
+            <div class="p-2 rounded-lg bg-slate-950 text-emerald-300 font-mono text-[11px]">
+              <b>Örnek:</b> 5i² gördün ⇒ 5 · (-1) = <b>-5</b> yaz!<br>
+              <b>Örnek:</b> -3i² gördün ⇒ -3 · (-1) = <b>+3</b> yaz!<br>
+              <i>(Yani i² önündeki sayının işaretini ters çevirir ve yok olur!)</i>
+            </div>
           </div>
-          <h3 class="font-extrabold text-sm text-white mb-1">⚠️ Im(z) ve Eşlenik Kuralı</h3>
-          <p class="text-indigo-200 leading-relaxed">
-            <code class="text-amber-300 font-bold">z = x + iy</code> sayısında <code class="text-emerald-300 font-bold">Im(z) = y</code>'dir (<b>yanında i YOKTUR!</b>). Bölmede paydayı reel yapmak için pay ve paydayı <code class="text-cyan-300 font-bold">z̄ = x - iy</code> ile çarp!
-          </p>
-        </div>
 
-        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur border border-emerald-400/30 hover:border-emerald-400 transition">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="px-2.5 py-0.5 rounded-md bg-emerald-600 text-white font-extrabold">Slayt 14–19 & Defter</span>
-            <span class="text-emerald-300 font-bold">Kök & Kuvvet</span>
+          <!-- KURAL 2: Re(z) ve Im(z) TUZAĞI -->
+          <div class="p-4 rounded-2xl bg-slate-900/90 border-2 border-rose-400/40 space-y-2">
+            <div class="text-rose-400 font-extrabold text-sm">2️⃣ Re(z) ve Im(z) Tuzağı (Slayt 8)</div>
+            <p class="text-slate-200 leading-relaxed">
+              Sana <code class="text-amber-300 font-bold">z = 4 - 7i</code> diye bir sayı verdiler:
+            </p>
+            <div class="p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-white">
+              • <b>Re(z) (Reel Kısım):</b> Yanında <i>i</i> olmayan normal sayıdır ⇒ <b class="text-emerald-300 text-sm">4</b><br>
+              • <b>Im(z) (Sanal Kısım):</b> <i>i</i>'nin önündeki sayıdır ⇒ <b class="text-amber-300 text-sm">-7</b>
+            </div>
+            <div class="p-2 rounded-lg bg-rose-600/30 border border-rose-400 text-rose-200 font-bold text-[11px]">
+              🚨 <b>HOCANIN SLAYT 8 TUZAĞI:</b><br>
+              Im(z) sorulunca şıklara <b>-7i</b> koyarlar, SAKIN ATLA! <b>Im(z)'nin yanına ASLA "i" harfi yazılmaz!</b> Sadece <b>-7</b> yazılır!
+            </div>
           </div>
-          <h3 class="font-extrabold text-sm text-white mb-1">🧭 Kutupsal Form & n. Kökler</h3>
-          <p class="text-indigo-200 leading-relaxed">
-            Baş argüman <code class="text-amber-300 font-bold">-π &lt; θ ≤ π</code> aralığındadır. <code class="text-emerald-300 font-bold">n.</code> dereceden kök tam <code class="text-emerald-300 font-bold">n</code> tanedir ve çember üzerinde düzgün çokgen oluşturur!
-          </p>
+
+          <!-- KURAL 3: EŞLENİK VE MODÜL -->
+          <div class="p-4 rounded-2xl bg-slate-900/90 border-2 border-cyan-400/40 space-y-2">
+            <div class="text-cyan-400 font-extrabold text-sm">3️⃣ Eşlenik (z̄) ve Modül (|z|) (Slayt 10)</div>
+            <div class="p-2.5 rounded-xl bg-cyan-500/20 border border-cyan-400/50 text-white space-y-1">
+              <div>• <b>Eşlenik (<span class="math-f">z̄</span> — Üstü Çizgili):</b> Sadece <b>i'nin önündeki işareti değiştir!</b> Baştaki sayıya dokunma!<br>
+              <span class="text-amber-300 font-mono">z = 3 + 2i ⇒ z̄ = 3 - 2i</span><br>
+              <span class="text-amber-300 font-mono">z = -5 - 4i ⇒ z̄ = -5 + 4i</span></div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-purple-500/20 border border-purple-400/50 text-white">
+              • <b>Modül (<span class="math-f">|z|</span> — Düz Çizgi):</b> İki sayının da karesini alıp topla, kök içine al (Pisagor!):<br>
+              <span class="text-emerald-300 font-mono">|3 - 4i| = √(3² + 4²) = √(9+16) = <b>5</b></span><br>
+              <i>(Kare alırken eksi de artı olur, i harfi hiç hesaba katılmaz!)</i>
+            </div>
+          </div>
+
+          <!-- KURAL 4: BÖLME İŞLEMİ (SLAYT 11) -->
+          <div class="p-4 rounded-2xl bg-slate-900/90 border-2 border-emerald-400/40 space-y-2">
+            <div class="text-emerald-400 font-extrabold text-sm">4️⃣ Bölme Nasıl Yapılır? (Slayt 11)</div>
+            <p class="text-slate-200 leading-relaxed">
+              Slayt 11 sorusu: <code class="text-amber-300 font-bold">(3 + 2i) / (1 - i)</code> nedir?
+            </p>
+            <div class="p-2 rounded-lg bg-slate-950 text-slate-200 space-y-1 font-mono text-[11px]">
+              <b>1.</b> Alt (payda) <b class="text-rose-400">1 - i</b> mi? Onun eşleniği <b class="text-emerald-400">1 + i</b> ile hem üstü hem altı çarp!<br>
+              <b>2. Alt Tarafın Pratiği:</b> Hiç uzun uzun çarpma! Direkt sayıların karelerini topla: <b class="text-amber-300">1² + 1² = 2</b>!<br>
+              <b>3. Üst Tarafı Dağıt:</b><br>
+              (3+2i)(1+i) = 3 + 3i + 2i + 2i²<br>
+              = 3 + 5i - 2 = <b class="text-cyan-300">1 + 5i</b><br>
+              <b>4. Sonuç:</b> (1+5i)/2 = <b class="text-emerald-400">1/2 + (5/2)i</b>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- BÖLÜM 1: 🔥 DEFTERDEKİ ZORUNLU KLASİK SORU 1 — LİMİT TANIMIYLA TÜREV & LİMİT -->
+    <!-- BÖLÜM 1: 🔥 DEFTERDEKİ ZORUNLU KLASİK SORU 1 — LİMİT TANIMIYLA TÜREV -->
     <!-- ===================================================================== -->
     <section id="sec-klasik-turev" class="space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1.5 rounded-xl bg-rose-600 text-white font-extrabold text-sm shadow">BÖLÜM 1</span>
+          <span class="px-4 py-1.5 rounded-xl bg-rose-600 text-white font-extrabold text-sm shadow-lg">BÖLÜM 1 • ZORUNLU KLASİK</span>
           <div>
-            <h2 class="text-2xl font-extrabold">🔥 Defterdeki Zorunlu Klasik Soru: Limit Tanımıyla Türev & Slayt Limitleri</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">Defter Notu: <b>"2 soru klasik (türev), 1. limiti yapmak zorunlu (klasik)"</b> + Slayt 23–28 Tüm Limit Çözümleri</p>
+            <h2 class="text-2xl font-extrabold">🔥 Defterdeki 1. Klasik Soru: "Limit Yaparak Türev Bulma" ve Slayt Limitleri</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">Defterinde aynen şöyle yazıyor: <b>"2 soru klasik (türev), 1. limiti yapmak zorunlu (klasik)"</b></p>
           </div>
         </div>
-        <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-rose-500/15 text-rose-400 border border-rose-500/30">
-          Hepsi Açık • Tam Sınav Kağıdı Çözüm Düzeni
-        </span>
       </div>
 
-      <!-- 6 GÖRSEL KART: DEFTER VE SLAYTTAKİ TÜM LİMİT & TÜREV SORULARI ALT ALTA AÇIK -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <!-- MALA ANLATIR GİBİ REÇETE KUTUSU -->
+      <div class="p-5 rounded-2xl bg-gradient-to-r from-rose-950/90 to-slate-900 border-2 border-rose-500/60 text-white space-y-3 shadow-xl">
+        <div class="flex items-center gap-2 text-rose-300 font-extrabold text-sm uppercase">
+          <span>🧠 MALA ANLATIR GİBİ TAKTİK:</span>
+          <span>Bu Sorudan 20 Puanı Cepte Bil!</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+          <b>1)</b> Hoca sınavda <code class="text-amber-300 font-bold">f(z) = z²</code> fonksiyonunun <code class="text-amber-300 font-bold">z₀ = 2 - i</code> noktasındaki türevini soracak.<br>
+          <b>2) Çaktırmadan Cevabı 1 Saniyede Bul:</b> Liseden biliyorsun, <code class="text-cyan-300 font-bold">z²</code>'nin türevi <code class="text-cyan-300 font-bold">2z</code>'dir! Yani cevabın <code class="text-emerald-300 font-bold">2 · (2 - i) = 4 - 2i</code> çıkacağını zaten baştan biliyorsun!<br>
+          <b>3) Puan Almak İçin Kağıda Yazacağın 4 Satırlık Tiyatro:</b> Direkt <code class="text-rose-300">2z</code> yazarsan hoca puan kırmasın diye aşağıda Yeşil Kutuda yazan <b>4 adımı</b> (üstte iki kare farkı açıp alttakiyle sadeleştirmeyi) aynen kağıda geçiriyorsun, tam puanı alıyorsun!
+        </p>
+      </div>
+
+      <!-- 4 DEV KART: DEFTER SORUSU + SLAYT 28 + SLAYT 25 + SLAYT 27 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <!-- KART 1: DEFTERDEKİ BİREBİR SORU -->
         <div class="beamer-green bg-[var(--card)]">
           <div class="beamer-green-header flex items-center justify-between">
-            <span>⭐ 1. DEFTERDEKİ BİREBİR VİZE SORUSU (Zorunlu Klasik!)</span>
-            <span class="px-2 py-0.5 rounded bg-white/20 text-xs">Defter Sayfa 1</span>
+            <span>⭐ 1. DEFTERDEKİ BİREBİR VİZE SORUSU (Klasik Türev)</span>
+            <span class="px-2.5 py-0.5 rounded bg-black/30 text-xs">Defter Sayfa 1</span>
           </div>
-          <div class="p-5 space-y-3 text-xs">
-            <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 font-bold text-sm">
-              Soru: <span class="math-f text-emerald-400">f(z) = z²</span> fonksiyonunun <span class="math-f text-amber-400">z₀ = 2 - i</span> noktasındaki türevini <u>limit yardımıyla</u> bulunuz.
+          <div class="p-5 space-y-3 text-xs sm:text-sm">
+            <div class="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 font-extrabold">
+              Soru: <span class="text-emerald-400">f(z) = z²</span> fonksiyonunun <span class="text-amber-400">z₀ = 2 - i</span> noktasındaki türevini <u>limit yardımıyla</u> bulunuz.
             </div>
-            <div class="space-y-2 leading-relaxed">
-              <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-                <b class="text-emerald-400">Adım 1 (Türev Limit Formülü):</b><br>
-                <span class="math-f text-sm font-bold">f'(z₀) = lim<sub>z → 2-i</sub> [ f(z) - f(2 - i) ] / [ z - (2 - i) ] = lim<sub>z → 2-i</sub> [ z² - (2 - i)² ] / [ z - (2 - i) ]</span>
+
+            <div class="space-y-2.5 leading-relaxed">
+              <div class="p-3 rounded-xl bg-[var(--card-alt)] border border-[var(--border)]">
+                <span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold text-xs mr-1">Adım 1</span>
+                <b class="text-emerald-400">Üste "z² - (sayı)²", Alta "z - (sayı)" Yaz:</b>
+                <div class="mt-1.5 p-2 rounded bg-slate-950 text-white font-mono text-center font-bold">
+                  lim<sub>z → 2-i</sub> &nbsp; [ z² - (2 - i)² ] &nbsp;/&nbsp; [ z - (2 - i) ]
+                </div>
               </div>
-              <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-                <b class="text-amber-400">Adım 2 (İki Kare Farkı a² - b² = (a-b)(a+b) ve Sadeleştirme):</b><br>
-                <span class="math-f text-sm font-bold">= lim<sub>z → 2-i</sub> ( [z - (2 - i)] · [z + (2 - i)] ) / [ z - (2 - i) ]</span><br>
-                <span class="text-[var(--muted-foreground)]"><i>(z → 2-i iken z ≠ 2-i olduğundan [z - (2-i)] çarpanları birbirini götürür!)</i></span>
+
+              <div class="p-3 rounded-xl bg-[var(--card-alt)] border border-[var(--border)]">
+                <span class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold text-xs mr-1">Adım 2</span>
+                <b class="text-amber-400">Üstteki Kareleri "Bir Eksili, Bir Artılı" İki Paranteze Ayır:</b>
+                <div class="mt-1.5 p-2 rounded bg-slate-950 text-amber-300 font-mono text-center font-bold">
+                  = lim<sub>z → 2-i</sub> &nbsp; ( <span class="line-through text-rose-400">[z - (2 - i)]</span> · [z + (2 - i)] ) &nbsp;/&nbsp; <span class="line-through text-rose-400">[z - (2 - i)]</span>
+                </div>
+                <div class="text-[11px] text-rose-300 mt-1 text-center font-semibold">✂️ Üstteki eksili parantezle alttaki birbirinin aynısı oldu, üstlerini çizip sadeleştir!</div>
               </div>
-              <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-bold text-sm">
-                <b class="text-emerald-400">Adım 3 (z Yerine 2 - i Yaz ve Sonuçlandır):</b><br>
-                <span class="math-f text-base">= lim<sub>z → 2-i</sub> [ z + (2 - i) ] = (2 - i) + (2 - i) = 2(2 - i) = <span class="underline text-amber-300">4 - 2i</span></span>
+
+              <div class="p-3 rounded-xl bg-emerald-500/20 border-2 border-emerald-500 font-bold">
+                <span class="px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-extrabold text-xs mr-1">Adım 3</span>
+                <b class="text-emerald-300">Kalan Artılı İfadede "z" Gördüğün Yere "2 - i" Yaz ve Bitir:</b>
+                <div class="mt-1.5 p-2 rounded bg-slate-950 text-emerald-300 font-mono text-center text-base font-extrabold">
+                  = lim<sub>z → 2-i</sub> [ z + (2 - i) ] = (2 - i) + (2 - i) = 2(2 - i) = <span class="text-amber-300 underline">4 - 2i</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- KART 2: SLAYT SAYFA 28 — ÇARPANLARA AYIRMA LİMİTİ -->
-        <div class="beamer-green bg-[var(--card)]">
-          <div class="beamer-green-header flex items-center justify-between">
-            <span>📘 2. SLAYT SAYFA 28: Belirsizlik Durumlarında Limit (0/0)</span>
-            <span class="px-2 py-0.5 rounded bg-white/20 text-xs">Slayt 28 / 33</span>
+        <!-- KART 2: SLAYT SAYFA 28 — 0/0 BELİRSİZLİK LİMİTİ -->
+        <div class="beamer-amber bg-[var(--card)]">
+          <div class="beamer-amber-header flex items-center justify-between">
+            <span>📘 2. SLAYT SAYFA 28: Çarpanlara Ayırma Limiti (0/0)</span>
+            <span class="px-2.5 py-0.5 rounded bg-black/30 text-xs">Slayt 28 / 33</span>
           </div>
-          <div class="p-5 space-y-3 text-xs">
-            <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 font-bold text-sm">
-              Soru: <span class="math-f text-emerald-400">lim<sub>z → i</sub> [ (z² + 1) / (z - i) ]</span> limitini hesaplayınız.
+          <div class="p-5 space-y-3 text-xs sm:text-sm">
+            <div class="p-3 rounded-xl bg-amber-500/15 border border-amber-500/40 font-extrabold">
+              Soru: <span class="text-amber-400">lim<sub>z → i</sub> [ (z² + 1) / (z - i) ]</span> limitini hesaplayınız.
             </div>
-            <div class="space-y-2 leading-relaxed">
-              <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-                <b class="text-rose-400">Adım 1 (Belirsizlik Tespiti):</b><br>
-                <span class="math-f">z = i</span> yazıldığında sonuç <span class="math-f font-bold">(i² + 1) / (i - i) = (-1 + 1) / 0 = 0 / 0</span> belirsizliği çıkar.
+
+            <div class="space-y-2.5 leading-relaxed">
+              <div class="p-3 rounded-xl bg-[var(--card-alt)] border border-[var(--border)]">
+                <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-bold text-xs mr-1">Neden Direkt Koyamıyoruz?</span>
+                <span class="math-f">z = i</span> koyarsan alt taraf <span class="math-f">i - i = 0</span> olur (payda sıfır olamaz, 0/0 belirsizliği!).
               </div>
-              <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-                <b class="text-amber-400">Adım 2 (Hocanın Püf Noktası: +1 Yerine -i² Yaz!):</b><br>
-                <span class="math-f">i² = -1</span> olduğundan <span class="math-f font-bold text-amber-300">z² + 1 = z² - i²</span> olarak yazılabilir! Bu da iki kare farkıdır:<br>
-                <span class="math-f text-sm font-bold">z² + 1 = (z - i)(z + i)</span>
+
+              <div class="p-3 rounded-xl bg-[var(--card-alt)] border border-[var(--border)]">
+                <span class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold text-xs mr-1">Hayat Kurtaran Hile</span>
+                <b class="text-amber-400">Üstteki "z² + 1" İfadesini "(z - i)(z + i)" Diye Aç!</b><br>
+                <span class="text-xs text-[var(--muted-foreground)]">Neden? Çünkü <span class="math-f">+1 = -(-1) = -i²</span>'dir. Yani <span class="math-f font-bold text-white">z² + 1 = z² - i² = (z - i)(z + i)</span> olur! (Sınavda <span class="math-f">z² + 4</span> görürsen de <span class="math-f">(z - 2i)(z + 2i)</span> diye açacaksın!)</span>
               </div>
-              <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-bold text-sm">
-                <b class="text-emerald-400">Adım 3 (Sadeleştirme ve Sonuç):</b><br>
-                <span class="math-f text-base">lim<sub>z → i</sub> [ (z - i)(z + i) / (z - i) ] = lim<sub>z → i</sub> (z + i) = i + i = <span class="underline text-amber-300">2i</span></span>
+
+              <div class="p-3 rounded-xl bg-emerald-500/20 border-2 border-emerald-500 font-bold">
+                <span class="px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-extrabold text-xs mr-1">Sonuç</span>
+                <b class="text-emerald-300">(z - i)'leri Sadeleştir ve z Yerine "i" Koy:</b>
+                <div class="mt-1.5 p-2 rounded bg-slate-950 text-emerald-300 font-mono text-center text-base font-extrabold">
+                  lim<sub>z → i</sub> [ <span class="line-through text-rose-400">(z - i)</span>(z + i) / <span class="line-through text-rose-400">(z - i)</span> ] = i + i = <span class="text-amber-300 underline">2i</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- KART 3: SLAYT SAYFA 24–25 — YOLA BAĞIMLILIK İSPATI -->
+        <!-- KART 3: SLAYT SAYFA 25 — YOLA BAĞIMLILIK (LİMİT YOKTUR İSPATI) -->
         <div class="beamer-red bg-[var(--card)]">
           <div class="beamer-red-header flex items-center justify-between">
-            <span>🚨 3. SLAYT SAYFA 24–25: Limitte Yola Bağımlılık İspatı</span>
-            <span class="px-2 py-0.5 rounded bg-white/20 text-xs">Slayt 24–25 / 33</span>
+            <span>🚨 3. SLAYT SAYFA 25: "Limitinin Olmadığını Gösteriniz" Sorusu</span>
+            <span class="px-2.5 py-0.5 rounded bg-black/30 text-xs">Slayt 24–25 / 33</span>
           </div>
-          <div class="p-5 space-y-3 text-xs">
-            <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 font-bold text-sm">
-              Soru: <span class="math-f text-rose-400">lim<sub>z → 0</sub> ( z̄ / z )</span> limitinin <u>olmadığını</u> gösterelim.
+          <div class="p-5 space-y-3 text-xs sm:text-sm">
+            <div class="p-3 rounded-xl bg-rose-500/15 border border-rose-500/40 font-extrabold">
+              Soru: <span class="text-rose-400">lim<sub>z → 0</sub> ( z̄ / z )</span> limitinin <u>olmadığını</u> gösteriniz.
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
-              <div class="sm:col-span-7 space-y-2 leading-relaxed">
-                <div class="p-2 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-                  <span class="math-f font-bold">z = x + iy</span> alalım: <span class="math-f font-bold text-amber-300">z̄ / z = (x - iy) / (x + iy)</span>
-                </div>
-                <div class="p-2 rounded-lg bg-blue-500/10 border border-blue-500/30">
-                  <b class="text-blue-400">1. Yol (Reel Eksen / Yatay, y = 0):</b><br>
-                  <span class="math-f font-bold">lim<sub>x → 0</sub> [ (x - i(0)) / (x + i(0)) ] = lim<sub>x → 0</sub> (x / x) = +1</span>
-                </div>
-                <div class="p-2 rounded-lg bg-rose-500/10 border border-rose-500/30">
-                  <b class="text-rose-400">2. Yol (Sanal Eksen / Dikey, x = 0):</b><br>
-                  <span class="math-f font-bold">lim<sub>y → 0</sub> [ (0 - iy) / (0 + iy) ] = lim<sub>y → 0</sub> (-iy / iy) = -1</span>
-                </div>
-                <div class="p-2 rounded-lg bg-amber-500/15 border border-amber-500/40 font-extrabold text-amber-300">
-                  Sonuç: 1 ≠ -1 (Farklı yollar farklı limit verdi ⇒ LİMİT YOKTUR!)
-                </div>
+            <div class="p-3 rounded-xl bg-[var(--card-alt)] border border-[var(--border)] leading-relaxed">
+              <b class="text-amber-300">🪨 Mala Anlatır Gibi Mantığı:</b><br>
+              Bir noktada limit olması için sağdan, soldan, üstten, alttan <b>hangi yoldan gelirsen gel AYNI sayı çıkması</b> gerekir. Biz şimdi önce <b class="text-cyan-400">y = 0</b> verip bakacağız, sonra <b class="text-rose-400">x = 0</b> verip bakacağız; ikisi farklı çıkınca <b>"Limit Yoktur!"</b> deyip puanı kapacağız!
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div class="p-3 rounded-xl bg-cyan-500/15 border border-cyan-500/40">
+                <b class="text-cyan-300">1. Yol (y = 0 koy, Yatay Eksen):</b><br>
+                <span class="font-mono text-xs">z̄ / z = (x - iy) / (x + iy)<br>y = 0 koyarsak:<br>= x / x = <b class="text-base text-white">+1</b></span>
               </div>
-              <div class="sm:col-span-5 bg-[var(--card-alt)] border border-[var(--border)] rounded-xl p-2">
-                <svg viewBox="0 0 200 170" class="w-full h-36">
-                  <line x1="15" y1="85" x2="185" y2="85" stroke="#64748b" stroke-width="1.5"/>
-                  <line x1="100" y1="10" x2="100" y2="160" stroke="#64748b" stroke-width="1.5"/>
-                  <!-- Yatay yaklaşım okları (Mavi -> +1) -->
-                  <line x1="170" y1="85" x2="112" y2="85" stroke="#3b82f6" stroke-width="3.5"/>
-                  <polygon points="112,80 112,90 103,85" fill="#3b82f6"/>
-                  <text x="118" y="74" fill="#60a5fa" font-size="10" font-weight="bold">1. Yol (y=0)</text>
-                  <text x="122" y="102" fill="#60a5fa" font-size="11" font-weight="bold">Limit = +1</text>
-                  <!-- Dikey yaklaşım okları (Kırmızı -> -1) -->
-                  <line x1="100" y1="20" x2="100" y2="73" stroke="#ef4444" stroke-width="3.5"/>
-                  <polygon points="95,73 105,73 100,82" fill="#ef4444"/>
-                  <text x="18" y="38" fill="#f87171" font-size="10" font-weight="bold">2. Yol (x=0)</text>
-                  <text x="22" y="52" fill="#f87171" font-size="11" font-weight="bold">Limit = -1</text>
-                  <circle cx="100" cy="85" r="5" fill="#f59e0b"/>
-                  <text x="68" y="102" fill="#fbbf24" font-size="10" font-weight="bold">(0,0)</text>
-                  <text x="38" y="152" fill="#f87171" font-size="11" font-weight="bold">+1 ≠ -1 ⇒ Limit Yok!</text>
-                </svg>
+              <div class="p-3 rounded-xl bg-rose-500/15 border border-rose-500/40">
+                <b class="text-rose-300">2. Yol (x = 0 koy, Dikey Eksen):</b><br>
+                <span class="font-mono text-xs">z̄ / z = (x - iy) / (x + iy)<br>x = 0 koyarsak:<br>= -iy / iy = <b class="text-base text-white">-1</b></span>
               </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-400 text-center font-extrabold text-amber-300">
+              ⚡ +1 ≠ -1 (İki yol farklı çıktı ⇒ O halde LİMİT YOKTUR!)
             </div>
           </div>
         </div>
 
-        <!-- KART 4: SLAYT SAYFA 26–27 — BİLEŞENLER YARDIMIYLA LİMİT TEOREMİ -->
+        <!-- KART 4: SLAYT SAYFA 27 — POLİNOM LİMİTİ (BİLEŞENLER TEOREMİ) -->
         <div class="beamer-blue bg-[var(--card)]">
           <div class="beamer-blue-header flex items-center justify-between">
-            <span>💎 4. SLAYT SAYFA 26–27: Bileşenler Yardımıyla Limit Teoremi</span>
-            <span class="px-2 py-0.5 rounded bg-white/20 text-xs">Slayt 26–27 / 33</span>
+            <span>💎 4. SLAYT SAYFA 27: Normal Polinom Limiti (Yerine Koy Geç!)</span>
+            <span class="px-2.5 py-0.5 rounded bg-black/30 text-xs">Slayt 26–27 / 33</span>
           </div>
-          <div class="p-5 space-y-3 text-xs">
-            <div class="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/30 font-bold text-sm">
-              Soru: <span class="math-f text-indigo-400">lim<sub>z → 3+2i</sub> ( z² + 2 ) = ?</span> (Notlar - Sayfa 2)
+          <div class="p-5 space-y-3 text-xs sm:text-sm">
+            <div class="p-3 rounded-xl bg-indigo-500/15 border border-indigo-500/40 font-extrabold">
+              Soru: <span class="text-indigo-300">lim<sub>z → 3+2i</sub> ( z² + 2 ) = ?</span>
             </div>
-            <div class="space-y-2 leading-relaxed">
-              <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-                <b class="text-indigo-400">Adım 1 (Fonksiyonu u ve v Bileşenlerine Ayır):</b><br>
-                <span class="math-f">f(z) = (x + iy)² + 2 = (x² - y² + 2) + i(2xy)</span><br>
-                Buradan <span class="math-f font-bold text-cyan-400">u(x, y) = x² - y² + 2</span> ve <span class="math-f font-bold text-purple-400">v(x, y) = 2xy</span>. Noktamız: <span class="math-f font-bold">(x, y) → (3, 2)</span>.
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <div class="p-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
-                  <b class="text-cyan-400">Reel Kısım Limiti (u₀):</b><br>
-                  <span class="math-f font-bold">lim (x² - y² + 2)<br>= 3² - 2² + 2 = 9 - 4 + 2 = 7</span>
-                </div>
-                <div class="p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/30">
-                  <b class="text-purple-400">Sanal Kısım Limiti (v₀):</b><br>
-                  <span class="math-f font-bold">lim (2xy)<br>= 2 · (3) · (2) = 12</span>
-                </div>
-              </div>
-              <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-bold text-sm">
-                Sonuç: <span class="math-f text-base">lim<sub>z → 3+2i</sub> (z² + 2) = u₀ + i·v₀ = <span class="underline text-amber-300">7 + 12i</span></span>
-              </div>
+            <div class="p-3 rounded-xl bg-[var(--card-alt)] border border-[var(--border)] leading-relaxed">
+              <b class="text-amber-300">🪨 Mala Anlatır Gibi Mantığı:</b><br>
+              Kesir yok, paydada sıfır yok, <span class="math-f">z̄</span> yok! Dümdüz polinom! İster direkt <span class="math-f font-bold">z</span> yerine <span class="math-f font-bold">3 + 2i</span> yazıp karesini al, ister hocanın slayttaki gibi <span class="math-f">x = 3, y = 2</span> diye ayırıp hesapla:
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-xs space-y-1.5 text-slate-200">
+              <div>• <b>Kısa Yol (Direkt Yerine Koy):</b><br>
+              (3 + 2i)² + 2 = (3² + 2·3·2i + (2i)²) + 2<br>
+              = (9 + 12i - 4) + 2 = <b class="text-emerald-400 text-sm">7 + 12i</b></div>
+              <div class="pt-1 border-t border-slate-800">• <b>Hocanın Slayt Yolu (u ve v Ayırma):</b><br>
+              z² + 2 = (x² - y² + 2) + i(2xy)<br>
+              x = 3, y = 2 koy ⇒ Reel u = 3² - 2² + 2 = <b>7</b>, Sanal v = 2(3)(2) = <b>12</b> ⇒ <b class="text-amber-300 text-sm">7 + 12i</b></div>
             </div>
           </div>
         </div>
@@ -360,17 +399,16 @@
       </div>
 
       <!-- CANLI KLASİK TÜREV KAĞIT ÇÖZÜM SİMÜLATÖRÜ -->
-      <div class="bg-[var(--card)] border-2 border-rose-500/35 rounded-2xl p-5 shadow-lg">
+      <div class="bg-[var(--card)] border-2 border-rose-500/40 rounded-2xl p-5 shadow-lg">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
-            <h3 class="text-lg font-extrabold text-rose-400">✍️ Canlı Klasik Türev Çözücü (Sınavda Kağıda Yazılacak Adımlar)</h3>
-            <p class="text-xs text-[var(--muted-foreground)]">Hocanın sınavda sayıları değiştirmesi ihtimaline karşı istediğin fonksiyon ve noktayı seç veya kendi sayılarını gir:</p>
+            <h3 class="text-lg font-extrabold text-rose-400">✍️ Canlı Klasik Türev Robotu (Sayıları Değiştir, Kağıda Yazılacak Çözümü Gör!)</h3>
+            <p class="text-xs text-[var(--muted-foreground)]">Sınavda <span class="math-f">f(z) = az² + bz + c</span> ve <span class="math-f">z₀ = x₀ + iy₀</span> ne verilirse verilsin adım adım limitli çözümü:</p>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="setDerivPreset(1, 0, 0, 2, -1)" class="sub-btn active px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border)]" id="dp-1">★ Defter: f(z)=z², z₀=2-i</button>
-            <button onclick="setDerivPreset(1, 4, 0, 1, 1)" class="sub-btn px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border)] bg-[var(--card-alt)]" id="dp-2">f(z)=z²+4z, z₀=1+i</button>
-            <button onclick="setDerivPreset(3, -2, 1, 1, -2)" class="sub-btn px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border)] bg-[var(--card-alt)]" id="dp-3">f(z)=3z²-2z+1, z₀=1-2i</button>
-            <button onclick="setDerivPreset(1, 0, 2, 3, 2)" class="sub-btn px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border)] bg-[var(--card-alt)]" id="dp-4">f(z)=z²+2, z₀=3+2i</button>
+            <button onclick="setDerivPreset(1, 0, 0, 2, -1)" class="sub-btn active px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border)]">★ Defter: f(z)=z², z₀=2-i</button>
+            <button onclick="setDerivPreset(1, 4, 0, 1, 1)" class="sub-btn px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border)] bg-[var(--card-alt)]">f(z)=z²+4z, z₀=1+i</button>
+            <button onclick="setDerivPreset(3, -2, 1, 1, -2)" class="sub-btn px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border)] bg-[var(--card-alt)]">f(z)=3z²-2z+1, z₀=1-2i</button>
           </div>
         </div>
 
@@ -402,41 +440,68 @@
     </section>
 
     <!-- ===================================================================== -->
-    <!-- BÖLÜM 2: 🎯 TAHTA FOTOĞRAFLARI (1a–1f) & DEFTER HALKA — HEPSİ GÖRSEL KARTLI! -->
+    <!-- BÖLÜM 2: 🎯 TAHTA FOTOĞRAFLARI (1a–1f) & DEFTER HALKA — MALA ANLATIR GİBİ 3 ADIM! -->
     <!-- ===================================================================== -->
     <section id="sec-geometri" class="space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1.5 rounded-xl bg-purple-600 text-white font-extrabold text-sm shadow">BÖLÜM 2</span>
+          <span class="px-4 py-1.5 rounded-xl bg-purple-600 text-white font-extrabold text-sm shadow-lg">BÖLÜM 2 • TAHTA & DEFTER KLASİK 2</span>
           <div>
-            <h2 class="text-2xl font-extrabold">🎯 Sınıftaki Tahta Fotoğrafları (a, b, c, d, e, f) & Defter Klasik Halka Çizimleri</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">Tahtada çözülen <b>tüm şıklar</b> ve defterdeki <b>2. Klasik Soru</b> görsel koordinat çizimleriyle yan yana açık!</p>
+            <h2 class="text-2xl font-extrabold">🎯 Tahtadaki Çember / Yuvar / Halka Soruları (Örnek 1a, 1b, 1c, 1d, 1e, 1f + Defter)</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">Sınıfta çektiğin tahta fotoğraflarındaki tüm örneklerin <b>sıfırdan, çocuk oyuncağı</b> çözümü!</p>
           </div>
         </div>
-        <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-purple-500/15 text-purple-400 border border-purple-500/30">
-          Düz Çizgi: Dahil (=, ≤) • Kesikli Çizgi: Hariç (&lt;)
-        </span>
+      </div>
+
+      <!-- MALA ANLATIR GİBİ 3 ADIMLI ÇEMBER & YUVAR ŞİFRESİ -->
+      <div class="p-5 rounded-2xl bg-gradient-to-r from-purple-950/90 to-slate-900 border-2 border-purple-500/60 text-white space-y-3 shadow-xl">
+        <div class="text-purple-300 font-extrabold text-sm uppercase">
+          🧠 MALA ANLATIR GİBİ 3 ADIMDA ÇEMBER & YUVAR ÇİZME TARİFİ (Hata Yapmak İmkansız!)
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs leading-relaxed">
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-purple-400/40">
+            <div class="font-extrabold text-amber-300 text-sm mb-1">ADIM 1: z'nin Önünde Sayı Varsa HEPSİNİ ONA BÖL!</div>
+            Tahtadaki <b>b, c, d</b> şıklarında hoca bilerek <code class="text-rose-300 font-bold">|2z - i| = 4</code> veya <code class="text-rose-300 font-bold">|3z - 15i| = 3</code> yazdı.<br>
+            👉 <b>Kural:</b> <code class="text-emerald-300 font-bold">z</code> tek başına kalmalı! Önünde <b>3</b> mü var? Sorudaki <b>bütün sayıları 3'e böl</b>: <code class="text-amber-300 font-bold">|z - 5i| = 1</code>!
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-purple-400/40">
+            <div class="font-extrabold text-cyan-300 text-sm mb-1">ADIM 2: Merkezi Bulurken İŞARETLERİ TERS ÇEVİR!</div>
+            Mutlak değer içindeki sayıların işaretini <b>ters çevirip</b> merkeze <code class="text-emerald-300 font-bold">M(x, y)</code> yaz! (Reel sayı yoksa 0 yaz!):<br>
+            • <code class="text-amber-300">|z - 2 - 3i|</code> ⇒ -2 ve -3'ü ters çevir ⇒ <b>M(2, 3)</b><br>
+            • <code class="text-amber-300">|z + 2i|</code> ⇒ Reel yok (0), +2'yi ters çevir ⇒ <b>M(0, -2)</b>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-purple-400/40">
+            <div class="font-extrabold text-emerald-300 text-sm mb-1">ADIM 3: Düz Çizgi mi, Kesikli mi, İçi Boyanacak mı?</div>
+            • <b><code class="text-white">=</code> (Eşittir) varsa:</b> Sadece düz çember çiz, <b>içini boyama!</b><br>
+            • <b><code class="text-purple-300">&lt;</code> (Küçüktür) varsa:</b> Çemberi <b>KESİKLİ (- - -)</b> çiz, <b>içini boya!</b> (Açık Yuvar)<br>
+            • <b><code class="text-amber-300">≤</code> (Altında çizgi) varsa:</b> Çemberi <b>DÜZ</b> çiz, <b>içini boya!</b> (Kapalı Yuvar)
+          </div>
+        </div>
       </div>
 
       <!-- TAHTADAKİ 8 ÖRNEĞİN TAMAMI GÖRSEL KARTLAR HALİNDE AÇIK! -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
 
         <!-- KART G1: DEFTER KLASİK HALKA -->
-        <div class="bg-[var(--card)] border-2 border-amber-500/50 rounded-2xl p-4 flex flex-col justify-between shadow-md">
+        <div class="bg-[var(--card)] border-2 border-amber-500/60 rounded-2xl p-4 flex flex-col justify-between shadow-md">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded bg-amber-500 text-slate-950 font-extrabold">⭐ Defter Klasik 2</span>
-              <span class="text-amber-400 font-bold">Kapalı Halka</span>
+              <span class="text-amber-400 font-bold">Simit (Halka)</span>
             </div>
             <h3 class="font-extrabold text-sm math-f mb-1">1 ≤ |z - (3 + 2i)| ≤ 5</h3>
-            <p class="text-[var(--muted-foreground)] mb-2">Merkez <b class="text-white">M(3, 2)</b>, iç yarıçap <b class="text-amber-400">r₁ = 1</b>, dış yarıçap <b class="text-blue-400">r₂ = 5</b>. İki sınır da düz çizgi, arası taralı!</p>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • <b>Merkez:</b> <b class="text-white">M(3, 2)</b><br>
+              • <b>Küçük Çember:</b> <b class="text-amber-400">r₁ = 1</b> (≤ var, düz çizgi)<br>
+              • <b>Büyük Çember:</b> <b class="text-blue-400">r₂ = 5</b> (≤ var, düz çizgi)<br>
+              • <b>Neresi Boyanır?:</b> İki çemberin <b>ARASI (simit gibi)</b> boyanır!
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
               <line x1="10" y1="105" x2="190" y2="105" stroke="#64748b" stroke-width="1.2"/>
               <line x1="55" y1="10" x2="55" y2="145" stroke="#64748b" stroke-width="1.2"/>
-              <!-- Taralı Halka -->
-              <path d="M 105,25 A 50,50 0 1,0 105,125 A 50,50 0 1,0 105,25 Z M 105,63 A 12,12 0 1,1 105,87 A 12,12 0 1,1 105,63 Z" fill="rgba(245,158,11,0.28)" fill-rule="evenodd"/>
+              <path d="M 105,25 A 50,50 0 1,0 105,125 A 50,50 0 1,0 105,25 Z M 105,63 A 12,12 0 1,1 105,87 A 12,12 0 1,1 105,63 Z" fill="rgba(245,158,11,0.3)" fill-rule="evenodd"/>
               <circle cx="105" cy="75" r="50" fill="none" stroke="#38bdf8" stroke-width="2.2"/>
               <circle cx="105" cy="75" r="12" fill="none" stroke="#f59e0b" stroke-width="2.2"/>
               <circle cx="105" cy="75" r="3" fill="#ef4444"/>
@@ -444,7 +509,7 @@
               <text x="132" y="42" fill="#38bdf8" font-size="9" font-weight="bold">r₂=5</text>
               <text x="80" y="60" fill="#f59e0b" font-size="9" font-weight="bold">r₁=1</text>
             </svg>
-            <button onclick="selectGeoPreset('defter_halka')" class="w-full mt-1 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 font-bold hover:bg-amber-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('defter_halka')" class="w-full mt-1 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 font-bold hover:bg-amber-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
@@ -453,10 +518,14 @@
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded bg-blue-600 text-white font-extrabold">Tahta Örnek 1a</span>
-              <span class="text-blue-400 font-bold">Çember</span>
+              <span class="text-blue-400 font-bold">Normal Çember</span>
             </div>
             <h3 class="font-extrabold text-sm math-f mb-1">|z - (3 + 4i)| = 5</h3>
-            <p class="text-[var(--muted-foreground)] mb-2">Merkez <b class="text-white">M(3, 4)</b>, yarıçap <b class="text-emerald-400">r = 5</b>. <span class="math-f">√(3²+4²)=5</span> olduğu için <b>tam orijinden (0,0)</b> geçer!</p>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • <b>Merkez:</b> <b class="text-white">M(3, 4)</b><br>
+              • <b>Yarıçap:</b> <b class="text-emerald-400">r = 5</b><br>
+              • <b>Püf Nokta:</b> 3-4-5 üçgeninden merkezin orijine uzaklığı 5 olduğu için çember <b>tam orijinden (0,0)</b> geçer!
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
@@ -470,19 +539,22 @@
               <text x="103" y="72" fill="#fbbf24" font-size="9" font-weight="bold">M(3,4)</text>
               <text x="110" y="42" fill="#10b981" font-size="10" font-weight="bold">r=5</text>
             </svg>
-            <button onclick="selectGeoPreset('tahta_a')" class="w-full mt-1 py-1.5 rounded-lg bg-blue-500/20 text-blue-300 font-bold hover:bg-blue-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('tahta_a')" class="w-full mt-1 py-1.5 rounded-lg bg-blue-500/20 text-blue-300 font-bold hover:bg-blue-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
         <!-- KART G3: TAHTA ÖRNEK 1b -->
-        <div class="bg-[var(--card)] border border-rose-500/40 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+        <div class="bg-[var(--card)] border border-rose-500/50 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-extrabold">Tahta Örnek 1b</span>
-              <span class="text-rose-400 font-bold">2'ye Bölme Tuzağı!</span>
+              <span class="text-rose-400 font-bold">Hepsini 2'ye Böl!</span>
             </div>
             <h3 class="font-extrabold text-sm math-f mb-1">|2z - i| = 4  ⇒  |z - i/2| = 2</h3>
-            <p class="text-[var(--muted-foreground)] mb-2">2 parantezine alıp 2'ye böleriz! Merkez <b class="text-white">M(0, 1/2)</b> ve yarıçap <b class="text-emerald-400">r = 2</b> çemberi.</p>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • <b>1. Adım:</b> z'nin önünde 2 var! Her şeyi 2'ye böl: <span class="math-f font-bold text-white">|z - (1/2)i| = 2</span><br>
+              • <b>2. Adım:</b> Reel sayı yok (0), i'nin önü -1/2 (ters çevir +1/2) ⇒ <b class="text-amber-300">M(0, 1/2)</b> ve <b class="text-emerald-400">r = 2</b>!
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
@@ -493,7 +565,7 @@
               <text x="106" y="74" fill="#fbbf24" font-size="9" font-weight="bold">M(0, 1/2)</text>
               <text x="115" y="42" fill="#f43f5e" font-size="10" font-weight="bold">r = 2</text>
             </svg>
-            <button onclick="selectGeoPreset('tahta_b')" class="w-full mt-1 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 font-bold hover:bg-rose-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('tahta_b')" class="w-full mt-1 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 font-bold hover:bg-rose-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
@@ -502,10 +574,13 @@
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-extrabold">Tahta Örnek 1c</span>
-              <span class="text-emerald-400 font-bold">3'e Bölme!</span>
+              <span class="text-emerald-400 font-bold">Hepsini 3'e Böl!</span>
             </div>
             <h3 class="font-extrabold text-sm math-f mb-1">|3z - 15i| = 3  ⇒  |z - 5i| = 1</h3>
-            <p class="text-[var(--muted-foreground)] mb-2">Her iki tarafı 3'e böleriz: <span class="math-f">|z - (0+5i)| = 1</span>. Merkez <b class="text-white">M(0, 5)</b>, yarıçap <b class="text-emerald-400">r = 1</b>.</p>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • <b>1. Adım:</b> z'nin önünde 3 var! 15'i ve 3'ü 3'e böl: <span class="math-f font-bold text-white">|z - 5i| = 1</span><br>
+              • <b>2. Adım:</b> Reel yok (0), -5'i ters çevir (+5) ⇒ <b class="text-amber-300">M(0, 5)</b> ve <b class="text-emerald-400">r = 1</b>!
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
@@ -516,7 +591,7 @@
               <text x="106" y="55" fill="#fbbf24" font-size="9" font-weight="bold">M(0, 5)</text>
               <text x="130" y="55" fill="#10b981" font-size="10" font-weight="bold">r = 1</text>
             </svg>
-            <button onclick="selectGeoPreset('tahta_c')" class="w-full mt-1 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-bold hover:bg-emerald-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('tahta_c')" class="w-full mt-1 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-bold hover:bg-emerald-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
@@ -525,10 +600,13 @@
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded bg-cyan-600 text-white font-extrabold">Tahta Örnek 1d</span>
-              <span class="text-cyan-400 font-bold">+ İşareti Tuzağı!</span>
+              <span class="text-cyan-400 font-bold">4'e Böl & İşareti Çevir!</span>
             </div>
-            <h3 class="font-extrabold text-sm math-f mb-1">|4z + 8i| = 12  ⇒  |z - (-2i)| = 3</h3>
-            <p class="text-[var(--muted-foreground)] mb-2">4'e bölünce <span class="math-f">|z + 2i| = 3</span> olur. Arada eksi olması gerektiği için Merkez <b class="text-white">M(0, -2)</b> ve <b class="text-cyan-400">r = 3</b>!</p>
+            <h3 class="font-extrabold text-sm math-f mb-1">|4z + 8i| = 12  ⇒  |z + 2i| = 3</h3>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • <b>1. Adım:</b> Hepsini 4'e böl: <span class="math-f font-bold text-white">|z + 2i| = 3</span><br>
+              • <b>2. Adım:</b> İçeride <b>+2i</b> yazdığı için işaretini ters çevir (<b>-2</b>)! Merkez <b class="text-amber-300">M(0, -2)</b> ve <b class="text-cyan-400">r = 3</b>!
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
@@ -539,30 +617,33 @@
               <text x="106" y="92" fill="#fbbf24" font-size="9" font-weight="bold">M(0, -2)</text>
               <text x="145" y="92" fill="#06b6d4" font-size="10" font-weight="bold">r = 3</text>
             </svg>
-            <button onclick="selectGeoPreset('tahta_d')" class="w-full mt-1 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 font-bold hover:bg-cyan-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('tahta_d')" class="w-full mt-1 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 font-bold hover:bg-cyan-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
         <!-- KART G6: TAHTA ÖRNEK 1e -->
-        <div class="bg-[var(--card)] border border-purple-500/40 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+        <div class="bg-[var(--card)] border border-purple-500/50 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded bg-purple-600 text-white font-extrabold">Tahta Örnek 1e</span>
               <span class="text-purple-400 font-bold">Açık Yuvar (&lt;)</span>
             </div>
             <h3 class="font-extrabold text-sm math-f mb-1">|z - 2 - 3i| &lt; 4</h3>
-            <p class="text-[var(--muted-foreground)] mb-2"><span class="math-f">|z - (2+3i)| &lt; 4</span>: Merkez <b class="text-white">M(2, 3)</b>, <b class="text-purple-400">r = 4</b>. Sınır <b>kesikli çizgi</b>, içi <b>taralı</b>!</p>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • <b>Merkez:</b> -2 ve -3'ü ters çevir ⇒ <b class="text-white">M(2, 3)</b> ve <b class="text-purple-400">r = 4</b>.<br>
+              • <b>Çizim:</b> Altında eşitlik çizgisi olmadığı (<b>&lt;</b>) için çemberi <b>KESİKLİ</b> çiz ve <b>İÇİNİ BOYA!</b>
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
               <line x1="15" y1="105" x2="185" y2="105" stroke="#64748b" stroke-width="1.2"/>
               <line x1="70" y1="10" x2="70" y2="145" stroke="#64748b" stroke-width="1.2"/>
-              <circle cx="105" cy="65" r="46" fill="rgba(168,85,247,0.25)" stroke="#a855f7" stroke-width="2.2" stroke-dasharray="6,4"/>
+              <circle cx="105" cy="65" r="46" fill="rgba(168,85,247,0.28)" stroke="#a855f7" stroke-width="2.2" stroke-dasharray="6,4"/>
               <circle cx="105" cy="65" r="3.5" fill="#fbbf24"/>
               <text x="110" y="68" fill="#fbbf24" font-size="9" font-weight="bold">M(2,3)</text>
               <text x="68" y="36" fill="#c084fc" font-size="9" font-weight="bold">Kesikli Sınır (r=4)</text>
             </svg>
-            <button onclick="selectGeoPreset('tahta_e')" class="w-full mt-1 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 font-bold hover:bg-purple-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('tahta_e')" class="w-full mt-1 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 font-bold hover:bg-purple-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
@@ -571,10 +652,13 @@
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-extrabold">Tahta Örnek 1f</span>
-              <span class="text-indigo-400 font-bold">Doğru Denklemi</span>
+              <span class="text-indigo-400 font-bold">Düz Doğru</span>
             </div>
             <h3 class="font-extrabold text-sm math-f mb-1">Re(z̄ - i) = 2  ⇒  x = 2</h3>
-            <p class="text-[var(--muted-foreground)] mb-2"><span class="math-f">z̄ - i = x - i(y+1)</span>. Reel kısım doğrudan <b class="text-white">x = 2</b> dikey doğrusudur!</p>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • <b>Mantık:</b> "Re" demek sadece <b>x</b>'e bak demektir (içerideki -i ve eşlenik sadece y'yi etkiler, x'e dokunamaz!).<br>
+              • Direkt <b class="text-pink-400">x = 2</b> noktasından yukarıdan aşağıya <b>dikey bir çizgi</b> çek!
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
@@ -584,7 +668,7 @@
               <text x="132" y="45" fill="#f472b6" font-size="11" font-weight="bold">x = 2</text>
               <text x="132" y="60" fill="#f472b6" font-size="9" font-weight="bold">Doğrusu</text>
             </svg>
-            <button onclick="selectGeoPreset('tahta_f')" class="w-full mt-1 py-1.5 rounded-lg bg-indigo-500/20 text-indigo-300 font-bold hover:bg-indigo-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('tahta_f')" class="w-full mt-1 py-1.5 rounded-lg bg-indigo-500/20 text-indigo-300 font-bold hover:bg-indigo-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
@@ -596,24 +680,27 @@
               <span class="text-teal-400 font-bold">Delinmiş Komşuluk</span>
             </div>
             <h3 class="font-extrabold text-sm math-f mb-1">0 &lt; |z - z₀| &lt; r</h3>
-            <p class="text-[var(--muted-foreground)] mb-2">Limit tanımındaki bölge! Merkez <b class="text-rose-400">z₀ hariç</b> (içi boş delik) ve dış sınır kesikli açık disk.</p>
+            <p class="text-[var(--muted-foreground)] mb-2">
+              • Baştaki <b class="text-rose-400">0 &lt;</b> ifadesi "merkez noktasını oyup çöpe at (delik aç)" demektir!<br>
+              • Limit tanımında (<span class="math-f">0 &lt; |z - z₀| &lt; δ</span>) kullanılan bölgenin adı <b>Delinmiş Komşuluktur</b>!
+            </p>
           </div>
           <div class="bg-[var(--card-alt)] rounded-xl p-2 border border-[var(--border)]">
             <svg viewBox="0 0 200 150" class="w-full h-32">
               <line x1="15" y1="80" x2="185" y2="80" stroke="#64748b" stroke-width="1.2"/>
               <line x1="80" y1="10" x2="80" y2="140" stroke="#64748b" stroke-width="1.2"/>
-              <circle cx="115" cy="70" r="44" fill="rgba(20,184,166,0.22)" stroke="#14b8a6" stroke-width="2.2" stroke-dasharray="6,4"/>
+              <circle cx="115" cy="70" r="44" fill="rgba(20,184,166,0.25)" stroke="#14b8a6" stroke-width="2.2" stroke-dasharray="6,4"/>
               <circle cx="115" cy="70" r="5" fill="#0f172a" stroke="#ef4444" stroke-width="2.5"/>
               <text x="124" y="74" fill="#fca5a5" font-size="9" font-weight="bold">z₀ (Boş!)</text>
             </svg>
-            <button onclick="selectGeoPreset('slayt_delinmis')" class="w-full mt-1 py-1.5 rounded-lg bg-teal-500/20 text-teal-300 font-bold hover:bg-teal-500/30 transition">Büyük Simülatörde Aç ➔</button>
+            <button onclick="selectGeoPreset('slayt_delinmis')" class="w-full mt-1 py-1.5 rounded-lg bg-teal-500/20 text-teal-300 font-bold hover:bg-teal-500/30 transition">Büyük Çizicide İncele ➔</button>
           </div>
         </div>
 
       </div>
 
       <!-- BÜYÜK İNTERAKTİF ARGAND ÇEMBER / YUVAR / HALKA SİMÜLATÖRÜ -->
-      <div class="bg-[var(--card)] border-2 border-purple-500/35 rounded-2xl p-5 shadow-lg">
+      <div class="bg-[var(--card)] border-2 border-purple-500/40 rounded-2xl p-5 shadow-lg">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-6 bg-[var(--card-alt)] border border-[var(--border)] rounded-xl p-4">
             <div class="flex items-center justify-between mb-2">
@@ -668,159 +755,109 @@
     </section>
 
     <!-- ===================================================================== -->
-    <!-- BÖLÜM 3: 🧮 GÜLDEN HOCA SLAYT 1–11 — SIRALI İKİLİLER, DAĞILMA İSPATI, EŞLENİK & BÖLME -->
-    <!-- ===================================================================== -->
-    <section id="sec-cebir" class="space-y-6">
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1.5 rounded-xl bg-cyan-600 text-white font-extrabold text-sm shadow">BÖLÜM 3</span>
-          <div>
-            <h2 class="text-2xl font-extrabold">🧮 Slayt 1–11 & Defter: Sıralı İkililer, Dağılma Doğrulaması, Eşlenik ve Bölme</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">Defter Notu: <b>"Karmaşık sayılarda (+, -, eşlenik)"</b> ve Hocanın Slayt 4–11 Arası Tüm Örnekleri</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
-        <!-- SLAYT 4-5-8 KUTUSU -->
-        <div class="beamer-blue bg-[var(--card)]">
-          <div class="beamer-blue-header">Tanım 1.1: Sıralı İkililer ve Çarpmanın Özgün Yapısı (Slayt 4, 5, 8)</div>
-          <div class="p-4 space-y-2.5 leading-relaxed">
-            <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              <b class="text-indigo-400">Eşitlik & Toplama:</b><br>
-              <span class="math-f font-bold">(x₁, y₁) + (x₂, y₂) = (x₁ + x₂, y₁ + y₂)</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-indigo-500/15 border border-indigo-500/40">
-              <b class="text-amber-300">Özgün Çarpma Tanımı (Rotasyon):</b><br>
-              <span class="math-f text-sm font-extrabold text-white">(x₁, y₁) · (x₂, y₂) = (x₁x₂ - y₁y₂ , x₁y₂ + y₁x₂)</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-rose-500/15 border border-rose-500/30">
-              <b class="text-rose-300">Sanal Birim i = (0, 1) ve i² = -1 Kanıtı (Slayt 8):</b><br>
-              <span class="math-f font-bold">i² = (0,1)·(0,1) = (0·0 - 1·1, 0·1 + 1·0) = (-1, 0) = -1</span><br>
-              <span class="text-amber-300 font-bold">⚠️ Dikkat (Slayt 8):</span> <span class="math-f">z = x + iy</span> için <span class="math-f">Im(z) = y</span>'dir (reel sayıdır!).
-            </div>
-          </div>
-        </div>
-
-        <!-- SLAYT 7 DAĞILMA İSPATI KUTUSU -->
-        <div class="beamer-green bg-[var(--card)]">
-          <div class="beamer-green-header">İşlem Doğrulaması: Dağılma Özelliği İspatı (Slayt 7)</div>
-          <div class="p-4 space-y-2 leading-relaxed">
-            <div class="font-bold text-emerald-400">
-              z₁ = 1 + i, z₂ = -1 + 3i, z₃ = 4 + 2i için z₁(z₂ + z₃) = z₁z₂ + z₁z₃ eşitliğini gösterelim:
-            </div>
-            <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              <b class="text-amber-400">Adım 1 (Sol Tarafın Hesaplanması):</b><br>
-              • Parantez içi: <span class="math-f font-bold">z₂ + z₃ = (-1+3i) + (4+2i) = 3 + 5i</span><br>
-              • Çarpma: <span class="math-f font-bold">(1 + i)(3 + 5i) = 3 + 5i + 3i + 5i² = 3 + 8i - 5 = <span class="text-emerald-400">-2 + 8i</span></span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              <b class="text-cyan-400">Adım 2 (Sağ Tarafın Hesaplanması):</b><br>
-              • <span class="math-f font-bold">z₁z₂ = (1+i)(-1+3i) = -1 + 2i + 3i² = -4 + 2i</span><br>
-              • <span class="math-f font-bold">z₁z₃ = (1+i)(4+2i) = 4 + 6i + 2i² = 2 + 6i</span><br>
-              • Toplam: <span class="math-f font-bold">(-4 + 2i) + (2 + 6i) = <span class="text-emerald-400">-2 + 8i</span> (Eşittir!)</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLAYT 10-11 EŞLENİK, MODÜL VE BÖLME KUTUSU -->
-        <div class="beamer-green bg-[var(--card)]">
-          <div class="beamer-green-header">Eşlenik (z̄), Modül (|z|) ve Bölme Uygulaması (Slayt 10–11)</div>
-          <div class="p-4 space-y-2.5 leading-relaxed">
-            <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              • <b>Eşlenik:</b> <span class="math-f font-bold">z̄ = x - iy</span> (Reel eksene göre simetri)<br>
-              • <b>Modül:</b> <span class="math-f font-bold">|z| = √(x² + y²)</span> (Orijine uzaklık)<br>
-              • <b>Altın Kural:</b> <span class="math-f font-bold text-amber-300">z · z̄ = (x+iy)(x-iy) = x² + y² = |z|²</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40">
-              <b class="text-emerald-400">Slayt 11 Örneği: z₁ = 3 + 2i ve z₂ = 1 - i ise z₁ / z₂ nedir?</b><br>
-              Pay ve payda, paydanın eşleniği <span class="math-f font-bold">(1 + i)</span> ile çarpılır:<br>
-              <span class="math-f font-bold">Pay: (3 + 2i)(1 + i) = 3 + 5i + 2i² = 1 + 5i</span><br>
-              <span class="math-f font-bold">Payda: (1 - i)(1 + i) = 1² + (-1)² = 2</span><br>
-              <span class="math-f font-extrabold text-sm text-amber-300">Sonuç: (1 + 5i) / 2 = 1/2 + (5/2)i</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================================== -->
-    <!-- BÖLÜM 4: 🧭 GÜLDEN HOCA SLAYT 12–19 & DEFTER — KUTUPSAL FORM, DE MOIVRE VE KÖKLER -->
+    <!-- BÖLÜM 3: 🧭 KUTUPSAL FORM, DE MOIVRE VE "KARMAŞIK SAYININ KÖKLERİNİ BULMA" -->
     <!-- ===================================================================== -->
     <section id="sec-kutupsal" class="space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white font-extrabold text-sm shadow">BÖLÜM 4</span>
+          <span class="px-4 py-1.5 rounded-xl bg-emerald-600 text-white font-extrabold text-sm shadow-lg">BÖLÜM 3 • KÖK BULMA & DE MOIVRE</span>
           <div>
-            <h2 class="text-2xl font-extrabold">🧭 Slayt 12–19 & Defter: Kutupsal (Euler) Form, De Moivre ve Kök Bulma (ⁿ√z)</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">Defter Notu: <b>"Karmaşık sayının köklerini bulma"</b> + Slayt 14, 17, 19 Birebir Örnekleri</p>
+            <h2 class="text-2xl font-extrabold">🧭 Kutupsal Form, Üs Alma (De Moivre) ve Kök Bulma (Slayt 12–19 + Defter)</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">Defterinde özellikle <b>"Karmaşık sayının köklerini bulma"</b> yazıyor! İşte hiç trigonometri bilmeyenler için hazır tablo:</p>
           </div>
         </div>
       </div>
 
-      <!-- SLAYT 14, 17, 19 ÜÇ BÜYÜK UYGULAMA KARTI (AÇIK VE GÖRSEL) -->
+      <!-- MALA ANLATIR GİBİ AÇI (BAŞ ARGÜMAN) BULMA KOPYA TABLOSU -->
+      <div class="p-5 rounded-2xl bg-gradient-to-r from-emerald-950/90 to-slate-900 border-2 border-emerald-500/60 text-white space-y-3 shadow-xl">
+        <div class="text-emerald-300 font-extrabold text-sm uppercase">
+          🧠 MALA ANLATIR GİBİ AÇI (θ) BULMA ŞİFRESİ (Sınavda Sadece Bu 3 Açı Çıkar!)
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs leading-relaxed">
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-emerald-400/40">
+            <div class="font-extrabold text-amber-300 text-sm mb-1">1) Sayılar Eşitse (Örn: 1 + i veya 1 - i)</div>
+            İki sayı da 1 ve 1 mi? O zaman dar açımız <b class="text-amber-300 text-sm">π / 4 (45°)</b>!<br>
+            • <code class="text-emerald-300">1 + i</code> (1. Bölge +,+) ⇒ <b>θ = π/4</b><br>
+            • <code class="text-rose-300">1 - i</code> (4. Bölge +,-) ⇒ <b>θ = -π/4</b> (Slayt 17!)<br>
+            • <code class="text-cyan-300">-1 + i</code> (2. Bölge -,+) ⇒ <b>θ = 3π/4</b>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-emerald-400/40">
+            <div class="font-extrabold text-cyan-300 text-sm mb-1">2) √3 Sayısı "i"nin Yanındaysa (Örn: -1 + i√3)</div>
+            <code class="text-cyan-300 font-bold">i√3</code> varsa dar açımız <b class="text-cyan-300 text-sm">π / 3 (60°)</b>!<br>
+            • <code class="text-emerald-300">1 + i√3</code> (1. Bölge) ⇒ <b>θ = π/3</b><br>
+            • <code class="text-amber-300">-1 + i√3</code> (2. Bölge: π'den çıkar: π - π/3) ⇒ <b>θ = 2π/3</b> (Slayt 14!)
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-emerald-400/40">
+            <div class="font-extrabold text-purple-300 text-sm mb-1">3) Tek Başına Sayıysa (Eksen Üstündeyse)</div>
+            • Pozitif normal sayı (<code class="text-emerald-300">z = 1</code> veya <code class="text-emerald-300">16</code>) ⇒ <b>θ = 0</b><br>
+            • Negatif normal sayı (<code class="text-rose-300">z = -1</code> veya <code class="text-rose-300">-8</code>) ⇒ <b>θ = π (180°)</b><br>
+            • Sadece +i'li (<code class="text-cyan-300">z = 2i</code>) ⇒ <b>θ = π/2 (90°)</b><br>
+            • Sadece -i'li (<code class="text-amber-300">z = -8i</code>) ⇒ <b>θ = -π/2 (-90°)</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLAYT 14, 17, 19 ÜÇ BÜYÜK UYGULAMA KARTI -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
 
-        <!-- SLAYT 14: KUTUPSAL DÖNÜŞÜM -->
+        <!-- SLAYT 14 -->
         <div class="beamer-green bg-[var(--card)]">
-          <div class="beamer-green-header">Slayt 14 Uygulaması: Kartezyenden Kutupsala Dönüşüm</div>
+          <div class="beamer-green-header">Slayt 14: Kutupsal (Üstel) Forma Çevirme</div>
           <div class="p-4 space-y-2.5 leading-relaxed">
-            <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 font-bold text-sm">
-              Soru: <span class="math-f text-emerald-400">z = -1 + i√3</span> sayısını üstel formda yazınız.
+            <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-extrabold text-sm">
+              Soru: <span class="text-emerald-400">z = -1 + i√3</span> sayısını üstel yazınız.
             </div>
             <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              <b class="text-amber-400">1. Modülün Bulunması:</b><br>
-              <span class="math-f font-bold">x = -1, y = √3 ⇒ r = √((-1)² + (√3)²) = √(1 + 3) = 2</span>
+              <b class="text-amber-400">1. Boyunu (r) Bul:</b><br>
+              (-1)'in karesi 1, (√3)'ün karesi 3 ⇒ Topla 4 ⇒ Karekökü <b class="text-white text-sm">r = 2</b>!
             </div>
             <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              <b class="text-cyan-400">2. Açının (Baş Argümanın) Bulunması:</b><br>
-              <span class="math-f font-bold">tan θ = √3 / (-1) = -√3</span>.<br>
-              Sayı <b>2. bölgede</b> (x negatif, y pozitif). Tanjantın <span class="math-f">-√3</span> olduğu 2. bölge açısı: <span class="math-f font-bold text-amber-300">θ = 2π/3 (120°)</span>.
+              <b class="text-cyan-400">2. Açısını (θ) Bul:</b><br>
+              Üstteki tabloya bak: <span class="math-f">i√3</span> var (60° = π/3) ama baştaki sayı eksi (-1) olduğu için 2. bölgede (180 - 60 = 120°): <b class="text-amber-300 text-sm">θ = 2π/3</b>.
             </div>
-            <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-extrabold text-sm text-center math-f">
-              z = 2(cos 2π/3 + i sin 2π/3) = 2e<sup>i2π/3</sup>
+            <div class="p-2.5 rounded-lg bg-emerald-500/20 border border-emerald-500 font-extrabold text-sm text-center math-f">
+              Cevap: z = 2 · e<sup>i(2π/3)</sup>
             </div>
           </div>
         </div>
 
-        <!-- SLAYT 17: DE MOIVRE KUVVET ALMA -->
+        <!-- SLAYT 17 -->
         <div class="beamer-green bg-[var(--card)]">
-          <div class="beamer-green-header">Slayt 17 Uygulaması: De Moivre İle Yüksek Kuvvet</div>
+          <div class="beamer-green-header">Slayt 17: De Moivre İle Yüksek Kuvvet Alma</div>
           <div class="p-4 space-y-2.5 leading-relaxed">
-            <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 font-bold text-sm">
-              Soru: <span class="math-f text-emerald-400">z = 1 - i</span> sayısının 8. kuvvetini (<span class="math-f">z⁸</span>) hesaplayınız.
+            <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-extrabold text-sm">
+              Soru: <span class="text-emerald-400">z = 1 - i</span> sayısının 8. kuvveti (<span class="math-f">z⁸</span>) kaçtır?
             </div>
             <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              <b class="text-amber-400">Adım 1 (Kutupsal Forma Çevir):</b><br>
-              <span class="math-f font-bold">r = √(1² + (-1)²) = √2</span>.<br>
-              Nokta <b>4. bölgede</b>, <span class="math-f">tan θ = -1/1 = -1 ⇒ θ = -π/4</span>.<br>
-              Yani <span class="math-f font-bold text-cyan-300">z = √2 · e<sup>-iπ/4</sup></span>.
+              <b class="text-amber-400">1. Boyunu ve Açısını Bul:</b><br>
+              • Boyu: <span class="math-f">r = √(1² + (-1)²) = <b>√2</b></span><br>
+              • Açısı: 1 ve -1 eşit (45° = π/4), arada eksi olduğu için <b class="text-cyan-300">θ = -π/4</b>.
             </div>
             <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)]">
-              <b class="text-cyan-400">Adım 2 (De Moivre zⁿ = rⁿ·e<sup>inθ</sup> Uygula):</b><br>
-              <span class="math-f font-bold">z⁸ = (√2)⁸ · e<sup>i(8 · (-π/4))</sup> = 2⁴ · e<sup>-i2π</sup> = 16(cos(-2π) + i sin(-2π))</span>
+              <b class="text-cyan-400">2. KURAL: Boyun 8. Üssünü Al, Açıyı 8 İle Çarp!</b><br>
+              • Yeni Boy: <span class="math-f">(√2)⁸ = 2⁴ = <b>16</b></span><br>
+              • Yeni Açı: <span class="math-f">8 × (-π/4) = <b>-2π</b></span> (Tam 360° tur demek, yani 0° ile aynı: cos=1, sin=0!).
             </div>
-            <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-extrabold text-sm text-center">
-              cos(-2π) = 1 ve sin(-2π) = 0 ⇒ <span class="text-amber-300 underline">z⁸ = 16</span>
+            <div class="p-2.5 rounded-lg bg-emerald-500/20 border border-emerald-500 font-extrabold text-sm text-center">
+              Cevap: 16 · (1 + i·0) = <span class="text-amber-300 underline text-base">16</span>
             </div>
           </div>
         </div>
 
-        <!-- SLAYT 19: 1 SAYISININ KÜP KÖKLERİ -->
-        <div class="beamer-green bg-[var(--card)]">
-          <div class="beamer-green-header">Slayt 19 & Defter: z = 1 Sayısının Küp Kökleri (∛1)</div>
+        <!-- SLAYT 19 -->
+        <div class="beamer-amber bg-[var(--card)]">
+          <div class="beamer-amber-header">⭐ Slayt 19 & Defter: Kök Bulma (z = 1'in Küp Kökleri)</div>
           <div class="p-4 space-y-2 leading-relaxed">
-            <div class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 font-bold">
-              <span class="math-f">z = 1 = 1(cos 0 + i sin 0)</span> ⇒ <span class="math-f text-amber-300">r = 1, θ = 0, n = 3</span>.<br>
-              Formül: <span class="math-f">w<sub>k</sub> = ⁿ√r [ cos((θ+2kπ)/n) + i sin((θ+2kπ)/n) ]</span>
+            <div class="p-2 rounded-lg bg-amber-500/15 border border-amber-500/40 font-bold">
+              <b>🪨 Kök Bulma Tarifi:</b> "Küp kök (<span class="math-f">n=3</span>)" derse <b>3 tane kök (<span class="math-f">k=0, 1, 2</span>)</b> bulacaksın! Tam daire <span class="math-f">2π (360°)</span> olduğu için 3'e böl: açılar <b class="text-amber-300">0, 2π/3 (120°), 4π/3 (240°)</b> olur!
             </div>
-            <div class="p-2 rounded-lg bg-[var(--card-alt)] border border-[var(--border)] space-y-1 font-mono text-[11px]">
-              <div>• <b class="text-amber-400">k = 0:</b> w₀ = cos 0 + i sin 0 = <b class="text-white">1</b></div>
-              <div>• <b class="text-cyan-400">k = 1:</b> w₁ = cos(2π/3) + i sin(2π/3) = <b class="text-white">-1/2 + i(√3/2)</b></div>
-              <div>• <b class="text-purple-400">k = 2:</b> w₂ = cos(4π/3) + i sin(4π/3) = <b class="text-white">-1/2 - i(√3/2)</b></div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1 font-mono text-[11px]">
+              <div>• <b class="text-amber-400">k = 0 (0°):</b> w₀ = cos 0 + i sin 0 = <b class="text-emerald-400 text-xs">1</b></div>
+              <div>• <b class="text-cyan-400">k = 1 (120°):</b> w₁ = cos(2π/3) + i sin(2π/3) = <b class="text-emerald-400 text-xs">-1/2 + i(√3/2)</b></div>
+              <div>• <b class="text-purple-400">k = 2 (240°):</b> w₂ = cos(4π/3) + i sin(4π/3) = <b class="text-emerald-400 text-xs">-1/2 - i(√3/2)</b></div>
             </div>
-            <div class="p-2 rounded-lg bg-indigo-500/15 border border-indigo-500/30 font-bold text-indigo-300 text-center">
-              📐 Birim çember içine yerleştirilmiş <b>düzgün eşkenar üçgenin</b> köşeleridir!
+            <div class="p-2 rounded-lg bg-indigo-500/20 border border-indigo-400 font-bold text-indigo-200 text-center">
+              📐 Bu 3 kök çember üzerinde <b>düzgün eşkenar üçgen</b> oluşturur!
             </div>
           </div>
         </div>
@@ -828,9 +865,9 @@
       </div>
 
       <!-- CANLI KÖK BULMA VE DE MOIVRE SİMÜLATÖRÜ -->
-      <div class="bg-[var(--card)] border-2 border-emerald-500/35 rounded-2xl p-5 shadow-lg">
+      <div class="bg-[var(--card)] border-2 border-emerald-500/40 rounded-2xl p-5 shadow-lg">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <h3 class="text-lg font-extrabold text-emerald-400">🧭 Canlı Kutupsal Form, De Moivre ve n. Dereceden Kök Bulma Simülatörü</h3>
+          <h3 class="text-lg font-extrabold text-emerald-400">🧭 Canlı Kök Bulma & De Moivre Robotu (Tıkla, Tüm Kökleri ve Çokgeni Çizsin!)</h3>
           <div class="flex flex-wrap gap-1.5 text-xs">
             <button onclick="selectPolarPreset('slayt19')" id="pbtn-slayt19" class="sub-btn active px-3 py-1.5 rounded-lg border border-[var(--border)] font-bold">Slayt 19: ∛1 (n=3)</button>
             <button onclick="selectPolarPreset('slayt14')" id="pbtn-slayt14" class="sub-btn px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--card-alt)] font-bold">Slayt 14: -1+i√3</button>
@@ -872,93 +909,61 @@
     </section>
 
     <!-- ===================================================================== -->
-    <!-- BÖLÜM 5: 🌍 GÜLDEN HOCA SLAYT 21 & 29–32 — RIEMANN KÜRESİ, SÜREKLİLİK VE KOMPAKTLIK -->
+    <!-- BÖLÜM 4: 🌍 SÖZEL & TEOREM SORULARI İÇİN 10 SANİYELİK ŞİFRELER (SLAYT 21 & 29–32) -->
     <!-- ===================================================================== -->
     <section id="sec-topoloji" class="space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white font-extrabold text-sm shadow">BÖLÜM 5</span>
+          <span class="px-4 py-1.5 rounded-xl bg-cyan-600 text-white font-extrabold text-sm shadow-lg">BÖLÜM 4 • SÖZEL ŞİFRELER</span>
           <div>
-            <h2 class="text-2xl font-extrabold">🌍 Slayt 21 & 29–32: Riemann Küresi, Süreklilik, Düzgün Süreklilik ve Kompaktlık</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">Sözel / Öncüllü ve Klasik Teorem Sorularında %100 Çıkacak Kavramlar</p>
+            <h2 class="text-2xl font-extrabold">🌍 Riemann Küresi, Süreklilik, Düzgün Süreklilik ve Kompaktlık Şifreleri (Slayt 21–32)</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">Test sorularında bu kelimeleri gördüğün saniye doğru şıkkı işaretlemen için 3 kodlama!</p>
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 text-xs">
-        <!-- SOL: RIEMANN KÜRESİ GÖRSEL KARTI (SLAYT 21) -->
-        <div class="lg:col-span-5 beamer-blue bg-[var(--card)]">
-          <div class="beamer-blue-header">Slayt 21: Riemann Küresi ve Genişletilmiş Düzlem (ℂ̂ = ℂ ∪ {∞})</div>
-          <div class="p-4 space-y-3 leading-relaxed">
-            <div class="bg-[var(--card-alt)] border border-[var(--border)] rounded-xl p-3 flex justify-center">
-              <svg viewBox="0 0 280 185" class="w-full h-44">
-                <!-- Kompleks Düzlem (Teğet Masa) -->
-                <polygon points="20,165 220,165 260,125 60,125" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
-                <!-- Küre -->
-                <circle cx="140" cy="90" r="55" fill="rgba(99,102,241,0.18)" stroke="#818cf8" stroke-width="2"/>
-                <ellipse cx="140" cy="90" rx="55" ry="16" fill="none" stroke="#818cf8" stroke-width="1.2" stroke-dasharray="4,3"/>
-                <!-- Kuzey Kutbu N (Sonsuz) -->
-                <circle cx="140" cy="35" r="4.5" fill="#ef4444"/>
-                <text x="85" y="25" fill="#f87171" font-size="11" font-weight="bold">Kuzey Kutbu = ∞ (Sonsuz)</text>
-                <!-- Güney Kutbu S (Orijin 0) -->
-                <circle cx="140" cy="145" r="4.5" fill="#10b981"/>
-                <text x="65" y="160" fill="#34d399" font-size="11" font-weight="bold">Güney Kutbu = Orijin (0)</text>
-                <!-- Stereografik İzdüşüm Işını -->
-                <line x1="140" y1="35" x2="225" y2="148" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2"/>
-                <circle cx="187" cy="97" r="4" fill="#fbbf24"/>
-                <circle cx="225" cy="148" r="4" fill="#fbbf24"/>
-                <text x="195" y="96" fill="#fde047" font-size="9" font-weight="bold">P' (Küre)</text>
-                <text x="228" y="145" fill="#fde047" font-size="10" font-weight="bold">z (Düzlem)</text>
-              </svg>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+        <div class="beamer-blue bg-[var(--card)]">
+          <div class="beamer-blue-header">1️⃣ Riemann Küresi Kodlaması (Slayt 21)</div>
+          <div class="p-4 space-y-2.5 leading-relaxed">
+            <div class="p-3 rounded-xl bg-indigo-500/20 border border-indigo-400/50 text-white font-bold">
+              🌍 Masanın üstüne bir dünya küresi koyduğunu hayal et:<br>
+              • Kürenin masaya değdiği alt nokta (<b>Güney Kutbu</b>) = <b class="text-emerald-300 text-sm">Orijin (0)</b>!<br>
+              • Kürenin en tepesi (<b>Kuzey Kutbu</b>) = <b class="text-rose-300 text-sm">Sonsuz (∞)</b>!
             </div>
-            <ul class="space-y-1.5 list-disc pl-4">
-              <li>Kompleks düzleme <b class="text-rose-400">"sonsuz" (∞)</b> noktasının tekil bir nokta olarak eklenmesiyle <b>genişletilmiş kompleks düzlem</b> elde edilir: <span class="math-f font-bold text-amber-300">ℂ̂ = ℂ ∪ {∞}</span>.</li>
-              <li>Kürenin <b class="text-emerald-400">Güney Kutbu orijini (0)</b>, <b class="text-rose-400">Kuzey Kutbu ise sonsuzluğu (∞)</b> temsil eder (<b>Stereografik İzdüşüm</b>).</li>
-              <li>Sayının modülü <span class="math-f">|z|</span> büyüdükçe küre üzerindeki izdüşümü kuzey kutbuna (<span class="math-f">∞</span>'a) yaklaşır.</li>
-            </ul>
+            <p class="text-[var(--muted-foreground)]">
+              • Kompleks düzleme <span class="math-f">∞</span> eklenmesine <b>Genişletilmiş Kompleks Düzlem (<span class="math-f">ℂ̂ = ℂ ∪ {∞}</span>)</b> denir.<br>
+              • Küreden düzleme ışın çizerek eşlemeye <b>Stereografik İzdüşüm</b> denir. Sayı büyüdükçe izdüşümü <b>Kuzey Kutbuna (∞'a)</b> yaklaşır!
+            </p>
           </div>
         </div>
 
-        <!-- SAĞ: SÜREKLİLİK, DÜZGÜN SÜREKLİLİK VE KOMPAKTLIK TEOREMLERİ (SLAYT 29-32) -->
-        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="beamer-blue bg-[var(--card)]">
-            <div class="beamer-blue-header">Slayt 29: Süreklilik Tanımı (3 Şart)</div>
-            <div class="p-4 space-y-2 leading-relaxed">
-              <p>Bir fonksiyonun limitinin olması sürekli olmasını garanti etmez! <span class="math-f font-bold">z₀</span> noktasında süreklilik için:</p>
-              <div class="p-2.5 rounded-lg bg-[var(--card-alt)] border border-[var(--border)] space-y-1 font-bold">
-                <div class="text-cyan-400">1) lim<sub>z → z₀</sub> f(z) mevcut olmalı,</div>
-                <div class="text-amber-400">2) f(z₀) değeri tanımlı olmalı,</div>
-                <div class="text-emerald-400">3) lim<sub>z → z₀</sub> f(z) = f(z₀) olmalı!</div>
-              </div>
-              <p class="text-[var(--muted-foreground)]">• <b>Polinomlar</b> (<span class="math-f">z³ - 2z + 1</span>) ve <b>üstel fonksiyonlar</b> tüm düzlemde süreklidir.<br>• <b>Rasyonel fonksiyonlar</b> paydayı sıfır yapan yerlerde süreksizdir.</p>
+        <div class="beamer-red bg-[var(--card)]">
+          <div class="beamer-red-header">2️⃣ Düzgün Süreklilik Tuzakları (Slayt 30–31)</div>
+          <div class="p-4 space-y-2.5 leading-relaxed">
+            <div class="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40">
+              ✅ <b>DOĞRU OLANLAR:</b><br>
+              • Düzgün sürekli olan her fonksiyon aynı zamanda <b>süreklidir</b>.<br>
+              • Düzgün süreklilikteki <span class="math-f font-bold">δ</span> sayısı <b>noktadan bağımsızdır</b> (sadece <span class="math-f">ε</span>'a bağlı evrensel güvenlik payıdır).<br>
+              • Daima bir <b>küme (bölge)</b> üzerinde tanımlıdır.
+            </div>
+            <div class="p-2.5 rounded-xl bg-rose-500/20 border border-rose-500">
+              ❌ <b>YANLIŞ OLAN (Sınav Tuzağı!):</b><br>
+              • <i>"Sürekli olan her fonksiyon düzgün süreklidir"</i> derse <b>YANLIŞ!</b> (Tersi her zaman doğru değildir!).<br>
+              • <i>"Tek bir noktada düzgün sürekliliğe bakılır"</i> derse <b>YANLIŞ!</b>
             </div>
           </div>
+        </div>
 
-          <div class="beamer-red bg-[var(--card)]">
-            <div class="beamer-red-header">Slayt 30–31: Düzgün Süreklilik (Notlar - Syf 3)</div>
-            <div class="p-4 space-y-2 leading-relaxed">
-              <div class="p-2 rounded-lg bg-rose-500/15 border border-rose-500/30 font-bold text-center math-f">
-                |z₁ - z₂| &lt; δ  ⇒  |f(z₁) - f(z₂)| &lt; ε
-              </div>
-              <ul class="space-y-1.5 list-disc pl-4">
-                <li><b class="text-amber-300">Evrensel δ Farkı:</b> Noktasal süreklilikte <span class="math-f">δ</span> hem <span class="math-f">ε</span>'a hem <span class="math-f">z₀</span> noktasına bağlıdır. Düzgün süreklilikte ise <span class="math-f">δ</span> <b>noktadan bağımsızdır</b> (sadece <span class="math-f">ε</span>'a bağlıdır).</li>
-                <li><b class="text-rose-300">Kapsayıcılık:</b> <span class="math-f">S</span>'de düzgün sürekli ⇒ <span class="math-f">S</span>'de süreklidir. <b>Fakat tersi her zaman doğru değildir!</b></li>
-                <li><b class="text-cyan-300">Kavramsal Fark:</b> Tek bir noktada araştırılamaz, daima bir <b>S kümesi (bölge)</b> üzerinde tanımlıdır.</li>
-              </ul>
+        <div class="beamer-green bg-[var(--card)]">
+          <div class="beamer-green-header">3️⃣ "Kompakt Küme" Sihirli Kelimesi (Slayt 32)</div>
+          <div class="p-4 space-y-2.5 leading-relaxed">
+            <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-400 text-white font-bold">
+              🔑 <b>"Kompakt" Ne Demek?:</b> Hem <b>KAPALI</b> (sınırı dahil, <span class="math-f">≤</span> veya <span class="math-f">=</span>) hem de <b>SINIRLI</b> (sonsuza gitmeyen) küme demektir! (Örn: <span class="math-f">|z| ≤ 2</span> kapalı yuvarı veya <span class="math-f">1 ≤ |z| ≤ 5</span> kapalı halkası kompakttır!).
             </div>
-          </div>
-
-          <div class="sm:col-span-2 beamer-green bg-[var(--card)]">
-            <div class="beamer-green-header">Slayt 32: Kompaktlık (Kapalı + Sınırlı Küme) ve Süreklilik İlişkisi (2 Kritik Teorem)</div>
-            <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3 leading-relaxed">
-              <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-                <div class="font-extrabold text-emerald-400 mb-1">🏆 Teorem 1 (Kompakt Kümelerde Süreklilik):</div>
-                Bir <span class="math-f font-bold">f</span> fonksiyonu <b>kompakt (kapalı ve sınırlandırılmış)</b> bir <span class="math-f font-bold">S</span> kümesi üzerinde sürekliyse, <span class="math-f font-bold">S</span>'de otomatik olarak <b class="text-amber-300">DÜZGÜN SÜREKLİDİR</b>!
-              </div>
-              <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
-                <div class="font-extrabold text-cyan-400 mb-1">🏆 Teorem 2 (Görüntü Kümesinin Kompaktlığı):</div>
-                <span class="math-f font-bold">S</span> kümesi kompakt ve <span class="math-f font-bold">f</span>, <span class="math-f font-bold">S</span> üzerinde sürekli bir fonksiyon ise, <span class="math-f font-bold">f(S)</span> görüntü kümesi de <b class="text-amber-300">KOMPAKTTIR</b> (Sürekli fonksiyonlar kompaktlığı korur).
-              </div>
+            <div class="p-2.5 rounded-xl bg-[var(--card-alt)] border border-[var(--border)] space-y-1">
+              <div>🏆 <b>Teorem 1:</b> Kompakt kümede sürekli fonksiyon otomatik olarak <b class="text-emerald-400">DÜZGÜN SÜREKLİ</b> terfi alır!</div>
+              <div>🏆 <b>Teorem 2:</b> Sürekli fonksiyon kompaktlığı korur (<span class="math-f">S</span> kompakt ise görüntüsü <b class="text-cyan-400">f(S) de KOMPAKTTIR</b>!).</div>
             </div>
           </div>
         </div>
@@ -966,32 +971,31 @@
     </section>
 
     <!-- ===================================================================== -->
-    <!-- BÖLÜM 6: 📝 5 DENEME SINAVI × 20 SORU = 100 DETAYLI ÇÖZÜMLÜ SORU -->
+    <!-- BÖLÜM 5: 📝 5 DENEME SINAVI × 20 SORU = 100 DETAYLI ÇÖZÜMLÜ SORU -->
     <!-- ===================================================================== -->
     <section id="sec-testler" class="space-y-5">
-      <div class="bg-[var(--card)] border-2 border-indigo-500/40 rounded-3xl p-6 shadow-xl">
+      <div class="bg-[var(--card)] border-2 border-indigo-500/50 rounded-3xl p-6 shadow-xl">
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[var(--border)] pb-4 mb-5">
           <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-400">BÖLÜM 6 • KAPSAMLI VİZE SINAV BANKASI</span>
-            <h2 class="text-2xl font-extrabold mt-0.5">📝 5 Deneme Sınavı × 20 Soru = 100 Detaylı Çözümlü Soru</h2>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-400">BÖLÜM 5 • KAPSAMLI VİZE SINAV BANKASI</span>
+            <h2 class="text-2xl font-extrabold mt-0.5">📝 5 Deneme Sınavı × 20 Soru = 100 Adım Adım Çözümlü Soru</h2>
             <p class="text-xs text-[var(--muted-foreground)] mt-1">
-              Gülden Kapusuz Gökdoğan hocanın 33 slaytı, tahtadaki örnekleri ve defterdeki vize tüyolarına göre hazırlanmış 100 soru. Şıklara tıklayarak çözebilir veya <b>"Tüm Çözümleri Göster"</b> ile hepsini inceleyebilirsin.
+              Şıklara tıklayarak kendin çözebilir veya sağdaki yeşil <b>"Tüm Çözümleri Göster"</b> butonuna basarak 100 sorunun tamamının çözümünü okuyabilirsin!
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2 shrink-0">
             <div id="active-test-score" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold text-xs shadow">
               Doğru: 0 / 20 • Puan: 0 / 100
             </div>
-            <button onclick="toggleAllExplanations()" id="btn-toggle-exp" class="px-3.5 py-2 rounded-xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/25 font-extrabold text-xs transition">
+            <button onclick="toggleAllExplanations()" id="btn-toggle-exp" class="px-3.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 hover:bg-emerald-500/30 font-extrabold text-xs transition">
               Tüm Çözümleri Göster
             </button>
-            <button onclick="resetCurrentTest()" class="px-3 py-2 rounded-xl bg-rose-500/15 text-rose-400 border border-rose-500/40 hover:bg-rose-500/25 font-bold text-xs transition">
+            <button onclick="resetCurrentTest()" class="px-3 py-2 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/50 hover:bg-rose-500/30 font-bold text-xs transition">
               Sıfırla
             </button>
           </div>
         </div>
 
-        <!-- 5 Test Selector Buttons -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2.5 mb-6 text-xs">
           <button onclick="selectTest('test1')" id="tbtn-test1" class="test-tab active p-3 rounded-xl border border-[var(--border)] text-left transition">
             <div class="font-extrabold">⭐ TEST 1 (20 Soru)</div>
@@ -1070,11 +1074,11 @@
 
       const box = document.getElementById('custom-deriv-output');
       box.innerHTML = `
-        <div class="font-extrabold text-amber-400 text-sm">📄 Klasik Sınav Kağıdı Çözümü — f(z) = ${polyStr} , z₀ = ${z0Str}</div>
-        <div><b class="text-cyan-400">1. Adım (Limit Tanımı):</b> <span class="math-f font-bold">f'(${z0Str}) = lim<sub>z → ${z0Str}</sub> [ f(z) - f(${z0Str}) ] / [ z - (${z0Str}) ]</span></div>
-        <div><b class="text-purple-400">2. Adım (İki Kare Farkı ve Çarpanlara Ayırma):</b> Pay ifadesi <span class="math-f font-bold">[z - (${z0Str})] · [ ${a}·(z + (${z0Str})) ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)} ]</span> şeklinde çarpanlarına ayrılır ve paydadaki <span class="math-f font-bold">[z - (${z0Str})]</span> ile sadeleşir.</div>
-        <div><b class="text-emerald-400">3. Adım (Limit Değerini Yerine Yaz):</b> <span class="math-f font-bold">lim<sub>z → ${z0Str}</sub> [ ${a}·(z + (${z0Str})) ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)} ] = 2·(${a})·(${z0Str}) + (${b})</span></div>
-        <div class="p-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 font-extrabold text-base text-emerald-300">
+        <div class="font-extrabold text-amber-400 text-sm">📄 Sınav Kağıdına Birebir Yazacağın Çözüm — f(z) = ${polyStr} , z₀ = ${z0Str}</div>
+        <div><b class="text-cyan-400">1. Satır (Limit Tanımını Yaz):</b> <span class="math-f font-bold">f'(${z0Str}) = lim<sub>z → ${z0Str}</sub> [ f(z) - f(${z0Str}) ] / [ z - (${z0Str}) ]</span></div>
+        <div><b class="text-purple-400">2. Satır (Üstü Çarpanlarına Ayır ve Sadeleştir):</b> Üst taraf <span class="math-f font-bold">[z - (${z0Str})] · [ ${a}·(z + (${z0Str})) ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)} ]</span> diye açılır, alttaki <span class="math-f font-bold">[z - (${z0Str})]</span> ile birbirini götürür!</div>
+        <div><b class="text-emerald-400">3. Satır (z Yerine ${z0Str} Koy):</b> <span class="math-f font-bold">lim<sub>z → ${z0Str}</sub> [ ${a}·(z + (${z0Str})) ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)} ] = 2·(${a})·(${z0Str}) + (${b})</span></div>
+        <div class="p-2.5 rounded-lg bg-emerald-500/20 border border-emerald-500 font-extrabold text-base text-emerald-300">
           ✅ Kesin Sonuç: f'(${z0Str}) = ${resStr}
         </div>
       `;
@@ -1087,9 +1091,9 @@
         title: "1 ≤ |z - (3 + 2i)| ≤ 5 bölgesini düzlemde gösteriniz.",
         type: "annulus_closed", a: 3, b: 2, r: 5, r1: 1,
         steps: [
-          "<b>1. Merkez:</b> <span class='math-f'>z₀ = 3 + 2i</span> olduğundan merkez <b>M(3, 2)</b> noktasıdır.",
-          "<b>2. Yarıçaplar:</b> İç çember yarıçapı <b>r₁ = 1</b>, dış çember yarıçapı <b>r₂ = 5</b>.",
-          "<b>3. Çizim:</b> '≤' olduğu için her iki çember <b>DÜZ ÇİZGİ</b> ile çizilir ve aralarındaki halka taranır."
+          "<b>1. Merkez:</b> İçerideki 3 ve 2'yi al ⇒ Merkez <b>M(3, 2)</b> noktasıdır.",
+          "<b>2. Yarıçaplar:</b> Sol sayı iç çember <b>r₁ = 1</b>, sağ sayı dış çember <b>r₂ = 5</b>.",
+          "<b>3. Çizim:</b> Altlarında çizgi ('≤') olduğu için iki çemberi de <b>DÜZ ÇİZGİ</b> çiz ve aralarındaki simit bölgesini boya!"
         ]
       },
       tahta_a: {
@@ -1099,37 +1103,37 @@
         type: "circle", a: 3, b: 4, r: 5, r1: 1,
         steps: [
           "<b>1. Merkez ve Yarıçap:</b> Merkez <b>M(3, 4)</b> ve yarıçap <b>r = 5</b> olan çemberdir.",
-          "<b>2. Orijin Detayı:</b> Merkezin orijine uzaklığı <span class='math-f'>√(3²+4²) = 5 = r</span> olduğundan çember tam <b>orijinden (0,0)</b> geçer!"
+          "<b>2. Orijin Detayı:</b> 3-4-5 üçgeninden merkezin orijine uzaklığı 5 olduğu için çember tam <b>orijinden (0,0)</b> geçer! '=' olduğu için içi boyanmaz."
         ]
       },
       tahta_b: {
         badge: "Tahta Fotoğrafı — Örnek 1b",
         summary: "M(0, 1/2) • r = 2 (Çember)",
-        title: "b) |2z - i| = 4  ⇒  |z - (1/2)i| = 2",
+        title: "b) |2z - i| = 4  ⇒  Hepsini 2'ye Böl: |z - (1/2)i| = 2",
         type: "circle", a: 0, b: 0.5, r: 2, r1: 1,
         steps: [
-          "<b>1. 2 Parantezine Al:</b> <span class='math-f'>|2z - i| = 4 ⇒ 2·|z - i/2| = 4 ⇒ |z - (0 + (1/2)i)| = 2</span>.",
-          "<b>2. Merkez ve Yarıçap:</b> Merkez <b>M(0, 1/2)</b> ve yarıçap <b>r = 2</b>."
+          "<b>1. Hepsini 2'ye Böl:</b> z'nin önünde 2 olduğu için her yeri 2'ye böleriz: <span class='math-f'>|z - (1/2)i| = 2</span>.",
+          "<b>2. Merkez ve Yarıçap:</b> Reel sayı yok (0), -1/2'yi ters çevir (+1/2) ⇒ Merkez <b>M(0, 1/2)</b> ve yarıçap <b>r = 2</b>."
         ]
       },
       tahta_c: {
         badge: "Tahta Fotoğrafı — Örnek 1c",
         summary: "M(0, 5) • r = 1 (Çember)",
-        title: "c) |3z - 15i| = 3  ⇒  |z - 5i| = 1",
+        title: "c) |3z - 15i| = 3  ⇒  Hepsini 3'e Böl: |z - 5i| = 1",
         type: "circle", a: 0, b: 5, r: 1, r1: 1,
         steps: [
-          "<b>1. 3 Parantezine Al:</b> Her iki taraf 3'e bölünürse <span class='math-f'>|z - (0 + 5i)| = 1</span> olur.",
-          "<b>2. Merkez ve Yarıçap:</b> Merkez <b>M(0, 5)</b> ve yarıçap <b>r = 1</b>."
+          "<b>1. Hepsini 3'e Böl:</b> Her tarafı 3'e bölersek <span class='math-f'>|z - 5i| = 1</span> olur.",
+          "<b>2. Merkez ve Yarıçap:</b> Reel yok (0), -5'i ters çevir (+5) ⇒ Merkez <b>M(0, 5)</b> ve yarıçap <b>r = 1</b>."
         ]
       },
       tahta_d: {
         badge: "Tahta Fotoğrafı — Örnek 1d",
         summary: "M(0, -2) • r = 3 (Çember)",
-        title: "d) |4z + 8i| = 12  ⇒  |z - (-2i)| = 3",
+        title: "d) |4z + 8i| = 12  ⇒  Hepsini 4'e Böl: |z + 2i| = 3",
         type: "circle", a: 0, b: -2, r: 3, r1: 1,
         steps: [
-          "<b>1. 4 Parantezine Al ve İşarete Dikkat Et:</b> <span class='math-f'>|z + 2i| = 3 ⇔ |z - (0 - 2i)| = 3</span>.",
-          "<b>2. Merkez ve Yarıçap:</b> Merkez <b>M(0, -2)</b> ve yarıçap <b>r = 3</b>."
+          "<b>1. Hepsini 4'e Böl:</b> <span class='math-f'>|z + 2i| = 3</span>.",
+          "<b>2. İşareti Ters Çevir:</b> +2i'nin işaretini ters çevir (-2) ⇒ Merkez <b>M(0, -2)</b> ve yarıçap <b>r = 3</b>."
         ]
       },
       tahta_e: {
@@ -1138,8 +1142,8 @@
         title: "e) |z - 2 - 3i| < 4  ⇒  |z - (2 + 3i)| < 4",
         type: "open_disk", a: 2, b: 3, r: 4, r1: 1,
         steps: [
-          "<b>1. Merkez ve Yarıçap:</b> Merkez <b>M(2, 3)</b> ve yarıçap <b>r = 4</b>.",
-          "<b>2. Açık Yuvar Çizimi:</b> '&lt;' olduğu için sınır çemberi <b>KESİKLİ</b> çizilir ve <b>İÇİ TARANIR</b>."
+          "<b>1. Merkez ve Yarıçap:</b> -2 ve -3'ü ters çevir ⇒ Merkez <b>M(2, 3)</b> ve yarıçap <b>r = 4</b>.",
+          "<b>2. Açık Yuvar Çizimi:</b> '&lt;' (altında çizgi yok) olduğu için çemberi <b>KESİKLİ</b> çiz ve <b>İÇİNİ BOYA</b>."
         ]
       },
       tahta_f: {
@@ -1148,8 +1152,8 @@
         title: "f) Re(z̄ - i) = 2  ⇒  x = 2 doğrusu",
         type: "line_x2", a: 2, b: 0, r: 2, r1: 1,
         steps: [
-          "<b>1. Açılım:</b> <span class='math-f'>z̄ - i = x - iy - i = x - i(y + 1)</span>.",
-          "<b>2. Reel Kısım:</b> <span class='math-f'>Re(z̄ - i) = x = 2</span> dikey doğrusudur."
+          "<b>1. Mantık:</b> 'Re' sadece reel kısma (x'e) bakar. Eşlenik ve -i sadece sanal kısmı değiştirir.",
+          "<b>2. Çizim:</b> Direkt <span class='math-f'>x = 2</span> noktasından dikey doğru çizilir."
         ]
       },
       slayt_delinmis: {
@@ -1158,8 +1162,8 @@
         title: "0 < |z - (1 - i)| < 3 Delinmiş Komşuluğu",
         type: "punctured", a: 1, b: -1, r: 3, r1: 1,
         steps: [
-          "<b>1. Merkez Hariç:</b> '0 &lt;' şartı nedeniyle merkez <b>M(1, -1) noktası kümeye dahil değildir (delinmiştir)</b>.",
-          "<b>2. Dış Sınır:</b> r = 3 çemberi kesikli çizilir ve iç bölge taranır."
+          "<b>1. Merkez Hariç:</b> Sol taraftaki '0 &lt;' yüzünden merkez <b>M(1, -1) noktası oyulup çıkarılır (içi boş halka)</b>.",
+          "<b>2. Dış Sınır:</b> r = 3 çemberi kesikli çizilir ve iç bölge boyanır."
         ]
       }
     };
@@ -1387,25 +1391,25 @@
 
       box.innerHTML = `
         <div class="p-3.5 rounded-xl bg-[var(--card-alt)] border border-[var(--border)]">
-          <div class="font-extrabold text-cyan-400">1. Kutupsal ve Üstel (Euler) Form:</div>
-          <div class="mt-1">• <b>Sayı:</b> z = ${zStr} &nbsp;|&nbsp; <b>Modül:</b> r = √(${x.toFixed(2)}² + ${y.toFixed(2)}²) = <b class="text-amber-300">${r.toFixed(3)}</b></div>
-          <div>• <b>Baş Argüman (-π &lt; Arg(z) ≤ π):</b> θ = <b class="text-amber-300">${thetaDeg.toFixed(1)}°</b> (${(thetaRad / Math.PI).toFixed(2)}π rad)</div>
+          <div class="font-extrabold text-cyan-400">1. Adım: Boyunu (r) ve Açısını (θ) Bul:</div>
+          <div class="mt-1">• <b>Sayı:</b> z = ${zStr} &nbsp;|&nbsp; <b>Boyu (Modül):</b> r = √(${x.toFixed(2)}² + ${y.toFixed(2)}²) = <b class="text-amber-300">${r.toFixed(3)}</b></div>
+          <div>• <b>Baş Argüman (-180° &lt; θ ≤ 180°):</b> θ = <b class="text-amber-300">${thetaDeg.toFixed(1)}°</b> (${(thetaRad / Math.PI).toFixed(2)}π rad)</div>
           <div>• <b>Euler Üstel Formu:</b> <span class="math-f font-bold text-emerald-300">z = ${r.toFixed(2)} · e<sup>i(${(thetaRad / Math.PI).toFixed(2)}π)</sup></span></div>
         </div>
 
         <div class="p-3.5 rounded-xl bg-[var(--card-alt)] border border-[var(--border)]">
-          <div class="font-extrabold text-amber-400">2. De Moivre Kuvveti (z<sup>${n}</sup>):</div>
+          <div class="font-extrabold text-amber-400">2. Adım: De Moivre Kuvveti (z<sup>${n}</sup>):</div>
           <div class="font-extrabold text-sm text-emerald-400 mt-1">z<sup>${n}</sup> = ${znStr}</div>
         </div>
 
         <div class="p-3.5 rounded-xl bg-[var(--card-alt)] border border-[var(--border)]">
-          <div class="font-extrabold text-emerald-400 mb-1.5">3. n = ${n}. Dereceden Kökler Tablosu (w<sub>k</sub> = <sup>${n}</sup>√z, Yarıçap = ${rootR.toFixed(3)}):</div>
+          <div class="font-extrabold text-emerald-400 mb-1.5">3. Adım: n = ${n} Tane Kökün Tablosu (w<sub>k</sub> = <sup>${n}</sup>√z, Yarıçap = ${rootR.toFixed(3)}):</div>
           <table class="w-full text-left border-collapse text-xs">
             <thead>
               <tr class="text-[var(--muted-foreground)]">
-                <th class="py-1 px-2">k Değeri</th>
-                <th class="py-1 px-2">Açı (θ + 2kπ) / ${n}</th>
-                <th class="py-1 px-2">Kök (w<sub>k</sub> = x + iy)</th>
+                <th class="py-1 px-2">k Sırası</th>
+                <th class="py-1 px-2">Açı (Her adımda +${(360/n).toFixed(0)}° ekle!)</th>
+                <th class="py-1 px-2">Kök Değeri (w<sub>k</sub> = x + iy)</th>
               </tr>
             </thead>
             <tbody>${rootsRows}</tbody>
